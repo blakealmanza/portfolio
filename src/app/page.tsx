@@ -388,7 +388,13 @@ export default function Home() {
                     </p>
                     <div className={styles.projectLinks}>
                       {project.links.map((link) => (
-                        <a href={link.href} key={link.label}>
+                        <a
+                          href={link.href}
+                          key={link.label}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${link.label} for ${project.title} (opens in a new tab)`}
+                        >
                           {link.label} →
                         </a>
                       ))}
