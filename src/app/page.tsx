@@ -3,156 +3,15 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { MouseEvent, useEffect, useRef, useState } from "react";
-import type { ProjectMediaItem } from "./ProjectMediaViewer";
+import type { CaseStudyProject } from "../content/projects";
+import { projects } from "../content/projects";
 import styles from "./page.module.css";
 
 const ProjectMediaViewer = dynamic(() => import("./ProjectMediaViewer"), { ssr: false });
 
-type Project = {
-  id: string;
-  number: string;
-  title: string;
-  type: string;
-  summary: string;
-  description: string;
-  stack: string;
-  media: ProjectMediaItem[];
-  links: { label: string; href: string }[];
-};
-
-const projects: Project[] = [
-  {
-    id: "better-halo",
-    number: "01",
-    title: "Better Halo",
-    type: "Browser extension",
-    summary: "A student-first extension that makes GCU’s Halo LMS easier to use.",
-    description:
-      "Students can personalize their LMS, stay on top of assignments, and navigate a more comfortable learning experience.",
-    stack: "React · TypeScript · GraphQL · Web Extension APIs",
-    media: [
-      {
-        kind: "image",
-        src: "/projects/better-halo/theme-customizer.webp",
-        alt: "Better Halo theme customizer applied to the Halo LMS dashboard",
-        label: "Theme editor",
-      },
-      {
-        kind: "image",
-        src: "/projects/better-halo/gallery.webp",
-        alt: "Better Halo community theme gallery",
-        label: "Theme gallery",
-      },
-      {
-        kind: "image",
-        src: "/projects/better-halo/extension.webp",
-        alt: "Better Halo theme and dark mode controls",
-        label: "Theme controls",
-        fit: "contain",
-      },
-    ],
-    links: [{ label: "Live site", href: "https://www.betterhalo.app" }],
-  },
-  {
-    id: "wsbri",
-    number: "02",
-    title: "Washington State Barrel Racing Info",
-    type: "Freelance platform",
-    summary: "Event schedules, results, and rider updates for Washington barrel racers.",
-    description: "A central hub for competitors to find events, follow results, explore arenas, and receive timely updates.",
-    stack: "Calendar UI · Google Maps · Resend · Automation",
-    media: [
-      {
-        kind: "image",
-        src: "/projects/wsbri/home.webp",
-        alt: "Washington State Barrel Racing Info homepage",
-        label: "Homepage",
-      },
-      {
-        kind: "image",
-        src: "/projects/wsbri/events.webp",
-        alt: "Washington State Barrel Racing Info event calendar",
-        label: "Event calendar",
-      },
-      {
-        kind: "image",
-        src: "/projects/wsbri/arenas.webp",
-        alt: "Washington State Barrel Racing Info arena map and directory",
-        label: "Arena directory",
-      },
-    ],
-    links: [{ label: "Live site", href: "https://www.wsbarrelracing.com" }],
-  },
-  {
-    id: "kimbo-learning",
-    number: "03",
-    title: "Kimbo Learning",
-    type: "AI learning platform",
-    summary: "Interactive, AI-powered stories for K–3 learners.",
-    description:
-      "Young readers choose what happens next, complete reading quests, and follow their progress across every adventure.",
-    stack: "AI · RAG · Supabase · Redis · Accessibility",
-    media: [
-      {
-        kind: "image",
-        src: "/projects/kimbo-learning/home.webp",
-        alt: "Kimbo Learning adventure dashboard with reading progress and story collection",
-        label: "Adventure dashboard",
-      },
-      {
-        kind: "image",
-        src: "/projects/kimbo-learning/story.webp",
-        alt: "Kimbo Learning interactive story screen with a reading passage and choice prompts",
-        label: "Story choices",
-      },
-      {
-        kind: "video",
-        src: "/projects/kimbo-learning/demo.mp4",
-        poster: "/projects/kimbo-learning/poster.webp",
-        alt: "Kimbo Learning loading animation",
-        label: "Loading animation",
-      },
-    ],
-    links: [],
-  },
-  {
-    id: "golf-caddie",
-    number: "04",
-    title: "Golf Caddie",
-    type: "Progressive web app",
-    summary: "GPS yardages, shot tracking, and course maps for every round.",
-    description: "A mobile-first golf companion that helps players plan shots, track rounds, and navigate courses with confidence.",
-    stack: "React · TypeScript · AWS · Google Maps API",
-    media: [
-      {
-        kind: "image",
-        src: "/projects/golf-caddie/play.webp",
-        alt: "Golf Caddie yardage map and shot-tracking view",
-        label: "Yardage map",
-        fit: "contain",
-      },
-      {
-        kind: "image",
-        src: "/projects/golf-caddie/home.webp",
-        alt: "Golf Caddie home and current round screen",
-        label: "Round home",
-        fit: "contain",
-      },
-      {
-        kind: "image",
-        src: "/projects/golf-caddie/courses.webp",
-        alt: "Golf Caddie course selection screen",
-        label: "Course library",
-        fit: "contain",
-      },
-    ],
-    links: [],
-  },
-];
-
 export default function Home() {
-  const [activeProject, setActiveProject] = useState(projects[0].id);
-  const [viewer, setViewer] = useState<{ project: Project; index: number } | null>(null);
+  const [activeProject, setActiveProject] = useState(projects[0].slug);
+  const [viewer, setViewer] = useState<{ project: CaseStudyProject; index: number } | null>(null);
   const projectElements = useRef(new Map<string, HTMLElement>());
   const mediaTrigger = useRef<HTMLButtonElement | null>(null);
 
@@ -162,7 +21,7 @@ export default function Home() {
     const updateActiveProject = () => {
       const viewportCenter = window.innerHeight / 2;
       const focusedProject = projects
-        .map((project) => projectElements.current.get(project.id))
+        .map((project) => projectElements.current.get(project.slug))
         .filter((element): element is HTMLElement => element !== undefined)
         .reduce<HTMLElement | null>((closest, element) => {
           if (!closest) return element;
@@ -249,6 +108,10 @@ export default function Home() {
         </a>
         <div className={styles.navLinks}>
           <a href="#work">Work</a>
+          <a href="/design-lab">Design Lab</a>
+          <a href="#about">About</a>
+          <a href="/Blake_Almanza_Resume.pdf" target="_blank" rel="noreferrer" aria-label="Open resume PDF in a new tab">Resume ↗</a>
+          <a href="https://github.com/blakealmanza" target="_blank" rel="noreferrer" aria-label="GitHub (opens in a new tab)">GitHub ↗</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
@@ -261,7 +124,7 @@ export default function Home() {
         </h1>
         <div className={styles.heroBottom}>
           <p>
-            I’m Blake Almanza, building browser extensions, web apps, and practical tools for real people.
+            I build browser extensions, web applications, and embedded products—pairing strong engineering with thoughtful, practical interfaces.
           </p>
           <a className={styles.heroCta} href="#work">View work ↓</a>
         </div>
@@ -275,11 +138,11 @@ export default function Home() {
             <nav className={styles.projectIndex} aria-label="Project index">
               {projects.map((project) => (
                 <a
-                  key={project.id}
-                  className={activeProject === project.id ? styles.activeIndexItem : ""}
-                  href={`#${project.id}`}
-                  onClick={(event) => focusProject(event, project.id)}
-                  aria-current={activeProject === project.id ? "location" : undefined}
+                  key={project.slug}
+                  className={activeProject === project.slug ? styles.activeIndexItem : ""}
+                  href={`#${project.slug}`}
+                  onClick={(event) => focusProject(event, project.slug)}
+                  aria-current={activeProject === project.slug ? "location" : undefined}
                 >
                   <span>{project.number}</span>
                   <strong>{project.title}</strong>
@@ -292,13 +155,13 @@ export default function Home() {
             {projects.map((project) => (
               <article
                 className={styles.project}
-                id={project.id}
+                id={project.slug}
                 key={project.title}
                 ref={(element) => {
                   if (element) {
-                    projectElements.current.set(project.id, element);
+                    projectElements.current.set(project.slug, element);
                   } else {
-                    projectElements.current.delete(project.id);
+                    projectElements.current.delete(project.slug);
                   }
                 }}
               >
@@ -387,6 +250,7 @@ export default function Home() {
                       {project.type}
                     </p>
                     <div className={styles.projectLinks}>
+                      {project.overview && <a href={`/projects/${project.slug}`}>Case study →</a>}
                       {project.links.map((link) => (
                         <a
                           href={link.href}
@@ -404,6 +268,16 @@ export default function Home() {
                   <div className={styles.projectCopy}>
                     <h3>{project.title}</h3>
                     <p className={styles.projectSummary}>{project.summary}</p>
+                    {project.metrics && (
+                      <dl className={styles.projectMetrics}>
+                        {project.metrics.map((metric) => (
+                          <div key={metric.label}>
+                            <dt>{metric.value}</dt>
+                            <dd>{metric.label}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                    )}
                     <p className={styles.projectDescription}>{project.description}</p>
                     <p className={styles.stack}>{project.stack}</p>
                   </div>
@@ -416,6 +290,24 @@ export default function Home() {
 
       {viewer && <ProjectMediaViewer media={viewer.project.media} index={viewer.index} onCloseAction={closeViewer} />}
 
+      <section className={styles.designLabTeaser} aria-labelledby="design-lab-title">
+        <p>Design Lab</p>
+        <div>
+          <h2 id="design-lab-title">Interface concepts, clearly separate from shipped work.</h2>
+          <p>Explorations in developer tools, sports software, and embedded-device interfaces.</p>
+          <a href="/design-lab">View Design Lab →</a>
+        </div>
+      </section>
+
+      <section id="about" className={styles.about} aria-labelledby="about-title">
+        <p>About</p>
+        <div className={styles.aboutContent}>
+          <h2 id="about-title">Software that works well in the real world.</h2>
+          <p>
+            I’m a software engineer interested in the space between software and physical products. I build practical tools across web, cloud, and embedded systems, with equal attention to the technical foundation and the experience people have using them.
+          </p>
+        </div>
+      </section>
 
       <section id="contact" className={styles.contact} aria-labelledby="contact-title">
         <p>Contact</p>
