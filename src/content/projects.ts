@@ -23,6 +23,7 @@ export type CaseStudyProject = {
   summary: string;
   description: string;
   stack: string;
+  homepageStack: string;
   media: ProjectMediaItem[];
   links: ProjectLink[];
   metrics?: ProjectMetric[];
@@ -42,11 +43,12 @@ export const projects: CaseStudyProject[] = [
     slug: "embedded-developer-workflow-dashboard",
     number: "01",
     title: "Embedded Developer Workflow Dashboard",
-    type: "In-progress embedded system",
+    type: "Self-hosted embedded system · In progress",
     summary: "A self-hosted physical dashboard for developer context, notifications, and focus—without another browser tab.",
     description:
       "An ESP32-P4 desk device that combines a touch display, rotary input, ambient feedback, and a self-hosted backend for glanceable developer workflow information.",
     stack: "ESP-IDF · C++ · LVGL · FreeRTOS · NestJS · React · Tauri · WebSockets · Protobuf",
+        homepageStack: "ESP-IDF · C++ · LVGL · NestJS · In progress",
     overview:
       "The dashboard is a dedicated productivity appliance designed to keep current work, build state, and notifications available in peripheral attention. It is intentionally an embedded system rather than a browser dashboard: physical controls, fast startup, lower power use, and a focused interaction model are part of the product decision.",
     problem:
@@ -115,6 +117,7 @@ export const projects: CaseStudyProject[] = [
     description:
       "Students can personalize their LMS, stay on top of assignments, and navigate a more comfortable learning experience.",
     stack: "React · TypeScript · GraphQL · Web Extension APIs",
+        homepageStack: "React · TypeScript · GraphQL · Extension APIs",
     metrics: [{ value: "350+", label: "students using Better Halo" }],
     overview:
       "Better Halo adds practical quality-of-life improvements to the learning system students already use every day. It gives students more control over the visual experience while keeping assignments and navigation easy to reach.",
@@ -172,10 +175,11 @@ export const projects: CaseStudyProject[] = [
     slug: "wsbri",
     number: "03",
     title: "Washington State Barrel Racing Info",
-    type: "Freelance platform",
+    type: "Community event platform",
     summary: "Event schedules, results, and rider updates for Washington barrel racers.",
     description: "A central hub for competitors to find events, follow results, explore arenas, and receive timely updates.",
     stack: "Calendar UI · Google Maps · Resend · Automation",
+        homepageStack: "React · Maps · Email · Automation",
     metrics: [
       { value: "200+", label: "users served" },
       { value: "~80%", label: "less manual event-management work" },
@@ -225,6 +229,7 @@ export const projects: CaseStudyProject[] = [
     summary: "Interactive, AI-powered stories for K–3 learners.",
     description: "Young readers choose what happens next, complete reading quests, and follow their progress across every adventure.",
     stack: "AI · RAG · Supabase · Redis · Accessibility",
+        homepageStack: "AI · RAG · Supabase · Accessibility",
     media: [
       { kind: "image", src: "/projects/kimbo-learning/home.webp", alt: "Kimbo Learning adventure dashboard with reading progress and story collection", label: "Adventure dashboard" },
       { kind: "image", src: "/projects/kimbo-learning/story.webp", alt: "Kimbo Learning interactive story screen with a reading passage and choice prompts", label: "Story choices" },
@@ -236,10 +241,11 @@ export const projects: CaseStudyProject[] = [
     slug: "golf-caddie",
     number: "05",
     title: "Golf Caddie",
-    type: "Progressive web app",
+    type: "Mobile golf companion",
     summary: "GPS yardages, shot tracking, and course maps for every round.",
     description: "A mobile-first golf companion that helps players plan shots, track rounds, and navigate courses with confidence.",
     stack: "React · TypeScript · AWS · Google Maps API",
+        homepageStack: "React · TypeScript · AWS · Google Maps",
     overview:
       "Golf Caddie is a mobile-first companion for the decisions players make during a round: where they are, how far they are from the target, and what has happened on previous shots.",
     problem:

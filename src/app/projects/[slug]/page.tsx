@@ -87,7 +87,7 @@ export default async function ProjectCaseStudy({ params }: PageProps) {
         )}
 
         {project.architecture && (
-          <section className={styles.section} aria-labelledby="architecture-title">
+          <section className={`${styles.section} ${styles.architectureSection}`} aria-labelledby="architecture-title">
             <p className={styles.sectionLabel}>Architecture</p>
             <div className={styles.sectionContent}>
               <h2 id="architecture-title">The system at a glance.</h2>
@@ -121,7 +121,7 @@ export default async function ProjectCaseStudy({ params }: PageProps) {
         )}
 
         {project.progression && (
-          <section className={styles.section} aria-labelledby="progression-title">
+          <section className={`${styles.section} ${styles.processSection}`} aria-labelledby="progression-title">
             <p className={styles.sectionLabel}>Process</p>
             <div className={styles.sectionContent}>
               <h2 id="progression-title">From concept to physical product.</h2>

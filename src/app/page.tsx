@@ -109,7 +109,6 @@ export default function Home() {
         <div className={styles.navLinks}>
           <a href="#work">Work</a>
           <a href="/design-lab">Design Lab</a>
-          <a href="#about">About</a>
           <a href="/Blake_Almanza_Resume.pdf" target="_blank" rel="noreferrer" aria-label="Open resume PDF in a new tab">Resume ↗</a>
           <a href="https://github.com/blakealmanza" target="_blank" rel="noreferrer" aria-label="GitHub (opens in a new tab)">GitHub ↗</a>
           <a href="#contact">Contact</a>
@@ -120,11 +119,11 @@ export default function Home() {
         <p className={styles.availability}>Available for work.</p>
         <h1>
           Building useful
-          <br /> sof<span className={styles.tightPair}>t</span>ware, cleanly.
+          <br /> software, cleanly.
         </h1>
         <div className={styles.heroBottom}>
           <p>
-            I build browser extensions, web applications, and embedded products—pairing strong engineering with thoughtful, practical interfaces.
+            I build practical tools across web, cloud, and embedded systems, with equal attention to engineering foundations and thoughtful product experiences.
           </p>
           <a className={styles.heroCta} href="#work">View work ↓</a>
         </div>
@@ -245,9 +244,9 @@ export default function Home() {
 
                 <div className={styles.projectDetails}>
                   <div className={styles.projectUtility}>
-                    <p className={styles.projectType}>
+                    <p className={styles.projectTech}>
                       <span className={styles.projectNumber}>{project.number} · </span>
-                      {project.type}
+                      {project.homepageStack}
                     </p>
                     <div className={styles.projectLinks}>
                       {project.overview && <a href={`/projects/${project.slug}`}>Case study →</a>}
@@ -278,8 +277,6 @@ export default function Home() {
                         ))}
                       </dl>
                     )}
-                    <p className={styles.projectDescription}>{project.description}</p>
-                    <p className={styles.stack}>{project.stack}</p>
                   </div>
                 </div>
               </article>
@@ -288,26 +285,30 @@ export default function Home() {
         </div>
       </section>
 
-      {viewer && <ProjectMediaViewer media={viewer.project.media} index={viewer.index} onCloseAction={closeViewer} />}
+      {viewer && <ProjectMediaViewer projectTitle={viewer.project.title} media={viewer.project.media} index={viewer.index} onCloseAction={closeViewer} />}
 
       <section className={styles.designLabTeaser} aria-labelledby="design-lab-title">
         <p>Design Lab</p>
-        <div>
-          <h2 id="design-lab-title">Interface concepts, clearly separate from shipped work.</h2>
-          <p>Explorations in developer tools, sports software, and embedded-device interfaces.</p>
-          <a href="/design-lab">View Design Lab →</a>
+        <div className={styles.designLabFeature}>
+          <div className={styles.designLabPreview} aria-hidden="true">
+            <span>Concept preview</span>
+            <div className={styles.designLabMockRail} />
+            <div className={styles.designLabMockMain}>
+              <i />
+              <i />
+              <i />
+              <b />
+              <b />
+            </div>
+          </div>
+          <div className={styles.designLabCopy}>
+            <h2 id="design-lab-title">Interface concepts, clearly separate from shipped work.</h2>
+            <p>Explorations in developer tools, sports software, and embedded-device interfaces.</p>
+            <a href="/design-lab">View Design Lab →</a>
+          </div>
         </div>
       </section>
 
-      <section id="about" className={styles.about} aria-labelledby="about-title">
-        <p>About</p>
-        <div className={styles.aboutContent}>
-          <h2 id="about-title">Software that works well in the real world.</h2>
-          <p>
-            I’m a software engineer interested in the space between software and physical products. I build practical tools across web, cloud, and embedded systems, with equal attention to the technical foundation and the experience people have using them.
-          </p>
-        </div>
-      </section>
 
       <section id="contact" className={styles.contact} aria-labelledby="contact-title">
         <p>Contact</p>
@@ -334,6 +335,7 @@ export default function Home() {
                 >
                   LinkedIn →
                 </a>
+                <a href="/Blake_Almanza_Resume.pdf" target="_blank" rel="noreferrer" aria-label="Open resume PDF in a new tab">Resume →</a>
                 <a
                   href="https://github.com/blakealmanza"
                   target="_blank"
