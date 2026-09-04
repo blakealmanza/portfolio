@@ -1,0 +1,195 @@
+.composition h2 {
+  color: var(--foreground);
+  font-size: clamp(2.15rem, 4.5vw, 4.5rem);
+  font-weight: 560;
+  line-height: .92;
+  letter-spacing: -.04em;
+  text-wrap: balance;
+}
+
+.composition p {
+  color: var(--muted);
+  font-size: .98rem;
+  line-height: 1.65;
+}
+
+.composition section {
+  border-top: 1px solid var(--line);
+}
+
+.opening {
+  display: grid;
+  grid-template-columns: minmax(250px, .68fr) minmax(0, 1.32fr);
+  gap: clamp(40px, 9vw, 140px);
+  align-items: end;
+  padding-bottom: clamp(88px, 12vw, 150px);
+}
+
+.openingCopy,
+.sectionHeading,
+.systemCopy {
+  display: grid;
+  align-content: start;
+  gap: 22px;
+}
+
+.openingCopy {
+  max-width: 440px;
+}
+
+.note {
+  max-width: 36ch;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--foreground) !important;
+}
+
+.eventLoop {
+  display: grid;
+  grid-template-columns: minmax(250px, .72fr) minmax(0, 1.28fr);
+  gap: clamp(34px, 7vw, 112px);
+  padding: clamp(76px, 11vw, 142px) 0;
+}
+
+.sectionHeading {
+  max-width: 470px;
+}
+
+.eventCapture {
+  align-self: start;
+}
+
+.flow {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: clamp(6px, 2vw, 26px);
+}
+
+.flow li {
+  grid-template-columns: 1fr;
+  gap: 24px;
+  padding-right: clamp(16px, 3vw, 42px);
+}
+
+.applianceDecision {
+  display: grid;
+  grid-template-columns: minmax(250px, .72fr) minmax(0, 1.28fr);
+  gap: clamp(40px, 9vw, 140px);
+  padding: clamp(76px, 11vw, 142px) 0;
+}
+
+.decisionHeading {
+  max-width: 440px;
+}
+
+.decisionList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 4vw, 48px);
+  align-content: start;
+}
+
+.decisionList article {
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.decisionList h3 {
+  color: var(--foreground);
+  font-size: 1rem;
+  font-weight: 560;
+  letter-spacing: -.02em;
+}
+
+.decisionList p {
+  margin-top: 8px;
+}
+
+.systemSection {
+  display: grid;
+  grid-template-columns: minmax(0, 1.28fr) minmax(250px, .72fr);
+  gap: clamp(40px, 9vw, 140px);
+  padding: clamp(76px, 11vw, 142px) 0;
+}
+
+.systemCopy {
+  max-width: 520px;
+}
+
+.scopeSplit {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+}
+
+.scopeSplit article {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  padding: clamp(52px, 8vw, 104px) clamp(26px, 5vw, 70px);
+}
+
+.scopeSplit article:first-child {
+  padding-left: 0;
+}
+
+.scopeSplit article + article {
+  border-left: 1px solid var(--line);
+}
+
+.scopeSplit h2 {
+  font-size: clamp(1.8rem, 3vw, 3rem);
+}
+
+.scopeSplit p {
+  max-width: 38ch;
+}
+
+@media (max-width: 900px) {
+  .opening,
+  .eventLoop,
+  .applianceDecision,
+  .systemSection {
+    grid-template-columns: 1fr;
+  }
+
+  .openingCopy,
+  .sectionHeading,
+  .decisionHeading,
+  .systemCopy {
+    max-width: 640px;
+  }
+
+  .flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .systemSection > :last-child {
+    max-width: 780px;
+  }
+}
+
+@media (max-width: 600px) {
+  .decisionList,
+  .flow,
+  .scopeSplit {
+    grid-template-columns: 1fr;
+  }
+
+  .flow li {
+    grid-template-columns: 52px 1fr;
+    gap: 16px;
+    padding-right: 0;
+  }
+
+  .scopeSplit article,
+  .scopeSplit article:first-child {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .scopeSplit article + article {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+}

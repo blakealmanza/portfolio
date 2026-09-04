@@ -1,0 +1,229 @@
+.composition h2 {
+  color: var(--foreground);
+  font-size: clamp(2.15rem, 4.5vw, 4.5rem);
+  font-weight: 560;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.composition p {
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.composition section {
+  border-top: 1px solid var(--line);
+}
+
+.wsbriOpening {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.8fr);
+  gap: clamp(3rem, 10vw, 10rem);
+  align-items: end;
+  padding-bottom: clamp(5rem, 10vw, 8.5rem);
+}
+
+.openingCopy {
+  display: grid;
+  max-width: 43rem;
+  gap: 1.5rem;
+}
+
+.pullQuote {
+  max-width: 17ch;
+  padding-bottom: 0.35rem;
+  color: var(--foreground) !important;
+  font-size: clamp(1.5rem, 3vw, 2.6rem) !important;
+  font-weight: 560;
+  line-height: 1.05 !important;
+  letter-spacing: -0.04em;
+}
+
+.wsbriPipeline {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.7fr) minmax(0, 1.3fr);
+  gap: clamp(3rem, 9vw, 9rem);
+  padding: clamp(4.5rem, 10vw, 8.25rem) 0;
+}
+
+.pipelineIntro {
+  display: grid;
+  align-content: start;
+  gap: 1.25rem;
+}
+
+.pipelineWork {
+  display: grid;
+  grid-template-columns: minmax(13rem, 0.72fr) minmax(16rem, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.75rem);
+  align-items: start;
+}
+
+.incomingCapture {
+  margin-top: clamp(3rem, 9vw, 8rem);
+}
+
+.flow {
+  display: grid;
+}
+
+.wsbriReview {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(15rem, 0.75fr);
+  gap: clamp(3rem, 10vw, 10rem);
+  align-items: center;
+  padding: clamp(4.5rem, 10vw, 8.25rem) 0;
+}
+
+.reviewCopy {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.reviewArticles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 3.75rem);
+}
+
+.reviewArticles article {
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.reviewArticles h3 {
+  color: var(--foreground);
+  font-size: 1rem;
+  font-weight: 560;
+  letter-spacing: -0.02em;
+}
+
+.reviewArticles p {
+  margin-top: 0.5rem;
+}
+
+.reviewCapture {
+  margin-top: clamp(2rem, 8vw, 7rem);
+}
+
+.wsbriOutcome {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(17rem, 1.2fr);
+  gap: clamp(3rem, 10vw, 10rem);
+  padding: clamp(4.5rem, 10vw, 8.25rem) 0;
+}
+
+.outcomeIntro {
+  display: grid;
+  align-content: start;
+  gap: 1.5rem;
+}
+
+.impactMetrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-self: end;
+  margin: 0;
+}
+
+.impactMetrics div {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.impactMetrics dt {
+  color: var(--foreground);
+  font-size: clamp(3.2rem, 6vw, 5.5rem);
+  font-weight: 560;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+}
+
+.impactMetrics dd {
+  margin-top: 0.75rem;
+  color: var(--subtle);
+  font-size: 0.73rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.evidenceGroup {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(14rem, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(3rem, 10vw, 10rem);
+  align-items: start;
+  padding-top: clamp(4.5rem, 9vw, 7.5rem);
+}
+
+.evidenceList {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+.evidenceCapture {
+  display: grid !important;
+  grid-template-columns: minmax(10rem, 0.45fr) minmax(0, 0.55fr);
+  border: 0 !important;
+  border-bottom: 1px solid var(--line) !important;
+  background: transparent !important;
+}
+
+.evidenceCapture > div {
+  min-height: 12rem;
+}
+
+@media (max-width: 900px) {
+  .wsbriOpening,
+  .wsbriPipeline,
+  .wsbriReview,
+  .wsbriOutcome,
+  .evidenceGroup {
+    grid-template-columns: 1fr;
+  }
+
+  .pipelineWork {
+    grid-template-columns: minmax(12rem, 0.7fr) minmax(16rem, 1fr);
+  }
+
+  .incomingCapture,
+  .reviewCapture {
+    margin-top: 0;
+  }
+
+  .impactMetrics {
+    max-width: 38rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .wsbriOpening,
+  .wsbriPipeline,
+  .wsbriReview,
+  .wsbriOutcome {
+    gap: 2.75rem;
+  }
+
+  .pipelineWork,
+  .reviewArticles,
+  .impactMetrics,
+  .evidenceCapture {
+    grid-template-columns: 1fr;
+  }
+
+  .pipelineWork {
+    gap: 2.75rem;
+  }
+
+  .reviewArticles {
+    gap: 1.5rem;
+  }
+
+  .evidenceGroup {
+    gap: 2.75rem;
+  }
+}

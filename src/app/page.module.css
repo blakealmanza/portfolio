@@ -98,9 +98,6 @@
   letter-spacing: -0.04em;
 }
 
-.tightPair {
-  margin-left: -0.018em;
-}
 
 .heroBottom {
   justify-content: space-between;
@@ -224,6 +221,7 @@
   border-bottom: 1px solid var(--line);
 }
 
+
 .project:last-child {
   border-bottom: 0;
 }
@@ -310,8 +308,8 @@
 
 .projectDetails {
   display: grid;
-  gap: 18px;
-  margin-top: clamp(44px, 6svh, 68px);
+  gap: 14px;
+  margin-top: clamp(38px, 5svh, 54px);
 }
 
 .projectUtility {
@@ -325,8 +323,12 @@
   min-width: 0;
 }
 
-.projectType {
+.projectTech {
+  max-width: 58ch;
   margin: 0;
+  color: var(--subtle);
+  font-size: 0.82rem;
+  line-height: 1.45;
 }
 
 .projectNumber {
@@ -334,9 +336,9 @@
 }
 
 .projectCopy h3 {
-  max-width: 800px;
+  max-width: 700px;
   color: var(--foreground);
-  font-size: clamp(2.5rem, 4.4vw, 4.5rem);
+  font-size: clamp(2.4rem, 4vw, 4rem);
   font-weight: 560;
   line-height: 0.9;
   letter-spacing: -0.04em;
@@ -351,17 +353,39 @@
   letter-spacing: -0.025em;
 }
 
-.projectDescription {
-  max-width: 56ch;
-  margin-top: 24px;
-  color: var(--muted);
-  font-size: 0.96rem;
-  line-height: 1.62;
+.projectMetrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 32px;
+  margin-top: 28px;
+  padding-left: 18px;
+  border-left: 1px solid var(--line);
+}
+
+.projectMetrics div {
+  display: grid;
+  gap: 3px;
+}
+
+.projectMetrics dt {
+  color: var(--foreground);
+  font-size: 1.4rem;
+  font-weight: 560;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.projectMetrics dd {
+  color: var(--subtle);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .stack {
-  max-width: 800px;
-  margin-top: 14px;
+  max-width: 52ch;
+  margin: 0;
   color: var(--subtle);
   font-size: 0.88rem;
   line-height: 1.55;
@@ -373,6 +397,109 @@
   gap: 28px;
 }
 
+
+
+.designLabTeaser {
+  display: grid;
+  grid-template-columns: minmax(210px, 0.31fr) minmax(0, 1fr);
+  column-gap: clamp(72px, 9vw, 144px);
+  padding: clamp(88px, 13vw, 152px) 0;
+  border-top: 1px solid var(--line);
+}
+
+.designLabTeaser > p {
+  color: var(--subtle);
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.designLabFeature {
+  display: grid;
+  grid-template-columns: minmax(240px, .88fr) minmax(0, 1.12fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+}
+
+.designLabPreview {
+  position: relative;
+  display: grid;
+  grid-template-columns: 24% 1fr;
+  gap: 10px;
+  min-height: 260px;
+  padding: 14px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #080a0e;
+}
+
+.designLabPreview > span {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 1;
+  color: var(--subtle);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.designLabMockRail,
+.designLabMockMain i,
+.designLabMockMain b {
+  border: 1px solid rgba(246, 246, 243, 0.16);
+  background: rgba(246, 246, 243, 0.06);
+}
+
+.designLabMockRail { margin-top: 32px; }
+
+.designLabMockMain {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: 32px 1fr;
+  gap: 10px;
+  padding-top: 32px;
+}
+
+.designLabMockMain i:first-child { grid-column: span 2; }
+.designLabMockMain i { display: block; }
+.designLabMockMain b { min-height: 80px; }
+
+.designLabCopy {
+  display: grid;
+  justify-items: start;
+  gap: 22px;
+  max-width: 520px;
+}
+
+.designLabTeaser h2 {
+  color: var(--foreground);
+  font-size: clamp(2.3rem, 4.8vw, 4.8rem);
+  font-weight: 560;
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+}
+
+.designLabTeaser p {
+  max-width: 52ch;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.designLabTeaser a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--foreground);
+  font-size: 0.92rem;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.designLabTeaser a:hover { color: var(--muted); }
+.designLabTeaser a:active { transform: scale(0.97); }
 
 
 .contact {
@@ -463,7 +590,8 @@
 
   .heroBottom,
   .workLayout,
-  .projectDetails {
+  .projectDetails,
+  .designLabTeaser {
     grid-template-columns: 1fr;
   }
 
@@ -484,6 +612,15 @@
     min-height: 44px;
   }
 
+
+  .designLabTeaser {
+    gap: 20px;
+    padding: clamp(72px, 10vw, 96px) 0;
+  }
+
+  .designLabFeature {
+    grid-template-columns: 1fr;
+  }
 
   .contact {
     min-height: 70svh;
@@ -655,6 +792,11 @@
     font-size: 0.68rem;
   }
 
+  .projectMetrics {
+    gap: 16px 24px;
+    padding-left: 14px;
+  }
+
   .projectDetails {
     display: flex;
     flex-direction: column;
@@ -665,7 +807,7 @@
     display: contents;
   }
 
-  .projectType {
+  .projectTech {
     order: 1;
     margin-bottom: 14px;
   }
@@ -701,6 +843,24 @@
   }
 }
 
+
+@media (max-width: 420px) {
+  .nav {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .navLinks {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+  }
+
+  .navLinks a {
+    font-size: 0.84rem;
+  }
+}
 
 @media (max-width: 359px) {
   .contactDetails {

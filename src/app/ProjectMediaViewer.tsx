@@ -7,6 +7,7 @@ import Video from "yet-another-react-lightbox/plugins/video";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+import styles from "./ProjectMediaViewer.module.css";
 
 export type ProjectMediaItem = {
   kind: "image" | "video";
@@ -18,13 +19,15 @@ export type ProjectMediaItem = {
 };
 
 type ProjectMediaViewerProps = {
+  projectTitle: string;
   media: ProjectMediaItem[];
   index: number;
   onCloseAction: () => void;
 };
 
-export default function ProjectMediaViewer({ media, index, onCloseAction }: ProjectMediaViewerProps) {
+export default function ProjectMediaViewer({ projectTitle, media, index, onCloseAction }: ProjectMediaViewerProps) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(index);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -84,15 +87,34 @@ export default function ProjectMediaViewer({ media, index, onCloseAction }: Proj
     <Lightbox
       open
       close={onCloseAction}
-      index={index}
+      index={activeIndex}
       slides={slides}
       plugins={[Video, Thumbnails, Zoom]}
-      carousel={{ finite: true, padding: "6%", spacing: "4%" }}
-      thumbnails={{ position: "bottom", width: 96, height: 56, gap: 10, border: 1, borderRadius: 0, padding: 0 }}
-      animation={prefersReducedMotion ? { fade: 0, swipe: 0 } : { fade: 180, swipe: 260 }}
+      className={styles.lightbox}
+      carousel={{ finite: true, padding: "2%", spacing: "3%" }}
+      toolbar={{ buttons: [] }}
+      thumbnails={{ position: "bottom", width: 88, height: 52, gap: 10, border: 1, borderRadius: 0, padding: 0 }}
+      animation={prefersReducedMotion ? { fade: 0, swipe: 0 } : { fade: 180, swipe: 220 }}
       controller={{ closeOnBackdropClick: true }}
       video={{ controls: true, muted: true, playsInline: true, preload: "metadata" }}
       zoom={{ scrollToZoom: true }}
+      on={{ view: ({ index: nextIndex }) => setActiveIndex(nextIndex) }}
+      render={{
+        controls: () => (
+          <div className={styles.chrome}>
+            <div className={styles.context}>
+              <span className={styles.projectTitle}>{projectTitle}</span>
+              <span className={styles.mediaLabel}>{media[activeIndex]?.label}</span>
+            </div>
+            <div className={styles.controls}>
+              <span className={styles.position}>{String(activeIndex + 1).padStart(2, "0")} / {String(media.length).padStart(2, "0")}</span>
+              <button className={styles.close} type="button" onClick={onCloseAction} aria-label="Close media viewer">Close ×</button>
+            </div>
+          </div>
+        ),
+        iconPrev: () => <span aria-hidden="true">←</span>,
+        iconNext: () => <span aria-hidden="true">→</span>,
+      }}
       styles={{
         root: {
           "--yarl__thumbnails_thumbnail_border_color": "transparent",

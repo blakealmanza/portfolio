@@ -1,0 +1,192 @@
+.composition h2 {
+  color: var(--foreground);
+  font-size: clamp(2.15rem, 4.5vw, 4.5rem);
+  font-weight: 560;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.composition p {
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.composition section {
+  border-top: 1px solid var(--line);
+}
+
+.kicker {
+  color: var(--subtle) !important;
+  font-size: 0.75rem !important;
+  font-weight: 650;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.opening {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(280px, 1.18fr);
+  gap: clamp(40px, 9vw, 140px);
+  align-items: end;
+  padding-bottom: clamp(88px, 12vw, 152px);
+}
+
+.openingCopy,
+.roundHeading,
+.mapCopy,
+.systemHeading {
+  display: grid;
+  align-content: start;
+  gap: 22px;
+}
+
+.openingCopy {
+  max-width: 540px;
+}
+
+.openingCapture {
+  max-width: 820px;
+  justify-self: end;
+}
+
+.round {
+  display: grid;
+  grid-template-columns: minmax(0, 0.74fr) minmax(0, 1.26fr);
+  gap: clamp(32px, 6vw, 88px);
+  padding: clamp(76px, 11vw, 142px) 0;
+}
+
+.roundHeading {
+  max-width: 440px;
+}
+
+.roundCapture {
+  align-self: start;
+}
+
+.flow {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: clamp(12px, 3vw, 38px);
+}
+
+.flow li {
+  grid-template-columns: 1fr;
+  gap: 22px;
+  padding-right: clamp(16px, 3vw, 42px);
+}
+
+.mapSection {
+  display: grid;
+  grid-template-columns: minmax(0, 1.24fr) minmax(250px, 0.76fr);
+  gap: clamp(40px, 9vw, 140px);
+  align-items: center;
+  padding: clamp(76px, 11vw, 142px) 0;
+}
+
+.mapCapture {
+  max-width: 860px;
+}
+
+.mapCopy {
+  max-width: 470px;
+}
+
+.history {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(40px, 9vw, 140px);
+  padding: clamp(82px, 12vw, 158px) 0;
+}
+
+.historyHeading {
+  display: grid;
+  align-content: start;
+  gap: 22px;
+  max-width: 390px;
+}
+
+.historyPoints {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 4vw, 56px);
+  align-content: end;
+}
+
+.historyPoints article {
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.historyPoints h3 {
+  color: var(--foreground);
+  font-size: 1rem;
+  font-weight: 560;
+  letter-spacing: -0.02em;
+}
+
+.historyPoints p {
+  max-width: 31ch;
+  margin-top: 8px;
+}
+
+.systemSection {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.68fr) minmax(0, 1.32fr);
+  gap: clamp(40px, 9vw, 140px);
+  padding: clamp(76px, 11vw, 142px) 0;
+}
+
+.systemHeading {
+  max-width: 430px;
+}
+
+@media (max-width: 900px) {
+  .opening,
+  .round,
+  .mapSection,
+  .history,
+  .systemSection {
+    grid-template-columns: 1fr;
+  }
+
+  .openingCapture {
+    justify-self: stretch;
+  }
+
+  .roundHeading,
+  .mapCopy,
+  .historyHeading,
+  .systemHeading {
+    max-width: 560px;
+  }
+
+  .flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .opening,
+  .round,
+  .mapSection,
+  .history,
+  .systemSection {
+    gap: 36px;
+  }
+
+  .flow,
+  .historyPoints {
+    grid-template-columns: 1fr;
+  }
+
+  .flow li {
+    grid-template-columns: 52px 1fr;
+    gap: 16px;
+    padding-right: 0;
+  }
+}

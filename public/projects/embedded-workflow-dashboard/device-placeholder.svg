@@ -1,0 +1,19 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#080A0E"/>
+  <g stroke="#F6F6F3" stroke-opacity=".42">
+    <rect x="250" y="186" width="1100" height="628" rx="24" stroke-width="3"/>
+    <rect x="306" y="242" width="988" height="432" rx="8" stroke-width="2"/>
+    <circle cx="800" cy="755" r="38" stroke-width="3"/>
+    <path d="M680 814H920" stroke-width="3"/>
+  </g>
+  <g fill="#F6F6F3">
+    <rect x="346" y="282" width="208" height="18" rx="9" fill-opacity=".82"/>
+    <rect x="346" y="330" width="512" height="12" rx="6" fill-opacity=".24"/>
+    <rect x="346" y="370" width="426" height="12" rx="6" fill-opacity=".24"/>
+    <rect x="346" y="456" width="268" height="152" rx="10" fill-opacity=".12"/>
+    <rect x="644" y="456" width="268" height="152" rx="10" fill-opacity=".12"/>
+    <rect x="942" y="456" width="312" height="152" rx="10" fill-opacity=".12"/>
+    <circle cx="1210" cy="300" r="10" fill-opacity=".8"/>
+  </g>
+  <text x="800" y="912" fill="#B5B5AE" font-family="Arial, sans-serif" font-size="24" letter-spacing="5" text-anchor="middle">DEVICE PHOTO PLACEHOLDER</text>
+</svg>
