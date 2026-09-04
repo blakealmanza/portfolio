@@ -1,4 +1,5 @@
 import type { ProjectMediaItem } from "../app/ProjectMediaViewer";
+import { caseStudiesBySlug, type CaseStudy } from "./case-studies";
 
 export type ProjectLink = {
   label: string;
@@ -36,21 +37,21 @@ export type CaseStudyProject = {
   };
   decisions?: { title: string; description: string }[];
   progression?: { title: string; detail: string }[];
+  caseStudy?: CaseStudy;
 };
 
-export const projects: CaseStudyProject[] = [
+const projectRecords: CaseStudyProject[] = [
   {
     slug: "embedded-developer-workflow-dashboard",
     number: "01",
     title: "Embedded Developer Workflow Dashboard",
-    type: "Self-hosted embedded system · In progress",
+    type: "Self-hosted embedded system",
     summary: "A self-hosted physical dashboard for developer context, notifications, and focus—without another browser tab.",
     description:
       "An ESP32-P4 desk device that combines a touch display, rotary input, ambient feedback, and a self-hosted backend for glanceable developer workflow information.",
     stack: "ESP-IDF · C++ · LVGL · FreeRTOS · NestJS · React · Tauri · WebSockets · Protobuf",
-        homepageStack: "ESP-IDF · C++ · LVGL · NestJS · In progress",
-    overview:
-      "The dashboard is a dedicated productivity appliance designed to keep current work, build state, and notifications available in peripheral attention. It is intentionally an embedded system rather than a browser dashboard: physical controls, fast startup, lower power use, and a focused interaction model are part of the product decision.",
+        homepageStack: "ESP-IDF · C++ · LVGL · NestJS",
+
     problem:
       "Developer workflow context is usually spread across browser tabs, desktop apps, and notification streams. That creates repeated context switching and competes for the same monitor space needed for focused work.",
     solution:
@@ -102,9 +103,12 @@ export const projects: CaseStudyProject[] = [
       { title: "Device prototype", detail: "Add enclosure, carrier board, electronics, and documented physical iteration as they are built." },
     ],
     media: [
-      { kind: "image", src: "/projects/embedded-workflow-dashboard/device-placeholder.svg", alt: "Placeholder for an Embedded Developer Workflow Dashboard device photo", label: "Device photo placeholder" },
-      { kind: "image", src: "/projects/embedded-workflow-dashboard/ui-placeholder.svg", alt: "Placeholder for an LVGL interface screenshot", label: "LVGL UI placeholder" },
-      { kind: "image", src: "/projects/embedded-workflow-dashboard/prototype-placeholder.svg", alt: "Placeholder for an electronics or prototype photo", label: "Prototype placeholder" },
+      {
+        kind: "image",
+        src: "/projects/embedded-workflow-dashboard/teaser.png",
+        alt: "Concept visualization of the Embedded Developer Workflow Dashboard device in development",
+        label: "Concept visualization",
+      },
     ],
     links: [],
   },
@@ -119,8 +123,7 @@ export const projects: CaseStudyProject[] = [
     stack: "React · TypeScript · GraphQL · Web Extension APIs",
         homepageStack: "React · TypeScript · GraphQL · Extension APIs",
     metrics: [{ value: "350+", label: "students using Better Halo" }],
-    overview:
-      "Better Halo adds practical quality-of-life improvements to the learning system students already use every day. It gives students more control over the visual experience while keeping assignments and navigation easy to reach.",
+
     problem:
       "Halo is a required part of the student workflow, but its default experience leaves little room for personalization and can make everyday tasks feel harder to scan.",
     solution:
@@ -184,8 +187,7 @@ export const projects: CaseStudyProject[] = [
       { value: "200+", label: "users served" },
       { value: "~80%", label: "less manual event-management work" },
     ],
-    overview:
-      "Washington State Barrel Racing Info brings event schedules, results, venues, and updates into one dependable destination for a focused local community.",
+
     problem:
       "Event information and rider updates need to be timely and easy to find. Managing that information manually creates repeated administrative work and makes it harder for competitors to stay informed.",
     solution:
@@ -246,8 +248,7 @@ export const projects: CaseStudyProject[] = [
     description: "A mobile-first golf companion that helps players plan shots, track rounds, and navigate courses with confidence.",
     stack: "React · TypeScript · AWS · Google Maps API",
         homepageStack: "React · TypeScript · AWS · Google Maps",
-    overview:
-      "Golf Caddie is a mobile-first companion for the decisions players make during a round: where they are, how far they are from the target, and what has happened on previous shots.",
+
     problem:
       "On-course information has to be useful at a glance. Players need course context and shot tracking without the interface becoming another distraction during a round.",
     solution:
@@ -284,7 +285,18 @@ export const projects: CaseStudyProject[] = [
   },
 ];
 
-export const caseStudies = projects.filter((project) => project.overview);
+export const projects: CaseStudyProject[] = projectRecords.map((project) => ({
+  ...project,
+  caseStudy: caseStudiesBySlug[project.slug],
+}));
+
+export const caseStudiesVisible = false;
+
+export const caseStudies = caseStudiesVisible
+  ? projects.filter(
+      (project): project is CaseStudyProject & { caseStudy: CaseStudy } => project.caseStudy !== undefined,
+    )
+  : [];
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);

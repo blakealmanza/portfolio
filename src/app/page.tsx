@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { MouseEvent, useEffect, useRef, useState } from "react";
 import type { CaseStudyProject } from "../content/projects";
-import { projects } from "../content/projects";
+import { caseStudiesVisible, projects } from "../content/projects";
 import styles from "./page.module.css";
 
 const ProjectMediaViewer = dynamic(() => import("./ProjectMediaViewer"), { ssr: false });
@@ -108,7 +108,6 @@ export default function Home() {
         </a>
         <div className={styles.navLinks}>
           <a href="#work">Work</a>
-          <a href="/design-lab">Design Lab</a>
           <a href="/Blake_Almanza_Resume.pdf" target="_blank" rel="noreferrer" aria-label="Open resume PDF in a new tab">Resume ↗</a>
           <a href="https://github.com/blakealmanza" target="_blank" rel="noreferrer" aria-label="GitHub (opens in a new tab)">GitHub ↗</a>
           <a href="#contact">Contact</a>
@@ -203,43 +202,45 @@ export default function Home() {
                       <span className={styles.mediaLabel}>{media.label}</span>
                     </button>
                   ))}
-                  <div className={styles.secondaryImages}>
-                    {project.media.slice(1, 3).map((media, index) => (
-                      <button
-                        className={styles.mediaButton}
-                        key={media.label}
-                        type="button"
-                        onClick={(event) => {
-                          mediaTrigger.current = event.currentTarget;
-                          setViewer({ project, index: index + 1 });
-                        }}
-                        aria-label={`Open ${media.label} for ${project.title}`}
-                      >
-                        {media.kind === "video" ? (
-                          <video
-                            aria-hidden="true"
-                            className={`${styles.mediaPreview} ${media.fit === "contain" ? styles.containMedia : ""}`}
-                            src={media.src}
-                            muted
-                            playsInline
-                            poster={media.poster}
-                            preload="metadata"
-                          />
-                        ) : (
-                          <Image
-                            className={`${styles.mediaPreview} ${media.fit === "contain" ? styles.containMedia : ""}`}
-                            src={media.src}
-                            alt=""
-                            fill
-                            quality={100}
-                            sizes="(max-width: 1023px) 100vw, 28vw"
-                          />
-                        )}
-                        <span className={styles.mediaLabel}>{media.label}</span>
-                        {media.kind === "video" && <span className={styles.videoCue} aria-hidden="true">Play</span>}
-                      </button>
-                    ))}
-                  </div>
+                  {project.media.length > 1 && (
+                    <div className={styles.secondaryImages}>
+                      {project.media.slice(1, 3).map((media, index) => (
+                        <button
+                          className={styles.mediaButton}
+                          key={media.label}
+                          type="button"
+                          onClick={(event) => {
+                            mediaTrigger.current = event.currentTarget;
+                            setViewer({ project, index: index + 1 });
+                          }}
+                          aria-label={`Open ${media.label} for ${project.title}`}
+                        >
+                          {media.kind === "video" ? (
+                            <video
+                              aria-hidden="true"
+                              className={`${styles.mediaPreview} ${media.fit === "contain" ? styles.containMedia : ""}`}
+                              src={media.src}
+                              muted
+                              playsInline
+                              poster={media.poster}
+                              preload="metadata"
+                            />
+                          ) : (
+                            <Image
+                              className={`${styles.mediaPreview} ${media.fit === "contain" ? styles.containMedia : ""}`}
+                              src={media.src}
+                              alt=""
+                              fill
+                              quality={100}
+                              sizes="(max-width: 1023px) 100vw, 28vw"
+                            />
+                          )}
+                          <span className={styles.mediaLabel}>{media.label}</span>
+                          {media.kind === "video" && <span className={styles.videoCue} aria-hidden="true">Play</span>}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 <div className={styles.projectDetails}>
@@ -249,7 +250,7 @@ export default function Home() {
                       {project.homepageStack}
                     </p>
                     <div className={styles.projectLinks}>
-                      {project.overview && <a href={`/projects/${project.slug}`}>Case study →</a>}
+                      {caseStudiesVisible && project.caseStudy && <a href={`/projects/${project.slug}`}>Case study →</a>}
                       {project.links.map((link) => (
                         <a
                           href={link.href}
@@ -286,29 +287,6 @@ export default function Home() {
       </section>
 
       {viewer && <ProjectMediaViewer projectTitle={viewer.project.title} media={viewer.project.media} index={viewer.index} onCloseAction={closeViewer} />}
-
-      <section className={styles.designLabTeaser} aria-labelledby="design-lab-title">
-        <p>Design Lab</p>
-        <div className={styles.designLabFeature}>
-          <div className={styles.designLabPreview} aria-hidden="true">
-            <span>Concept preview</span>
-            <div className={styles.designLabMockRail} />
-            <div className={styles.designLabMockMain}>
-              <i />
-              <i />
-              <i />
-              <b />
-              <b />
-            </div>
-          </div>
-          <div className={styles.designLabCopy}>
-            <h2 id="design-lab-title">Interface concepts, clearly separate from shipped work.</h2>
-            <p>Explorations in developer tools, sports software, and embedded-device interfaces.</p>
-            <a href="/design-lab">View Design Lab →</a>
-          </div>
-        </div>
-      </section>
-
 
       <section id="contact" className={styles.contact} aria-labelledby="contact-title">
         <p>Contact</p>

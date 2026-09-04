@@ -40,6 +40,11 @@
   opacity: 1;
 }
 
+.lightbox :global(.yarl__navigation_prev:disabled),
+.lightbox :global(.yarl__navigation_next:disabled) {
+  display: none;
+}
+
 .lightbox :global(.yarl__navigation_prev span),
 .lightbox :global(.yarl__navigation_next span) {
   display: block;
