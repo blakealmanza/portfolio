@@ -373,6 +373,31 @@ const projectRecords: CaseStudyProject[] = [
     ],
     links: [{ label: "GitHub", href: "https://github.com/blakealmanza/GolfCaddie" }],
   },
+  {
+    slug: "annies-house-farm-sitting",
+    number: "07",
+    title: "Annie’s House + Farm Sitting",
+    type: "Client website · In progress",
+    summary: "A website and booking-inquiry flow for a farm, house, and pet sitting business in Snohomish County, WA.",
+    description:
+      "Customers check availability, select a date range, and send an inquiry without creating an account. I'm leading the design and build.",
+    stack: "Astro · React · React Aria · Cloudflare Workers · Google Calendar API",
+    homepageStack: "Astro · React Aria · Cloudflare",
+
+    problem:
+      "A new sitting business needs a professional presence and a simple way for customers to request dates, while the owner manages availability from her phone at no ongoing cost.",
+    solution:
+      "I'm leading end-to-end design in code, from brand positioning to layout, typography, and a token-based style system, and building an accessible date-range booking flow with React Aria. Availability will come from the owner's Google Calendar; it is currently mocked while the integration is built.",
+    media: [
+      {
+        kind: "image",
+        src: "/projects/annies-house-farm-sitting/home.webp",
+        alt: "Annie’s House + Farm Sitting homepage",
+        label: "Homepage",
+      },
+    ],
+    links: [],
+  },
 ];
 
 export const projects: CaseStudyProject[] = projectRecords.map((project) => ({
