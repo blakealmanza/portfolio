@@ -28,6 +28,6 @@ export const caseStudiesBySlug: Record<string, CaseStudy> = {
   "golf-caddie": {
     framing: "A mobile golf companion designed around the decisions a player makes between shots.",
     heroCapture: { title: "On-course context, at a glance", detail: "GPS position, target selection, yardage, and shot tracking in one mobile flow" },
-    stack: "React · TypeScript · PWA · Google Maps · AWS Lambda · DynamoDB · Cognito · CDK",
+    stack: "React · TypeScript · PWA · Google Maps · AWS Lambda · DynamoDB · Cognito · CDK · Figma",
   },
 };

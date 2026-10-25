@@ -326,23 +326,26 @@ const projectRecords: CaseStudyProject[] = [
     number: "06",
     title: "Golf Caddie",
     type: "Mobile golf companion",
-    summary: "GPS yardages, shot tracking, and course maps for every round.",
+    summary: "GPS yardages, shot tracking, club recommendations, and course maps for every round.",
     description: "A mobile-first golf companion that helps players plan shots, track rounds, and navigate courses with confidence.",
-    stack: "React · TypeScript · AWS · Google Maps API",
-        homepageStack: "React · TypeScript · AWS · Google Maps",
+    stack: "React · TypeScript · PWA · Google Maps · AWS Lambda · DynamoDB · Cognito · CDK · Figma",
+    homepageStack: "React · TypeScript · AWS · Google Maps",
 
     problem:
       "On-course information has to be useful at a glance. Players need course context and shot tracking without the interface becoming another distraction during a round.",
     solution:
-      "I built a progressive web app that combines GPS yardages, course maps, and shot tracking in a touch-friendly experience designed around the flow of play.",
+      "I designed the mobile UI and branding in Figma, then built a progressive web app that combines GPS yardages, hole layouts, shot tracking, and club recommendations, backed by a serverless AWS API.",
     architecture: {
       caption: "The app combines location-aware course context with a mobile-first round experience.",
       stages: [
         [{ label: "Player location", detail: "GPS context" }],
-        [{ label: "Golf Caddie PWA", detail: "React + TypeScript" }],
         [
+          { label: "Golf Caddie PWA", detail: "React + TypeScript" },
           { label: "Course maps", detail: "Google Maps API" },
-          { label: "Round data", detail: "AWS-backed services" },
+        ],
+        [
+          { label: "API Gateway + Lambda", detail: "Rate-limited REST API" },
+          { label: "DynamoDB + Cognito", detail: "Rounds, shots, auth" },
         ],
       ],
     },
@@ -351,6 +354,11 @@ const projectRecords: CaseStudyProject[] = [
         title: "Design for the course, not the desk",
         description:
           "The product is mobile-first because it is meant to be used during a round. Core information is organized around immediate golf decisions rather than a dense desktop-style dashboard.",
+      },
+      {
+        title: "Design before code",
+        description:
+          "I worked from planning and mood boards through mid- and high-fidelity Figma designs, including the logo, before building the interface in React.",
       },
       {
         title: "Combine context and tracking",
@@ -363,7 +371,7 @@ const projectRecords: CaseStudyProject[] = [
       { kind: "image", src: "/projects/golf-caddie/home.webp", alt: "Golf Caddie home and current round screen", label: "Round home", fit: "contain" },
       { kind: "image", src: "/projects/golf-caddie/courses.webp", alt: "Golf Caddie course selection screen", label: "Course library", fit: "contain" },
     ],
-    links: [],
+    links: [{ label: "GitHub", href: "https://github.com/blakealmanza/GolfCaddie" }],
   },
 ];
 
