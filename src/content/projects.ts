@@ -1,56 +1,16 @@
-import type { ProjectMediaItem } from "../app/ProjectMediaViewer";
-import { caseStudiesBySlug, type CaseStudy } from "./case-studies";
+import type { Project } from "./types";
 
-export type ProjectLink = {
-  label: string;
-  href: string;
-};
-
-export type ProjectMetric = {
-  value: string;
-  label: string;
-};
-
-export type ArchitectureNode = {
-  label: string;
-  detail?: string;
-};
-
-export type CaseStudyProject = {
-  slug: string;
-  number: string;
-  title: string;
-  type: string;
-  summary: string;
-  description: string;
-  stack: string;
-  homepageStack: string;
-  media: ProjectMediaItem[];
-  links: ProjectLink[];
-  metrics?: ProjectMetric[];
-  overview?: string;
-  problem?: string;
-  solution?: string;
-  architecture?: {
-    caption: string;
-    stages: ArchitectureNode[][];
-  };
-  decisions?: { title: string; description: string }[];
-  progression?: { title: string; detail: string }[];
-  caseStudy?: CaseStudy;
-};
-
-const projectRecords: CaseStudyProject[] = [
+export const projects: Project[] = [
   {
     slug: "better-halo",
-    number: "01",
     title: "Better Halo",
     type: "Browser extension",
     summary: "A Chrome Web Store extension that makes GCU’s Halo LMS easier to use, with themes, assignment tracking, and grade tools.",
     description:
       "Students can personalize their LMS, stay on top of assignments, project their grades, and share themes through a community gallery.",
     stack: "React · TypeScript · GraphQL · Manifest V3 · React Router · Supabase · Clerk",
-    homepageStack: "React · TypeScript · GraphQL · Extension APIs",
+    theme: { bg: "#141414", surface: "#1F1F1F", ink: "#F4F1EA", muted: "#ABA69C", accent: "#F59E0B" },
+    layout: "browser",
     metrics: [{ value: "1,100+", label: "students using Better Halo" }],
 
     problem:
@@ -117,14 +77,14 @@ const projectRecords: CaseStudyProject[] = [
   },
   {
     slug: "priceright",
-    number: "02",
     title: "PriceRight",
     type: "Cross-platform mobile app · Team project",
     summary: "A cross-platform app that helps businesses work out what products cost to make and what to sell them for.",
     description:
       "Users build up a product's costs—materials, labor, overhead, packaging, shipping, and channel fees—and PriceRight calculates a price from the chosen pricing policy.",
     stack: "React Native · Expo · TypeScript · C# · .NET · Azure Functions · Microsoft Entra · GitHub Actions",
-    homepageStack: "Expo · TypeScript · .NET · Azure",
+    theme: { bg: "#0F172A", surface: "#1E293B", ink: "#F1F5F9", muted: "#A3B0C6", accent: "#A5B4FC" },
+    layout: "phones",
     metrics: [{ value: "25+", label: "screens redesigned" }],
 
     problem:
@@ -170,21 +130,99 @@ const projectRecords: CaseStudyProject[] = [
     media: [
       { kind: "image", src: "/projects/priceright/overview.webp", alt: "PriceRight product overview with sale price, cost, and margin", label: "Product overview", fit: "contain" },
       { kind: "image", src: "/projects/priceright/products.webp", alt: "PriceRight product list with prices and costs per unit", label: "Product list", fit: "contain" },
-      { kind: "image", src: "/projects/priceright/materials.webp", alt: "PriceRight materials cost breakdown for a product", label: "Materials costs", fit: "contain" },
       { kind: "image", src: "/projects/priceright/pricing.webp", alt: "PriceRight pricing method and rounding settings", label: "Pricing method", fit: "contain" },
+      { kind: "image", src: "/projects/priceright/materials.webp", alt: "PriceRight materials cost breakdown for a product", label: "Materials costs", fit: "contain" },
+    ],
+    links: [],
+  },
+  {
+    slug: "wsbri",
+    title: "Washington State Barrel Racing Info",
+    type: "Community event platform · Freelance",
+    summary: "Event schedules, arenas, and producer notices for Washington barrel racers, kept current by automated scrapers.",
+    description: "A central hub where riders find and save events, explore arenas, and get registration alerts, with paid memberships and an admin review workflow.",
+    stack: "Next.js · TypeScript · Supabase · Python · GitHub Actions · Memberstack · Google Maps · Google Calendar",
+    theme: { bg: "#19140F", surface: "#241D17", ink: "#F4EEE8", muted: "#B5A99F", accent: "#CD7F32" },
+    layout: "browser",
+    metrics: [
+      { value: "200+", label: "users served" },
+      { value: "~80%", label: "less manual event entry" },
+      { value: "3", label: "event sources scraped" },
+    ],
+
+    problem:
+      "Barrel racing events were scattered across producer websites, social posts, and group updates. Keeping a single listing current by hand meant repeated data entry and made it hard for riders to plan.",
+    solution:
+      "I designed and built the platform: event list and calendar views with filters, saved events, paid memberships, and an arena and organization directory. Python scrapers pull from 3 event sources and fuzzy-match duplicates into a staging queue that admins review before publishing. I later migrated the site from Vite to Next.js 16 and added registration alerts and Google Calendar sync.",
+    architecture: {
+      caption: "Scraped and submitted events are reviewed before they become the data riders rely on.",
+      stages: [
+        [
+          { label: "Event sources", detail: "3 producer sites" },
+          { label: "Python scrapers", detail: "GitHub Actions" },
+        ],
+        [
+          { label: "Staging + admin review", detail: "Fuzzy de-duplication" },
+          { label: "Supabase", detail: "Events, arenas, members" },
+        ],
+        [
+          { label: "Next.js site", detail: "List + calendar views" },
+          { label: "Registration alerts", detail: "Automated notices" },
+          { label: "Google Calendar", detail: "Event sync" },
+        ],
+      ],
+    },
+    decisions: [
+      {
+        title: "Design around a real operating workflow",
+        description:
+          "The system prioritizes the information people need around an event—what is happening, where it is, and when it changes—rather than treating the site as a static directory.",
+      },
+      {
+        title: "Automate collection, keep a human in the loop",
+        description:
+          "Scrapers handle repetitive data entry, but every scraped event lands in a staging queue for admin review. Fuzzy de-duplication catches the same event listed by multiple sources, cutting manual entry by about 80%.",
+      },
+    ],
+    media: [
+      { kind: "image", src: "/projects/wsbri/home.webp", alt: "Washington State Barrel Racing Info homepage", label: "Homepage" },
+      { kind: "image", src: "/projects/wsbri/events.webp", alt: "Washington State Barrel Racing Info event calendar", label: "Event calendar" },
+      { kind: "image", src: "/projects/wsbri/arenas.webp", alt: "Washington State Barrel Racing Info arena map and directory", label: "Arena directory" },
+    ],
+    links: [{ label: "Live site", href: "https://www.wsbarrelracing.com" }],
+  },
+  {
+    slug: "annies-house-farm-sitting",
+    title: "Annie’s House + Farm Sitting",
+    type: "Client website · In progress",
+    summary: "A website and booking-inquiry flow for a farm, house, and pet sitting business in Snohomish County, WA.",
+    description:
+      "Customers check availability, select a date range, and send an inquiry without creating an account. I'm leading the design and build.",
+    stack: "Astro · React · React Aria · Cloudflare Workers · Google Calendar API",
+    theme: { bg: "#2C3727", surface: "#39432D", ink: "#F7F4EB", muted: "#C3C9B6", accent: "#E6E1D3" },
+    layout: "browser",
+
+    problem:
+      "A new sitting business needs a professional presence and a simple way for customers to request dates, while the owner manages availability from her phone at no ongoing cost.",
+    solution:
+      "I'm leading end-to-end design in code, from brand positioning to layout, typography, and a token-based style system, and building an accessible date-range booking flow with React Aria. Availability will come from the owner's Google Calendar; it is currently mocked while the integration is built.",
+    media: [
+      { kind: "image", src: "/projects/annies-house-farm-sitting/home.webp", alt: "Annie’s House + Farm Sitting homepage hero", label: "Homepage" },
+      { kind: "image", src: "/projects/annies-house-farm-sitting/inquiry.webp", alt: "Annie’s House + Farm Sitting inquiry form with availability calendar", label: "Availability calendar" },
+      { kind: "image", src: "/projects/annies-house-farm-sitting/about.webp", alt: "Annie’s House + Farm Sitting introduction section", label: "Meet Annie" },
     ],
     links: [],
   },
   {
     slug: "mosaic",
-    number: "03",
     title: "Mosaic",
     type: "Open-source connected desk display · Capstone",
     summary: "An open-source, self-hosted desk display for developer notifications, actions, and focus—without another browser tab.",
     description:
       "An ESP32-P4 desk device with a 5\" touchscreen, paired with a self-hosted server, admin app, and desktop companion. I own the firmware and on-device LVGL interface.",
     stack: "ESP-IDF · C++ · LVGL · ESP32-P4 · .NET · SQLite · React · Tauri · Protobuf",
-    homepageStack: "C++ · LVGL · ESP32-P4 · TypeScript",
+    theme: { bg: "#050505", surface: "#121214", ink: "#FAFAFA", muted: "#A1A1AA", accent: "#60A5FA" },
+    layout: "photo",
 
     problem:
       "Developer workflow context is usually spread across browser tabs, desktop apps, and notification streams. That creates repeated context switching and competes for the same monitor space needed for focused work.",
@@ -247,108 +285,14 @@ const projectRecords: CaseStudyProject[] = [
     links: [{ label: "GitHub", href: "https://github.com/mosaic-device/mosaic" }],
   },
   {
-    slug: "wsbri",
-    number: "04",
-    title: "Washington State Barrel Racing Info",
-    type: "Community event platform · Freelance",
-    summary: "Event schedules, arenas, and producer notices for Washington barrel racers, kept current by automated scrapers.",
-    description: "A central hub where riders find and save events, explore arenas, and get registration alerts, with paid memberships and an admin review workflow.",
-    stack: "Next.js · TypeScript · Supabase · Python · GitHub Actions · Memberstack · Google Maps · Google Calendar",
-    homepageStack: "Next.js · Supabase · Python · Automation",
-    metrics: [
-      { value: "200+", label: "users served" },
-      { value: "~80%", label: "less manual event entry" },
-      { value: "3", label: "event sources scraped" },
-    ],
-
-    problem:
-      "Barrel racing events were scattered across producer websites, social posts, and group updates. Keeping a single listing current by hand meant repeated data entry and made it hard for riders to plan.",
-    solution:
-      "I designed and built the platform: event list and calendar views with filters, saved events, paid memberships, and an arena and organization directory. Python scrapers pull from 3 event sources and fuzzy-match duplicates into a staging queue that admins review before publishing. I later migrated the site from Vite to Next.js 16 and added registration alerts and Google Calendar sync.",
-    architecture: {
-      caption: "Scraped and submitted events are reviewed before they become the data riders rely on.",
-      stages: [
-        [
-          { label: "Event sources", detail: "3 producer sites" },
-          { label: "Python scrapers", detail: "GitHub Actions" },
-        ],
-        [
-          { label: "Staging + admin review", detail: "Fuzzy de-duplication" },
-          { label: "Supabase", detail: "Events, arenas, members" },
-        ],
-        [
-          { label: "Next.js site", detail: "List + calendar views" },
-          { label: "Registration alerts", detail: "Automated notices" },
-          { label: "Google Calendar", detail: "Event sync" },
-        ],
-      ],
-    },
-    decisions: [
-      {
-        title: "Design around a real operating workflow",
-        description:
-          "The system prioritizes the information people need around an event—what is happening, where it is, and when it changes—rather than treating the site as a static directory.",
-      },
-      {
-        title: "Automate collection, keep a human in the loop",
-        description:
-          "Scrapers handle repetitive data entry, but every scraped event lands in a staging queue for admin review. Fuzzy de-duplication catches the same event listed by multiple sources, cutting manual entry by about 80%.",
-      },
-    ],
-    media: [
-      { kind: "image", src: "/projects/wsbri/home.webp", alt: "Washington State Barrel Racing Info homepage", label: "Homepage" },
-      { kind: "image", src: "/projects/wsbri/events.webp", alt: "Washington State Barrel Racing Info event calendar", label: "Event calendar" },
-      { kind: "image", src: "/projects/wsbri/arenas.webp", alt: "Washington State Barrel Racing Info arena map and directory", label: "Arena directory" },
-    ],
-    links: [{ label: "Live site", href: "https://www.wsbarrelracing.com" }],
-  },
-  {
-    slug: "annies-house-farm-sitting",
-    number: "05",
-    title: "Annie’s House + Farm Sitting",
-    type: "Client website · In progress",
-    summary: "A website and booking-inquiry flow for a farm, house, and pet sitting business in Snohomish County, WA.",
-    description:
-      "Customers check availability, select a date range, and send an inquiry without creating an account. I'm leading the design and build.",
-    stack: "Astro · React · React Aria · Cloudflare Workers · Google Calendar API",
-    homepageStack: "Astro · React Aria · Cloudflare",
-
-    problem:
-      "A new sitting business needs a professional presence and a simple way for customers to request dates, while the owner manages availability from her phone at no ongoing cost.",
-    solution:
-      "I'm leading end-to-end design in code, from brand positioning to layout, typography, and a token-based style system, and building an accessible date-range booking flow with React Aria. Availability will come from the owner's Google Calendar; it is currently mocked while the integration is built.",
-    media: [
-      { kind: "image", src: "/projects/annies-house-farm-sitting/home.webp", alt: "Annie’s House + Farm Sitting homepage hero", label: "Homepage" },
-      { kind: "image", src: "/projects/annies-house-farm-sitting/inquiry.webp", alt: "Annie’s House + Farm Sitting inquiry form with availability calendar", label: "Availability calendar" },
-      { kind: "image", src: "/projects/annies-house-farm-sitting/about.webp", alt: "Annie’s House + Farm Sitting introduction section", label: "Meet Annie" },
-    ],
-    links: [],
-  },
-  {
-    slug: "kimbo-learning",
-    number: "06",
-    title: "Kimbo Learning",
-    type: "AI learning platform · Team project",
-    summary: "Interactive, AI-powered stories for K–3 learners.",
-    description: "Young readers choose what happens next, complete reading quests, and follow their progress across every adventure.",
-    stack: "Next.js · TypeScript · OpenAI · RAG · Supabase · Accessibility",
-    homepageStack: "Next.js · OpenAI · RAG · Supabase",
-    media: [
-      { kind: "image", src: "/projects/kimbo-learning/home.webp", alt: "Kimbo Learning adventure dashboard with reading progress and story collection", label: "Adventure dashboard" },
-      { kind: "image", src: "/projects/kimbo-learning/story.webp", alt: "Kimbo Learning interactive story screen with a reading passage and choice prompts", label: "Story choices" },
-      { kind: "video", src: "/projects/kimbo-learning/demo.mp4", poster: "/projects/kimbo-learning/poster.webp", alt: "Kimbo Learning loading animation", label: "Loading animation" },
-    ],
-    links: [],
-  },
-  {
     slug: "golf-caddie",
-    number: "07",
     title: "Golf Caddie",
     type: "Mobile golf companion",
     summary: "GPS yardages, shot tracking, club recommendations, and course maps for every round.",
     description: "A mobile-first golf companion that helps players plan shots, track rounds, and navigate courses with confidence.",
     stack: "React · TypeScript · PWA · Google Maps · AWS Lambda · DynamoDB · Cognito · CDK · Figma",
-    homepageStack: "React · TypeScript · AWS · Google Maps",
+    theme: { bg: "#0E1912", surface: "#16261B", ink: "#F0F5F1", muted: "#A4B5A9", accent: "#5DBB82" },
+    layout: "phones",
 
     problem:
       "On-course information has to be useful at a glance. Players need course context and shot tracking without the interface becoming another distraction during a round.",
@@ -392,21 +336,20 @@ const projectRecords: CaseStudyProject[] = [
     ],
     links: [{ label: "GitHub", href: "https://github.com/blakealmanza/GolfCaddie" }],
   },
+  {
+    slug: "kimbo-learning",
+    title: "Kimbo Learning",
+    type: "AI learning platform · Team project",
+    summary: "Interactive, AI-powered stories for K–3 learners.",
+    description: "Young readers choose what happens next, complete reading quests, and follow their progress across every adventure.",
+    stack: "Next.js · TypeScript · OpenAI · RAG · Supabase · Accessibility",
+    theme: { bg: "#111827", surface: "#1F2937", ink: "#F9FAFB", muted: "#A7B0BE", accent: "#2DD4BF" },
+    layout: "browser",
+    media: [
+      { kind: "image", src: "/projects/kimbo-learning/home.webp", alt: "Kimbo Learning adventure dashboard with reading progress and story collection", label: "Adventure dashboard" },
+      { kind: "image", src: "/projects/kimbo-learning/story.webp", alt: "Kimbo Learning interactive story screen with a reading passage and choice prompts", label: "Story choices" },
+      { kind: "video", src: "/projects/kimbo-learning/demo.mp4", poster: "/projects/kimbo-learning/poster.webp", alt: "Kimbo Learning loading animation", label: "Loading animation" },
+    ],
+    links: [],
+  },
 ];
-
-export const projects: CaseStudyProject[] = projectRecords.map((project) => ({
-  ...project,
-  caseStudy: caseStudiesBySlug[project.slug],
-}));
-
-export const caseStudiesVisible = false;
-
-export const caseStudies = caseStudiesVisible
-  ? projects.filter(
-      (project): project is CaseStudyProject & { caseStudy: CaseStudy } => project.caseStudy !== undefined,
-    )
-  : [];
-
-export function getProject(slug: string) {
-  return projects.find((project) => project.slug === slug);
-}
