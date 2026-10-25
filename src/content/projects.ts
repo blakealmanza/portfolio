@@ -318,12 +318,9 @@ const projectRecords: CaseStudyProject[] = [
     solution:
       "I'm leading end-to-end design in code, from brand positioning to layout, typography, and a token-based style system, and building an accessible date-range booking flow with React Aria. Availability will come from the owner's Google Calendar; it is currently mocked while the integration is built.",
     media: [
-      {
-        kind: "image",
-        src: "/projects/annies-house-farm-sitting/home.webp",
-        alt: "Annie’s House + Farm Sitting homepage",
-        label: "Homepage",
-      },
+      { kind: "image", src: "/projects/annies-house-farm-sitting/home.webp", alt: "Annie’s House + Farm Sitting homepage hero", label: "Homepage" },
+      { kind: "image", src: "/projects/annies-house-farm-sitting/inquiry.webp", alt: "Annie’s House + Farm Sitting inquiry form with availability calendar", label: "Availability calendar" },
+      { kind: "image", src: "/projects/annies-house-farm-sitting/about.webp", alt: "Annie’s House + Farm Sitting introduction section", label: "Meet Annie" },
     ],
     links: [],
   },
