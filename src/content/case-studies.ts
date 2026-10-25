@@ -5,10 +5,10 @@ export type CaseStudy = {
 };
 
 export const caseStudiesBySlug: Record<string, CaseStudy> = {
-  "embedded-developer-workflow-dashboard": {
-    framing: "A vertical slice for a self-hosted developer appliance that turns a GitHub pull-request event into a physical, actionable interaction.",
-    heroCapture: { title: "End-to-end device interaction", detail: "GitHub event → self-hosted service → physical device → action result" },
-    stack: "ESP-IDF · C++ · LVGL · FreeRTOS · NestJS · React · Tauri · WebSockets · Protobuf",
+  mosaic: {
+    framing: "An open-source, self-hosted desk display that turns developer service events into physical, actionable interactions.",
+    heroCapture: { title: "From phone setup to desk display", detail: "QR code → captive portal → saved Wi-Fi → self-hosted server" },
+    stack: "ESP-IDF · C++ · LVGL · ESP32-P4 · .NET · SQLite · React · Tauri · Protobuf",
   },
   "better-halo": {
     framing: "A browser extension that gives students more control over the LMS they already have to use.",

@@ -6,7 +6,7 @@ import { WSBRICaseStudy } from "./case-studies/WSBRICaseStudy";
 
 export function CaseStudyComposition({ slug }: { slug: string }) {
   switch (slug) {
-    case "embedded-developer-workflow-dashboard": return <EmbeddedDashboardCaseStudy />;
+    case "mosaic": return <EmbeddedDashboardCaseStudy />;
     case "better-halo": return <BetterHaloCaseStudy />;
     case "wsbri": return <WSBRICaseStudy />;
     case "kimbo-learning": return <KimboLearningCaseStudy />;

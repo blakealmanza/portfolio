@@ -42,35 +42,35 @@ export type CaseStudyProject = {
 
 const projectRecords: CaseStudyProject[] = [
   {
-    slug: "embedded-developer-workflow-dashboard",
+    slug: "mosaic",
     number: "01",
-    title: "Embedded Developer Workflow Dashboard",
-    type: "Self-hosted embedded system",
-    summary: "A self-hosted physical dashboard for developer context, notifications, and focus—without another browser tab.",
+    title: "Mosaic",
+    type: "Open-source connected desk display · Capstone",
+    summary: "An open-source, self-hosted desk display for developer notifications, actions, and focus—without another browser tab.",
     description:
-      "An ESP32-P4 desk device that combines a touch display, rotary input, ambient feedback, and a self-hosted backend for glanceable developer workflow information.",
-    stack: "ESP-IDF · C++ · LVGL · FreeRTOS · NestJS · React · Tauri · WebSockets · Protobuf",
-        homepageStack: "ESP-IDF · C++ · LVGL · NestJS",
+      "An ESP32-P4 desk device with a 5\" touchscreen, paired with a self-hosted server, admin app, and desktop companion. I own the firmware and on-device LVGL interface.",
+    stack: "ESP-IDF · C++ · LVGL · ESP32-P4 · .NET · SQLite · React · Tauri · Protobuf",
+    homepageStack: "C++ · LVGL · ESP32-P4 · TypeScript",
 
     problem:
       "Developer workflow context is usually spread across browser tabs, desktop apps, and notification streams. That creates repeated context switching and competes for the same monitor space needed for focused work.",
     solution:
-      "I am building a self-hosted device around a Waveshare ESP32-P4 display board, a rotary encoder, touch fallback, LED feedback, and a companion backend. The current vertical slice includes GitHub webhook ingestion and sandbox simulation; additional integrations remain planned.",
+      "Mosaic is a two-person capstone: a Waveshare ESP32-P4 5\" touch display backed by a self-hosted server designed to run on a Raspberry Pi. I own the firmware and device UI. Display, touch, phone-based Wi-Fi setup, credential storage, and Wi-Fi recovery are verified on hardware; pairing, backend transport, and the dashboard are in progress.",
     architecture: {
-      caption: "The physical device receives real-time state from a self-hosted backend while keeping third-party credentials off the hardware.",
+      caption: "The device receives state from a self-hosted server, so third-party credentials never live on the hardware.",
       stages: [
         [
-          { label: "GitHub", detail: "Webhooks implemented" },
-          { label: "Slack, Jira, Calendar", detail: "Planned integrations" },
+          { label: "GitHub", detail: "First planned service" },
+          { label: "Additional services", detail: "Planned" },
         ],
         [
-          { label: "NestJS backend", detail: "API gateway + WebSockets" },
-          { label: "SQLite + Prisma", detail: "Local persistence" },
+          { label: ".NET server", detail: "Native AOT + SQLite" },
+          { label: "Admin app", detail: "React + Vite" },
         ],
         [
-          { label: "ESP32-P4 device", detail: "C++ + FreeRTOS" },
-          { label: "LVGL interface", detail: "Touch + rotary input" },
-          { label: "Tauri companion", detail: "Optional desktop actions" },
+          { label: "ESP32-P4 device", detail: "ESP-IDF + C++" },
+          { label: "LVGL interface", detail: "5\" touchscreen" },
+          { label: "Tauri companion", detail: "Desktop actions" },
         ],
       ],
     },
@@ -81,36 +81,36 @@ const projectRecords: CaseStudyProject[] = [
           "The Waveshare ESP32-P4 board and native LVGL interface avoid the boot time, power draw, cooling, and browser overhead of a Raspberry Pi-style kiosk. The tradeoff is giving up standard web rendering in favor of a purpose-built interface.",
       },
       {
-        title: "Keep the UI loop responsive",
+        title: "One source of truth for design tokens",
         description:
-          "The firmware separates the LVGL UI task from hardware and network work through FreeRTOS tasks, queues, and shared state. Background services publish events instead of manipulating UI widgets directly.",
+          "A single JSON token source generates web CSS, lint restrictions, and a firmware C header, so the admin app, browser prototype, and device UI share one visual system. Firmware tokens use desk-distance type sizing and an 80 px minimum control height.",
       },
       {
-        title: "Make physical interaction intentional",
+        title: "Setup from a phone, no app required",
         description:
-          "A panel-mounted rotary encoder provides focused, tactile navigation. The firmware uses the ESP32 pulse counter for reliable detent tracking, with touch as a secondary input rather than the primary interaction model.",
+          "The device shows a Wi-Fi QR code and opens a captive portal where the owner enters network credentials and a server URL. The flow, credential save, reboot, and recovery path were verified on the physical board.",
       },
       {
         title: "Keep credentials and integrations off-device",
         description:
-          "The NestJS backend acts as an API gateway. The device uses authenticated WebSocket messages and generic action payloads, while third-party OAuth and webhook concerns remain on the self-hosted backend.",
+          "The server owns third-party connections and webhooks. The device only speaks a Protobuf protocol to the owner's server, and the admin interface is planned to stay private while webhooks are exposed publicly.",
       },
     ],
     progression: [
       { title: "Concept", detail: "Define a calm, glanceable alternative to another desktop dashboard." },
-      { title: "Surface prototype", detail: "Model the device experience in React before committing it to the embedded UI." },
-      { title: "Vertical slice", detail: "Validate the backend, real-time protocol, device firmware, and physical input path together." },
-      { title: "Device prototype", detail: "Add enclosure, carrier board, electronics, and documented physical iteration as they are built." },
+      { title: "Vertical slice", detail: "Prototype a GitHub event reaching the device end to end to validate the real-time path." },
+      { title: "Foundation", detail: "Rebuild as Mosaic: design token pipeline, Wi-Fi provisioning on hardware, and CI for firmware, web, .NET, and Rust." },
+      { title: "First release", detail: "Pair a device with a Raspberry Pi server, deliver real service events, and add widgets such as a timer." },
     ],
     media: [
       {
         kind: "image",
         src: "/projects/embedded-workflow-dashboard/teaser.png",
-        alt: "Concept visualization of the Embedded Developer Workflow Dashboard device in development",
+        alt: "Concept visualization of the Mosaic desk display",
         label: "Concept visualization",
       },
     ],
-    links: [],
+    links: [{ label: "GitHub", href: "https://github.com/mosaic-device/mosaic" }],
   },
   {
     slug: "better-halo",
