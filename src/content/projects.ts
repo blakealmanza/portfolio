@@ -168,13 +168,10 @@ const projectRecords: CaseStudyProject[] = [
       },
     ],
     media: [
-      {
-        kind: "image",
-        src: "/projects/priceright/icon.png",
-        alt: "PriceRight app icon",
-        label: "App icon",
-        fit: "contain",
-      },
+      { kind: "image", src: "/projects/priceright/overview.webp", alt: "PriceRight product overview with sale price, cost, and margin", label: "Product overview", fit: "contain" },
+      { kind: "image", src: "/projects/priceright/products.webp", alt: "PriceRight product list with prices and costs per unit", label: "Product list", fit: "contain" },
+      { kind: "image", src: "/projects/priceright/materials.webp", alt: "PriceRight materials cost breakdown for a product", label: "Materials costs", fit: "contain" },
+      { kind: "image", src: "/projects/priceright/pricing.webp", alt: "PriceRight pricing method and rounding settings", label: "Pricing method", fit: "contain" },
     ],
     links: [],
   },
