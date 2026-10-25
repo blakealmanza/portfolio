@@ -5,7 +5,9 @@
   --line: rgba(242, 241, 238, 0.1);
   --gutter: clamp(20px, 5vw, 80px);
   --rail: 1280px;
-  --radius-panel: 16px;
+  /* How far a band's media must travel past the rail to reach the viewport edge. */
+  --bleed: calc((100vw - min(var(--rail), 100vw - 2 * var(--gutter))) / 2);
+  --header-height: 72px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -14,7 +16,7 @@ html {
   overflow-x: clip;
   color-scheme: dark;
   scroll-behavior: smooth;
-  scrollbar-color: rgba(242, 241, 238, 0.28) var(--ground);
+  scrollbar-color: color-mix(in oklab, var(--chrome-ink, var(--ink)) 28%, transparent) var(--chrome-bg, var(--ground));
 }
 
 body {
@@ -66,8 +68,14 @@ video {
 }
 
 ::selection {
-  color: var(--ground);
+  color: var(--bg, var(--ground));
   background: var(--accent, var(--ink));
+}
+
+@media (max-width: 560px) {
+  :root {
+    --header-height: 56px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

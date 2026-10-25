@@ -1,7 +1,8 @@
-import { GroundTint } from "@/components/GroundTint";
+import type { CSSProperties } from "react";
 import { ArrowIcon } from "@/components/Icons";
 import { MediaViewerProvider } from "@/components/MediaViewerProvider";
-import { ProjectPanel } from "@/components/ProjectPanel";
+import { ProjectSection, faceStyle } from "@/components/ProjectSection";
+import { ThemeChrome } from "@/components/ThemeChrome";
 import { contact, site } from "@/config/site";
 import { projects } from "@/content/projects";
 import styles from "./page.module.css";
@@ -23,28 +24,45 @@ export default function Home() {
   return (
     <main id="top" className={styles.page}>
       <a className={styles.skipLink} href="#work">Skip to work</a>
-      <GroundTint targetId="top" panelSelector="[data-theme-bg]" />
+      <ThemeChrome selector="[data-chrome]" />
 
       <header className={styles.header}>
-        <a className={styles.brand} href="#top">{site.name}</a>
-        <nav className={styles.nav} aria-label="Main">
-          <a href="#work">Work</a>
-          <a href="#about">About</a>
-          <ExternalLink href={site.resumeHref} label="Resume (PDF)">Resume</ExternalLink>
-          <a href="#contact">Contact</a>
-        </nav>
+        <div className={styles.headerInner}>
+          <a className={styles.brand} href="#top">{site.name}</a>
+          <nav className={styles.nav} aria-label="Main">
+            <a className={styles.navWork} href="#work">Work</a>
+            <a href="#about">About</a>
+            <ExternalLink href={site.resumeHref} label="Resume (PDF)">Resume</ExternalLink>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
       </header>
 
       <section className={styles.intro} aria-labelledby="intro-title">
-        <h1 id="intro-title">
-          I design interfaces and build them. <span>Browser extensions, mobile apps, and the systems behind them.</span>
-        </h1>
+        <h1 id="intro-title">I design interfaces and build them.</h1>
+        <div className={styles.introFoot}>
+          <p>Browser extensions, mobile apps, and the systems behind them.</p>
+          <nav className={styles.index} aria-label="Projects">
+            <ul>
+              {projects.map((project) => (
+                <li key={project.slug}>
+                  <a
+                    href={`#${project.slug}`}
+                    style={{ ...faceStyle(project.face), "--signal": project.theme.signal } as CSSProperties}
+                  >
+                    {project.shortTitle ?? project.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
       </section>
 
       <MediaViewerProvider galleries={galleries}>
         <section id="work" className={styles.work} aria-label="Selected work">
           {projects.map((project, index) => (
-            <ProjectPanel key={project.slug} project={project} priority={index === 0} />
+            <ProjectSection key={project.slug} project={project} priority={index === 0} />
           ))}
         </section>
       </MediaViewerProvider>

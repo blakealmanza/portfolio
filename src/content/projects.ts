@@ -9,8 +9,9 @@ export const projects: Project[] = [
     description:
       "Students can personalize their LMS, stay on top of assignments, project their grades, and share themes through a community gallery.",
     stack: "React · TypeScript · GraphQL · Manifest V3 · React Router · Supabase · Clerk",
-    theme: { bg: "#141414", surface: "#1F1F1F", ink: "#F4F1EA", muted: "#ABA69C", accent: "#F59E0B" },
-    layout: "browser",
+    face: { family: "var(--font-inter)", weight: 600, tracking: "-0.04em" },
+    theme: { scheme: "dark", bg: "#141414", surface: "#1F1F1F", ink: "#F4F1EA", muted: "#ABA69C", accent: "#F59E0B", signal: "#F59E0B" },
+    layout: "stage",
     metrics: [{ value: "1,100+", label: "students using Better Halo" }],
 
     problem:
@@ -83,7 +84,8 @@ export const projects: Project[] = [
     description:
       "Users build up a product's costs—materials, labor, overhead, packaging, shipping, and channel fees—and PriceRight calculates a price from the chosen pricing policy.",
     stack: "React Native · Expo · TypeScript · C# · .NET · Azure Functions · Microsoft Entra · GitHub Actions",
-    theme: { bg: "#0F172A", surface: "#1E293B", ink: "#F1F5F9", muted: "#A3B0C6", accent: "#A5B4FC" },
+    face: { family: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", Roboto, var(--font-sans)', weight: 700, tracking: "-0.03em" },
+    theme: { scheme: "dark", bg: "#0F172A", surface: "#1E293B", ink: "#F1F5F9", muted: "#A3B0C6", accent: "#A5B4FC", signal: "#A5B4FC" },
     layout: "phones",
     metrics: [{ value: "25+", label: "screens redesigned" }],
 
@@ -142,8 +144,10 @@ export const projects: Project[] = [
     summary: "Event schedules, arenas, and producer notices for Washington barrel racers, kept current by automated scrapers.",
     description: "A central hub where riders find and save events, explore arenas, and get registration alerts, with paid memberships and an admin review workflow.",
     stack: "Next.js · TypeScript · Supabase · Python · GitHub Actions · Memberstack · Google Maps · Google Calendar",
-    theme: { bg: "#19140F", surface: "#241D17", ink: "#F4EEE8", muted: "#B5A99F", accent: "#CD7F32" },
-    layout: "browser",
+    shortTitle: "WSBRI",
+    face: { family: "var(--font-martel)", weight: 400, tracking: "0.01em", uppercase: true },
+    theme: { scheme: "light", bg: "#F4EEE6", surface: "#FDFBF9", ink: "#2A1F17", muted: "#6E5D50", accent: "#8B5A2B", signal: "#CD7F32" },
+    layout: "stage",
     metrics: [
       { value: "200+", label: "users served" },
       { value: "~80%", label: "less manual event entry" },
@@ -199,8 +203,10 @@ export const projects: Project[] = [
     description:
       "Customers check availability, select a date range, and send an inquiry without creating an account. I'm leading the design and build.",
     stack: "Astro · React · React Aria · Cloudflare Workers · Google Calendar API",
-    theme: { bg: "#2C3727", surface: "#39432D", ink: "#F7F4EB", muted: "#C3C9B6", accent: "#E6E1D3" },
-    layout: "browser",
+    shortTitle: "Annie’s",
+    face: { family: "Georgia, \"Times New Roman\", serif", weight: 400, tracking: "-0.025em" },
+    theme: { scheme: "dark", bg: "#2C3727", surface: "#39432D", ink: "#F8F4EC", muted: "#C3C9B6", accent: "#E7BD67", signal: "#E7BD67" },
+    layout: "stage",
 
     problem:
       "A new sitting business needs a professional presence and a simple way for customers to request dates, while the owner manages availability from her phone at no ongoing cost.",
@@ -221,8 +227,9 @@ export const projects: Project[] = [
     description:
       "An ESP32-P4 desk device with a 5\" touchscreen, paired with a self-hosted server, admin app, and desktop companion. I own the firmware and on-device LVGL interface.",
     stack: "ESP-IDF · C++ · LVGL · ESP32-P4 · .NET · SQLite · React · Tauri · Protobuf",
-    theme: { bg: "#050505", surface: "#121214", ink: "#FAFAFA", muted: "#A1A1AA", accent: "#60A5FA" },
-    layout: "photo",
+    face: { family: "var(--font-manrope)", weight: 700, tracking: "-0.04em" },
+    theme: { scheme: "dark", bg: "#000000", surface: "#121214", ink: "#FAFAFA", muted: "#A1A1AA", accent: "#60A5FA", signal: "#60A5FA" },
+    layout: "stage",
 
     problem:
       "Developer workflow context is usually spread across browser tabs, desktop apps, and notification streams. That creates repeated context switching and competes for the same monitor space needed for focused work.",
@@ -280,6 +287,7 @@ export const projects: Project[] = [
         src: "/projects/embedded-workflow-dashboard/teaser.png",
         alt: "Concept visualization of the Mosaic desk display",
         label: "Concept visualization",
+        caption: "Concept visualization",
       },
     ],
     links: [{ label: "GitHub", href: "https://github.com/mosaic-device/mosaic" }],
@@ -291,7 +299,8 @@ export const projects: Project[] = [
     summary: "GPS yardages, shot tracking, club recommendations, and course maps for every round.",
     description: "A mobile-first golf companion that helps players plan shots, track rounds, and navigate courses with confidence.",
     stack: "React · TypeScript · PWA · Google Maps · AWS Lambda · DynamoDB · Cognito · CDK · Figma",
-    theme: { bg: "#0E1912", surface: "#16261B", ink: "#F0F5F1", muted: "#A4B5A9", accent: "#5DBB82" },
+    face: { family: "var(--font-barlow)", weight: 600, tracking: "-0.01em" },
+    theme: { scheme: "light", bg: "#EBEBEB", surface: "#FFFFFF", ink: "#232323", muted: "#5E5E5E", accent: "#2B7347", signal: "#5DBB82" },
     layout: "phones",
 
     problem:
@@ -340,13 +349,15 @@ export const projects: Project[] = [
     slug: "kimbo-learning",
     title: "Kimbo Learning",
     type: "AI learning platform · Team project",
-    summary: "Interactive, AI-powered stories for K–3 learners.",
+    summary: "Interactive, AI-powered stories for K–\u20603 learners.",
     description: "Young readers choose what happens next, complete reading quests, and follow their progress across every adventure.",
     stack: "Next.js · TypeScript · OpenAI · RAG · Supabase · Accessibility",
-    theme: { bg: "#111827", surface: "#1F2937", ink: "#F9FAFB", muted: "#A7B0BE", accent: "#2DD4BF" },
-    layout: "browser",
+    shortTitle: "Kimbo",
+    face: { family: "var(--font-poppins)", weight: 700, tracking: "-0.03em" },
+    theme: { scheme: "dark", bg: "#00636B", surface: "#174F62", ink: "#FFFFFF", muted: "#C4E3E5", accent: "#F6D465", signal: "#F6D465" },
+    layout: "stage",
     media: [
-      { kind: "image", src: "/projects/kimbo-learning/home.webp", alt: "Kimbo Learning adventure dashboard with reading progress and story collection", label: "Adventure dashboard" },
+      { kind: "image", src: "/projects/kimbo-learning/dashboard.webp", alt: "Kimbo Learning adventure dashboard with reading progress and story collection", label: "Adventure dashboard" },
       { kind: "image", src: "/projects/kimbo-learning/story.webp", alt: "Kimbo Learning interactive story screen with a reading passage and choice prompts", label: "Story choices" },
       { kind: "video", src: "/projects/kimbo-learning/demo.mp4", poster: "/projects/kimbo-learning/poster.webp", alt: "Kimbo Learning loading animation", label: "Loading animation" },
     ],

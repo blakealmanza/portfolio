@@ -1,13 +1,14 @@
 .page {
   min-height: 100vh;
-  padding: 0 var(--gutter);
-  background: var(--page-bg, var(--ground));
-  transition: background-color 900ms var(--ease-out);
+  background: var(--ground);
 }
 
-.page > * {
-  width: 100%;
-  max-width: var(--rail);
+/* Portfolio chrome keeps to the rail; the project bands run edge to edge. */
+.headerInner,
+.intro,
+.about,
+.contact {
+  width: min(var(--rail), 100% - 2 * var(--gutter));
   margin-inline: auto;
 }
 
@@ -15,8 +16,7 @@
   position: absolute;
   top: 12px;
   left: 12px;
-  z-index: 10;
-  width: auto;
+  z-index: 30;
   padding: 10px 14px;
   color: var(--ground);
   background: var(--ink);
@@ -28,13 +28,24 @@
   transform: none;
 }
 
-/* Header */
+/* Header: sticky, and wears the theme of the band beneath it. */
 
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  color: var(--chrome-ink, var(--ink));
+  background: var(--chrome-bg, var(--ground));
+  transition:
+    color 500ms var(--ease-out),
+    background-color 500ms var(--ease-out);
+}
+
+.headerInner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 88px;
+  min-height: var(--header-height);
 }
 
 .brand {
@@ -46,7 +57,8 @@
 .nav {
   display: flex;
   gap: clamp(20px, 3vw, 36px);
-  color: var(--muted);
+  color: var(--chrome-muted, var(--muted));
+  transition: color 500ms var(--ease-out);
 }
 
 .nav a {
@@ -58,34 +70,77 @@
 }
 
 .nav a:hover {
-  color: var(--ink);
+  color: var(--chrome-ink, var(--ink));
 }
 
-/* Intro */
+.header :focus-visible {
+  outline-color: var(--chrome-accent, var(--ink));
+}
+
+/* Intro: the statement, then every product named in its own typeface. */
 
 .intro {
-  padding: clamp(24px, 4vh, 44px) 0 clamp(36px, 5vh, 56px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: clamp(40px, 7vh, 72px);
+  min-height: calc(100svh - var(--header-height));
+  padding: clamp(32px, 5vh, 72px) 0 clamp(40px, 6vh, 64px);
 }
 
 .intro h1 {
-  max-width: 42ch;
-  font-size: clamp(1.75rem, 2.9vw, 2.75rem);
-  font-weight: 500;
-  line-height: 1.14;
-  letter-spacing: -0.025em;
+  max-width: 14ch;
+  font-size: clamp(3.25rem, 8.2vw, 6rem);
+  font-weight: 600;
+  line-height: 0.94;
+  letter-spacing: -0.04em;
   text-wrap: balance;
 }
 
-.intro h1 span {
+.introFoot {
+  display: grid;
+  grid-template-columns: minmax(200px, 4fr) minmax(0, 8fr);
+  gap: 24px clamp(32px, 4vw, 64px);
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.introFoot > p {
+  max-width: 34ch;
   color: var(--muted);
+  font-size: 1.15rem;
+  line-height: 1.45;
+}
+
+/* A quiet line of the product names, each in its own face; it only speaks up on hover. */
+.index ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0 1.1em;
+  list-style: none;
+  font-size: 1.15rem;
+  line-height: 1.45;
+}
+
+.index a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--muted);
+  transition: color 240ms var(--ease-out);
+}
+
+.index a:hover,
+.index a:focus-visible {
+  color: var(--signal);
 }
 
 /* Work */
 
 .work {
   display: grid;
-  gap: clamp(20px, 2.4vw, 32px);
-  scroll-margin-top: 24px;
 }
 
 /* About */
@@ -101,7 +156,7 @@
   grid-template-columns: minmax(200px, 0.42fr) minmax(0, 1fr);
   gap: 32px;
   margin-top: clamp(112px, 16vh, 180px);
-  scroll-margin-top: 24px;
+  scroll-margin-top: calc(var(--header-height) + 24px);
 }
 
 .aboutBody {
@@ -144,7 +199,7 @@
 .contact {
   margin-top: clamp(128px, 18vh, 200px);
   padding-bottom: clamp(48px, 8vh, 80px);
-  scroll-margin-top: 24px;
+  scroll-margin-top: calc(var(--header-height) + 24px);
 }
 
 .contact h2 {
@@ -208,6 +263,14 @@
 /* Tablet and phone */
 
 @media (max-width: 900px) {
+  .introFoot {
+    grid-template-columns: 1fr;
+  }
+
+  .index ul {
+    justify-content: flex-start;
+  }
+
   .about {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -215,16 +278,23 @@
 }
 
 @media (max-width: 560px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    min-height: 0;
-    padding: 14px 0 0;
+  .brand {
+    font-size: 1rem;
+  }
+
+  .nav {
+    gap: 16px;
+    font-size: 0.94rem;
+  }
+
+  /* The work starts directly below, and the project index links into it, so phones drop the Work link to fit one row. */
+  .nav .navWork {
+    display: none;
   }
 
   .intro {
-    padding: 12px 0 28px;
+    min-height: calc(88svh - var(--header-height));
+    padding: 32px 0 48px;
   }
 
   .nav {

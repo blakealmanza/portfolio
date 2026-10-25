@@ -5,6 +5,8 @@ export type ProjectMediaItem = {
   label: string;
   poster?: string;
   fit?: "cover" | "contain";
+  /** Shown over the media in its section, e.g. to label a concept render. */
+  caption?: string;
 };
 
 export type ProjectLink = {
@@ -17,17 +19,28 @@ export type ProjectMetric = {
   label: string;
 };
 
-/** A project's own product colours, applied to its panel. Corner radius is portfolio-wide, not per project. */
+/** A project's own product colours, applied to its full-bleed section. */
 export type ProjectTheme = {
+  scheme: "dark" | "light";
   bg: string;
   surface: string;
   ink: string;
   muted: string;
   accent: string;
+  /** The brand colour as it reads on the portfolio's dark ground, used where the product is named outside its section. */
+  signal: string;
 };
 
-/** How a project's panel presents its media: one wide screen, three phone screens, or a full-bleed photo. */
-export type ProjectLayout = "browser" | "phones" | "photo";
+/** The product's own display typeface, used for its name wherever it appears. */
+export type ProjectFace = {
+  family: string;
+  weight: number;
+  tracking: string;
+  uppercase?: boolean;
+};
+
+/** How a section shows its media below the copy: one wide screen, or up to four phone screens. */
+export type ProjectLayout = "stage" | "phones";
 
 export type ArchitectureNode = {
   label: string;
@@ -37,6 +50,9 @@ export type ArchitectureNode = {
 export type Project = {
   slug: string;
   title: string;
+  /** Short name for the homepage index; defaults to the title. */
+  shortTitle?: string;
+  face: ProjectFace;
   type: string;
   summary: string;
   description: string;
