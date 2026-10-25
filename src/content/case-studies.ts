@@ -23,7 +23,7 @@ export const caseStudiesBySlug: Record<string, CaseStudy> = {
   "kimbo-learning": {
     framing: "Interactive, AI-powered reading adventures that give young learners more agency in how they practice.",
     heroCapture: { title: "A story shaped by the learner", detail: "Interest, skill, and choice create a more personal reading path" },
-    stack: "Next.js · TypeScript · OpenAI · Supabase · Redis · Accessibility-first UI",
+    stack: "Next.js · TypeScript · OpenAI · RAG · Supabase · Accessibility-first UI",
   },
   "golf-caddie": {
     framing: "A mobile golf companion designed around the decisions a player makes between shots.",
