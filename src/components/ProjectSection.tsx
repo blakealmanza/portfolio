@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 import type { Project, ProjectFace, ProjectLayout, ProjectTheme } from "@/content/types";
 import { ArrowIcon } from "./Icons";
+import { MediaReveal } from "./MediaReveal";
 import { OpenMediaButton } from "./MediaViewerProvider";
 import styles from "./ProjectSection.module.css";
 
@@ -90,7 +91,7 @@ export function ProjectSection({ project, priority = false }: { project: Project
           </div>
         </div>
 
-        <div className={styles.media} style={{ "--count": shownMedia.length } as CSSProperties}>
+        <MediaReveal count={shownMedia.length} phones={phones}>
           {shownMedia.map((media, index) => (
             <OpenMediaButton
               key={media.src}
@@ -110,7 +111,7 @@ export function ProjectSection({ project, priority = false }: { project: Project
               {media.caption && <span className={styles.caption}>{media.caption}</span>}
             </OpenMediaButton>
           ))}
-        </div>
+        </MediaReveal>
       </div>
     </article>
   );
