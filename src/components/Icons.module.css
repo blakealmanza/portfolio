@@ -1,0 +1,4 @@
+.icon {
+  flex: none;
+  transition: translate 240ms var(--ease-out);
+}

@@ -7,16 +7,9 @@ import Video from "yet-another-react-lightbox/plugins/video";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+import type { ProjectMediaItem } from "@/content/types";
+import { ArrowIcon, CloseIcon } from "./Icons";
 import styles from "./ProjectMediaViewer.module.css";
-
-export type ProjectMediaItem = {
-  kind: "image" | "video";
-  src: string;
-  alt: string;
-  label: string;
-  poster?: string;
-  fit?: "cover" | "contain";
-};
 
 type ProjectMediaViewerProps = {
   projectTitle: string;
@@ -108,12 +101,15 @@ export default function ProjectMediaViewer({ projectTitle, media, index, onClose
             </div>
             <div className={styles.controls}>
               <span className={styles.position}>{String(activeIndex + 1).padStart(2, "0")} / {String(media.length).padStart(2, "0")}</span>
-              <button className={styles.close} type="button" onClick={onCloseAction} aria-label="Close media viewer">Close ×</button>
+              <button className={styles.close} type="button" onClick={onCloseAction} aria-label="Close media viewer">
+                Close
+                <CloseIcon size={14} />
+              </button>
             </div>
           </div>
         ),
-        iconPrev: () => <span aria-hidden="true">←</span>,
-        iconNext: () => <span aria-hidden="true">→</span>,
+        iconPrev: () => <ArrowIcon direction="left" size={24} />,
+        iconNext: () => <ArrowIcon size={24} />,
       }}
       styles={{
         root: {
