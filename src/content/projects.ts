@@ -243,8 +243,71 @@ const projectRecords: CaseStudyProject[] = [
     links: [{ label: "Live site", href: "https://www.wsbarrelracing.com" }],
   },
   {
-    slug: "kimbo-learning",
+    slug: "priceright",
     number: "04",
+    title: "PriceRight",
+    type: "Cross-platform mobile app · Team project",
+    summary: "A cross-platform app that helps businesses work out what products cost to make and what to sell them for.",
+    description:
+      "Users build up a product's costs—materials, labor, overhead, packaging, shipping, and channel fees—and PriceRight calculates a price from the chosen pricing policy.",
+    stack: "React Native · Expo · TypeScript · C# · .NET · Azure Functions · Microsoft Entra · GitHub Actions",
+    homepageStack: "Expo · TypeScript · .NET · Azure",
+    metrics: [{ value: "25+", label: "screens redesigned" }],
+
+    problem:
+      "Pricing a product correctly means accounting for many kinds of cost. Spreadsheets make that error-prone, and the app's original interface made the cost-building flow hard to follow on a phone.",
+    solution:
+      "On a university team, I led a full UI redesign, rebuilding 25+ screens with native iOS navigation. I designed the brand identity, including the logo, a Liquid Glass app icon, and the launch animation, and I implemented Microsoft Entra sign-in, API caching, and regression tests.",
+    architecture: {
+      caption: "The app talks to a serverless .NET API through Azure API Management.",
+      stages: [
+        [
+          { label: "PriceRight app", detail: "Expo: iOS, Android, web" },
+          { label: "Microsoft Entra", detail: "OAuth sign-in" },
+        ],
+        [{ label: "Azure API Management", detail: "API gateway" }],
+        [
+          { label: "Azure Functions", detail: ".NET 8" },
+          { label: "Azure Table Storage", detail: "Products + businesses" },
+        ],
+      ],
+    },
+    decisions: [
+      {
+        title: "Native navigation on iOS",
+        description:
+          "iOS uses native tabs and stacks through platform-specific components, so the app behaves like an iOS app rather than a web view, while Android and web share the same screens.",
+      },
+      {
+        title: "No spinners on repeat visits",
+        description:
+          "API data is cached and hidden tabs are preloaded, so returning to a screen shows content immediately instead of a loading state.",
+      },
+      {
+        title: "Sessions that survive",
+        description:
+          "Microsoft Entra OAuth uses secure token storage, silent renewal, and session restore, so users stay signed in across launches.",
+      },
+      {
+        title: "Protect the redesign with tests",
+        description:
+          "Regression suites cover navigation, sessions, caching, and startup, and run in GitHub Actions CI on every push.",
+      },
+    ],
+    media: [
+      {
+        kind: "image",
+        src: "/projects/priceright/icon.png",
+        alt: "PriceRight app icon",
+        label: "App icon",
+        fit: "contain",
+      },
+    ],
+    links: [],
+  },
+  {
+    slug: "kimbo-learning",
+    number: "05",
     title: "Kimbo Learning",
     type: "AI learning platform",
     summary: "Interactive, AI-powered stories for K–3 learners.",
@@ -260,7 +323,7 @@ const projectRecords: CaseStudyProject[] = [
   },
   {
     slug: "golf-caddie",
-    number: "05",
+    number: "06",
     title: "Golf Caddie",
     type: "Mobile golf companion",
     summary: "GPS yardages, shot tracking, and course maps for every round.",
