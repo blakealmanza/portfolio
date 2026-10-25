@@ -24,10 +24,11 @@ Visitors often scan quickly on desktop during hiring review, then open a case st
 
 ## Capabilities and Constraints
 
-- Single-page homepage with `Work`, `About`, `Resume`, and `Contact` navigation.
-- Every project gets the same full-width panel, presented in its own product’s colour theme and ordered by strength; there is no featured tier or secondary list.
-- One corner radius across the site; projects lend panels their colours, never their geometry.
-- As the visitor scrolls, the page ground takes a light tint of the project in view.
+- Single-page homepage with `Work`, `About`, `Resume`, and `Contact` navigation. On phones the one-row sticky header drops `Work`, since the work starts directly below and the project index links into it.
+- Every project gets an equal full-bleed section, presented in its own product’s real ground, colours, and display typeface, and ordered by strength; there is no featured tier or secondary list.
+- Sections are separated by hard cuts; layouts vary per project to suit its media, but text always keeps to one rail.
+- The sticky header takes on the theme of the section beneath it; the portfolio’s own chrome (intro, About, Contact) stays on the neutral dark ground.
+- No scroll-snap or scroll-jacking.
 - Real WebP screenshots, one MP4 demo, and a concept render (labelled as such); media opens in a lightbox.
 - Case studies for Better Halo, PriceRight, and Mosaic; other projects link to their screens, live site, or repository.
 - Short About section with education, freelance, and certification facts.
@@ -36,7 +37,7 @@ Visitors often scan quickly on desktop during hiring review, then open a case st
 
 ## Brand Commitments
 
-Clean, professional, and modern on a dark ground. The portfolio itself stays neutral; colour comes from the projects’ own themes. Keep it uncluttered: no extra metadata, token readouts, or decorative chrome. Real project proof stays more prominent than interface chrome or personal branding.
+Clean, professional, and modern on a dark ground. The portfolio itself stays neutral; colour and display type come from the projects’ own themes. Keep it uncluttered: no extra metadata, token readouts, or decorative chrome. Real project proof stays more prominent than interface chrome or personal branding.
 
 ## Evidence on Hand
 
