@@ -1,0 +1,219 @@
+/* A project shown in its own product theme. The theme arrives as --bg, --ink, --muted, --accent on the panel. */
+
+.panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(360px, 5fr) minmax(0, 7fr);
+  min-height: clamp(440px, 58vh, 580px);
+  overflow: hidden;
+  color: var(--ink);
+  background: var(--bg);
+  border-radius: var(--radius-panel);
+  scroll-margin-top: 24px;
+}
+
+.panel::after {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--accent) 22%, transparent);
+  content: "";
+  pointer-events: none;
+}
+
+.panelCopy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(28px, 3.4vw, 52px);
+}
+
+.panelCopy h2 {
+  font-size: clamp(2.4rem, 4vw, 3.75rem);
+  font-weight: 600;
+  line-height: 0.95;
+  text-wrap: balance;
+  letter-spacing: -0.035em;
+}
+
+.panelType {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.panelSummary {
+  max-width: 32ch;
+  margin-top: 26px;
+  font-size: 1.15rem;
+  line-height: 1.45;
+  color: color-mix(in oklab, var(--ink) 86%, var(--bg));
+}
+
+.panelProof {
+  margin-top: auto;
+  padding-top: 32px;
+  color: var(--accent);
+  font-size: 0.94rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.panelSummary + .actions {
+  margin-top: auto;
+  padding-top: 32px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 22px;
+  margin-top: 16px;
+}
+
+.primaryLink,
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.primaryLink {
+  font-weight: 600;
+}
+
+.primaryLink svg {
+  color: var(--accent);
+}
+
+.primaryLink:hover svg {
+  translate: 4px 0;
+}
+
+.textLink {
+  color: var(--muted);
+  transition: color 200ms ease;
+}
+
+.textLink:hover {
+  color: var(--ink);
+}
+
+.panelMedia {
+  position: relative;
+  min-height: 320px;
+}
+
+.mediaButton {
+  position: absolute;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.mediaButton img {
+  object-fit: cover;
+  object-position: left top;
+  transition: scale 600ms var(--ease-out);
+}
+
+.mediaButton:hover img {
+  scale: 1.015;
+}
+
+/* Browser: one wide screen that runs off the right and bottom edges. */
+.layoutBrowser .mediaButton {
+  inset: clamp(28px, 3.4vw, 52px) 0 0 8px;
+  border-radius: 10px 0 0 0;
+  box-shadow: -18px 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* Phones: three screens standing on the panel floor, cropped at the bottom. */
+.layoutPhones .panelMedia {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(14px, 1.8vw, 26px);
+  padding: clamp(36px, 4vw, 56px) clamp(24px, 3vw, 48px) 0;
+}
+
+.layoutPhones .mediaButton {
+  position: relative;
+  flex: 0 1 240px;
+  aspect-ratio: 1206 / 2622;
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.layoutPhones .mediaButton:nth-child(2) {
+  margin-top: clamp(32px, 5vh, 64px);
+}
+
+.layoutPhones .mediaButton:nth-child(3) {
+  margin-top: clamp(64px, 10vh, 128px);
+}
+
+/* Photo: the image fills its half of the panel. The render's black runs to pure #000, so the panel matches it. */
+.layoutPhoto {
+  background: #000;
+}
+
+.layoutPhoto .mediaButton {
+  inset: 0;
+}
+
+.layoutPhoto .mediaButton img {
+  object-position: 30% center;
+}
+
+.mediaCaption {
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+@media (max-width: 900px) {
+  .panel {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .panelProof {
+    margin-top: 0;
+    padding-top: 24px;
+  }
+
+  .layoutBrowser .panelMedia {
+    min-height: clamp(240px, 52vw, 420px);
+  }
+
+  .layoutBrowser .mediaButton {
+    inset: 0 0 0 clamp(20px, 5vw, 40px);
+  }
+
+  .layoutPhones .panelMedia {
+    min-height: 0;
+    max-height: clamp(320px, 80vw, 520px);
+    padding-top: 0;
+  }
+
+  .layoutPhones .mediaButton {
+    flex-basis: 30%;
+  }
+
+  .layoutPhoto .panelMedia {
+    min-height: 0;
+    aspect-ratio: 16 / 11;
+  }
+
+  .mediaCaption {
+    right: auto;
+    left: 20px;
+  }
+}
