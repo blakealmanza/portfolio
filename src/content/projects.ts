@@ -117,25 +117,29 @@ const projectRecords: CaseStudyProject[] = [
     number: "02",
     title: "Better Halo",
     type: "Browser extension",
-    summary: "A student-first extension that makes GCU’s Halo LMS easier to use.",
+    summary: "A Chrome Web Store extension that makes GCU’s Halo LMS easier to use, with themes, assignment tracking, and grade tools.",
     description:
-      "Students can personalize their LMS, stay on top of assignments, and navigate a more comfortable learning experience.",
-    stack: "React · TypeScript · GraphQL · Web Extension APIs",
-        homepageStack: "React · TypeScript · GraphQL · Extension APIs",
-    metrics: [{ value: "350+", label: "students using Better Halo" }],
+      "Students can personalize their LMS, stay on top of assignments, project their grades, and share themes through a community gallery.",
+    stack: "React · TypeScript · GraphQL · Manifest V3 · React Router · Supabase · Clerk",
+    homepageStack: "React · TypeScript · GraphQL · Extension APIs",
+    metrics: [{ value: "1,100+", label: "students using Better Halo" }],
 
     problem:
       "Halo is a required part of the student workflow, but its default experience leaves little room for personalization and can make everyday tasks feel harder to scan.",
     solution:
-      "I built a browser extension around the existing LMS experience, focusing on theme customization and a more comfortable way to stay oriented around coursework.",
+      "I built a browser extension around the existing LMS experience. It adds a CSS-variable theming system with custom themes and scheduled dark mode, assignment tracking on course cards, a what-if grade calculator, a combined calendar across classes, and class schedule export to calendar apps. A companion website hosts a community theme gallery.",
     architecture: {
       caption: "Better Halo extends the existing LMS rather than replacing it.",
       stages: [
-        [{ label: "Halo LMS", detail: "Existing student workflow" }],
-        [{ label: "Better Halo extension", detail: "React + TypeScript" }],
         [
-          { label: "Theme controls", detail: "Personalization" },
-          { label: "Assignment context", detail: "Student workflow" },
+          { label: "Halo LMS", detail: "Existing student workflow" },
+          { label: "Halo GraphQL API", detail: "Reverse-engineered" },
+        ],
+        [{ label: "Better Halo extension", detail: "React + TypeScript, Manifest V3" }],
+        [
+          { label: "Themes", detail: "Custom + scheduled dark mode" },
+          { label: "Coursework tools", detail: "Assignments, grades, calendar" },
+          { label: "Theme gallery", detail: "React Router + Supabase" },
         ],
       ],
     },
@@ -144,6 +148,11 @@ const projectRecords: CaseStudyProject[] = [
         title: "Improve the workflow in place",
         description:
           "The product is designed as an extension of the LMS students already rely on, keeping adoption low-friction instead of asking them to move to a separate tool.",
+      },
+      {
+        title: "Build on Halo's own data",
+        description:
+          "I reverse-engineered and documented Halo's private GraphQL API, which made it possible to add assignment tracking, course shortcuts, and grade projections without scraping fragile page markup.",
       },
       {
         title: "Make personalization useful",
@@ -172,7 +181,10 @@ const projectRecords: CaseStudyProject[] = [
         fit: "contain",
       },
     ],
-    links: [{ label: "Live site", href: "https://www.betterhalo.app" }],
+    links: [
+      { label: "Live site", href: "https://www.betterhalo.app" },
+      { label: "Chrome Web Store", href: "https://chromewebstore.google.com/detail/goofpkaenamaankebgoegfghpkaolchj" },
+    ],
   },
   {
     slug: "wsbri",

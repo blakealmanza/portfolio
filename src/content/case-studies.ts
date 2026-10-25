@@ -13,7 +13,7 @@ export const caseStudiesBySlug: Record<string, CaseStudy> = {
   "better-halo": {
     framing: "A browser extension that gives students more control over the LMS they already have to use.",
     heroCapture: { title: "A student-controlled LMS", detail: "Personalization, coursework context, and direct course actions—inside Halo" },
-    stack: "React · TypeScript · GraphQL · Manifest V3 · Browser Extension APIs",
+    stack: "React · TypeScript · GraphQL · Manifest V3 · React Router · Supabase · Clerk",
   },
   wsbri: {
     framing: "Regional barrel-racing information, transformed from scattered listings into a maintained planning resource.",
