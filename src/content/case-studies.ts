@@ -18,7 +18,7 @@ export const caseStudiesBySlug: Record<string, CaseStudy> = {
   wsbri: {
     framing: "Regional barrel-racing information, transformed from scattered listings into a maintained planning resource.",
     heroCapture: { title: "A dependable regional planning system", detail: "Source information becomes reviewed event data riders can use" },
-    stack: "Next.js · Supabase · Python · GitHub Actions · Google Maps · Memberstack · Resend",
+    stack: "Next.js · Supabase · Python · GitHub Actions · Memberstack · Google Maps · Google Calendar",
   },
   "kimbo-learning": {
     framing: "Interactive, AI-powered reading adventures that give young learners more agency in how they practice.",

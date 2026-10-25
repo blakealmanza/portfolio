@@ -190,29 +190,36 @@ const projectRecords: CaseStudyProject[] = [
     slug: "wsbri",
     number: "03",
     title: "Washington State Barrel Racing Info",
-    type: "Community event platform",
-    summary: "Event schedules, results, and rider updates for Washington barrel racers.",
-    description: "A central hub for competitors to find events, follow results, explore arenas, and receive timely updates.",
-    stack: "Calendar UI · Google Maps · Resend · Automation",
-        homepageStack: "React · Maps · Email · Automation",
+    type: "Community event platform · Freelance",
+    summary: "Event schedules, arenas, and producer notices for Washington barrel racers, kept current by automated scrapers.",
+    description: "A central hub where riders find and save events, explore arenas, and get registration alerts, with paid memberships and an admin review workflow.",
+    stack: "Next.js · TypeScript · Supabase · Python · GitHub Actions · Memberstack · Google Maps · Google Calendar",
+    homepageStack: "Next.js · Supabase · Python · Automation",
     metrics: [
       { value: "200+", label: "users served" },
-      { value: "~80%", label: "less manual event-management work" },
+      { value: "~80%", label: "less manual event entry" },
+      { value: "3", label: "event sources scraped" },
     ],
 
     problem:
-      "Event information and rider updates need to be timely and easy to find. Managing that information manually creates repeated administrative work and makes it harder for competitors to stay informed.",
+      "Barrel racing events were scattered across producer websites, social posts, and group updates. Keeping a single listing current by hand meant repeated data entry and made it hard for riders to plan.",
     solution:
-      "I built a central event platform with a calendar, arena directory, and communication workflow that makes information easier to publish, discover, and maintain.",
+      "I designed and built the platform: event list and calendar views with filters, saved events, paid memberships, and an arena and organization directory. Python scrapers pull from 3 event sources and fuzzy-match duplicates into a staging queue that admins review before publishing. I later migrated the site from Vite to Next.js 16 and added registration alerts and Google Calendar sync.",
     architecture: {
-      caption: "The platform turns event information into a searchable, shareable community resource.",
+      caption: "Scraped and submitted events are reviewed before they become the data riders rely on.",
       stages: [
-        [{ label: "Event information", detail: "Schedules and updates" }],
-        [{ label: "WSBRI platform", detail: "Calendar + automation" }],
         [
-          { label: "Riders", detail: "Events and results" },
-          { label: "Email updates", detail: "Timely communication" },
-          { label: "Arena directory", detail: "Maps and venue details" },
+          { label: "Event sources", detail: "3 producer sites" },
+          { label: "Python scrapers", detail: "GitHub Actions" },
+        ],
+        [
+          { label: "Staging + admin review", detail: "Fuzzy de-duplication" },
+          { label: "Supabase", detail: "Events, arenas, members" },
+        ],
+        [
+          { label: "Next.js site", detail: "List + calendar views" },
+          { label: "Registration alerts", detail: "Automated notices" },
+          { label: "Google Calendar", detail: "Event sync" },
         ],
       ],
     },
@@ -223,9 +230,9 @@ const projectRecords: CaseStudyProject[] = [
           "The system prioritizes the information people need around an event—what is happening, where it is, and when it changes—rather than treating the site as a static directory.",
       },
       {
-        title: "Automate repetitive administration",
+        title: "Automate collection, keep a human in the loop",
         description:
-          "The publishing and event-management workflow was designed to reduce manual work by approximately 80%, leaving more time for the people running events.",
+          "Scrapers handle repetitive data entry, but every scraped event lands in a staging queue for admin review. Fuzzy de-duplication catches the same event listed by multiple sources, cutting manual entry by about 80%.",
       },
     ],
     media: [
