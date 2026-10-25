@@ -42,79 +42,8 @@ export type CaseStudyProject = {
 
 const projectRecords: CaseStudyProject[] = [
   {
-    slug: "mosaic",
-    number: "01",
-    title: "Mosaic",
-    type: "Open-source connected desk display · Capstone",
-    summary: "An open-source, self-hosted desk display for developer notifications, actions, and focus—without another browser tab.",
-    description:
-      "An ESP32-P4 desk device with a 5\" touchscreen, paired with a self-hosted server, admin app, and desktop companion. I own the firmware and on-device LVGL interface.",
-    stack: "ESP-IDF · C++ · LVGL · ESP32-P4 · .NET · SQLite · React · Tauri · Protobuf",
-    homepageStack: "C++ · LVGL · ESP32-P4 · TypeScript",
-
-    problem:
-      "Developer workflow context is usually spread across browser tabs, desktop apps, and notification streams. That creates repeated context switching and competes for the same monitor space needed for focused work.",
-    solution:
-      "Mosaic is a two-person capstone: a Waveshare ESP32-P4 5\" touch display backed by a self-hosted server designed to run on a Raspberry Pi. I own the firmware and device UI. Display, touch, phone-based Wi-Fi setup, credential storage, and Wi-Fi recovery are verified on hardware; pairing, backend transport, and the dashboard are in progress.",
-    architecture: {
-      caption: "The device receives state from a self-hosted server, so third-party credentials never live on the hardware.",
-      stages: [
-        [
-          { label: "GitHub", detail: "First planned service" },
-          { label: "Additional services", detail: "Planned" },
-        ],
-        [
-          { label: ".NET server", detail: "Native AOT + SQLite" },
-          { label: "Admin app", detail: "React + Vite" },
-        ],
-        [
-          { label: "ESP32-P4 device", detail: "ESP-IDF + C++" },
-          { label: "LVGL interface", detail: "5\" touchscreen" },
-          { label: "Tauri companion", detail: "Desktop actions" },
-        ],
-      ],
-    },
-    decisions: [
-      {
-        title: "An appliance, not a kiosk browser",
-        description:
-          "The Waveshare ESP32-P4 board and native LVGL interface avoid the boot time, power draw, cooling, and browser overhead of a Raspberry Pi-style kiosk. The tradeoff is giving up standard web rendering in favor of a purpose-built interface.",
-      },
-      {
-        title: "One source of truth for design tokens",
-        description:
-          "A single JSON token source generates web CSS, lint restrictions, and a firmware C header, so the admin app, browser prototype, and device UI share one visual system. Firmware tokens use desk-distance type sizing and an 80 px minimum control height.",
-      },
-      {
-        title: "Setup from a phone, no app required",
-        description:
-          "The device shows a Wi-Fi QR code and opens a captive portal where the owner enters network credentials and a server URL. The flow, credential save, reboot, and recovery path were verified on the physical board.",
-      },
-      {
-        title: "Keep credentials and integrations off-device",
-        description:
-          "The server owns third-party connections and webhooks. The device only speaks a Protobuf protocol to the owner's server, and the admin interface is planned to stay private while webhooks are exposed publicly.",
-      },
-    ],
-    progression: [
-      { title: "Concept", detail: "Define a calm, glanceable alternative to another desktop dashboard." },
-      { title: "Vertical slice", detail: "Prototype a GitHub event reaching the device end to end to validate the real-time path." },
-      { title: "Foundation", detail: "Rebuild as Mosaic: design token pipeline, Wi-Fi provisioning on hardware, and CI for firmware, web, .NET, and Rust." },
-      { title: "First release", detail: "Pair a device with a Raspberry Pi server, deliver real service events, and add widgets such as a timer." },
-    ],
-    media: [
-      {
-        kind: "image",
-        src: "/projects/embedded-workflow-dashboard/teaser.png",
-        alt: "Concept visualization of the Mosaic desk display",
-        label: "Concept visualization",
-      },
-    ],
-    links: [{ label: "GitHub", href: "https://github.com/mosaic-device/mosaic" }],
-  },
-  {
     slug: "better-halo",
-    number: "02",
+    number: "01",
     title: "Better Halo",
     type: "Browser extension",
     summary: "A Chrome Web Store extension that makes GCU’s Halo LMS easier to use, with themes, assignment tracking, and grade tools.",
@@ -187,64 +116,8 @@ const projectRecords: CaseStudyProject[] = [
     ],
   },
   {
-    slug: "wsbri",
-    number: "03",
-    title: "Washington State Barrel Racing Info",
-    type: "Community event platform · Freelance",
-    summary: "Event schedules, arenas, and producer notices for Washington barrel racers, kept current by automated scrapers.",
-    description: "A central hub where riders find and save events, explore arenas, and get registration alerts, with paid memberships and an admin review workflow.",
-    stack: "Next.js · TypeScript · Supabase · Python · GitHub Actions · Memberstack · Google Maps · Google Calendar",
-    homepageStack: "Next.js · Supabase · Python · Automation",
-    metrics: [
-      { value: "200+", label: "users served" },
-      { value: "~80%", label: "less manual event entry" },
-      { value: "3", label: "event sources scraped" },
-    ],
-
-    problem:
-      "Barrel racing events were scattered across producer websites, social posts, and group updates. Keeping a single listing current by hand meant repeated data entry and made it hard for riders to plan.",
-    solution:
-      "I designed and built the platform: event list and calendar views with filters, saved events, paid memberships, and an arena and organization directory. Python scrapers pull from 3 event sources and fuzzy-match duplicates into a staging queue that admins review before publishing. I later migrated the site from Vite to Next.js 16 and added registration alerts and Google Calendar sync.",
-    architecture: {
-      caption: "Scraped and submitted events are reviewed before they become the data riders rely on.",
-      stages: [
-        [
-          { label: "Event sources", detail: "3 producer sites" },
-          { label: "Python scrapers", detail: "GitHub Actions" },
-        ],
-        [
-          { label: "Staging + admin review", detail: "Fuzzy de-duplication" },
-          { label: "Supabase", detail: "Events, arenas, members" },
-        ],
-        [
-          { label: "Next.js site", detail: "List + calendar views" },
-          { label: "Registration alerts", detail: "Automated notices" },
-          { label: "Google Calendar", detail: "Event sync" },
-        ],
-      ],
-    },
-    decisions: [
-      {
-        title: "Design around a real operating workflow",
-        description:
-          "The system prioritizes the information people need around an event—what is happening, where it is, and when it changes—rather than treating the site as a static directory.",
-      },
-      {
-        title: "Automate collection, keep a human in the loop",
-        description:
-          "Scrapers handle repetitive data entry, but every scraped event lands in a staging queue for admin review. Fuzzy de-duplication catches the same event listed by multiple sources, cutting manual entry by about 80%.",
-      },
-    ],
-    media: [
-      { kind: "image", src: "/projects/wsbri/home.webp", alt: "Washington State Barrel Racing Info homepage", label: "Homepage" },
-      { kind: "image", src: "/projects/wsbri/events.webp", alt: "Washington State Barrel Racing Info event calendar", label: "Event calendar" },
-      { kind: "image", src: "/projects/wsbri/arenas.webp", alt: "Washington State Barrel Racing Info arena map and directory", label: "Arena directory" },
-    ],
-    links: [{ label: "Live site", href: "https://www.wsbarrelracing.com" }],
-  },
-  {
     slug: "priceright",
-    number: "04",
+    number: "02",
     title: "PriceRight",
     type: "Cross-platform mobile app · Team project",
     summary: "A cross-platform app that helps businesses work out what products cost to make and what to sell them for.",
@@ -306,8 +179,160 @@ const projectRecords: CaseStudyProject[] = [
     links: [],
   },
   {
-    slug: "kimbo-learning",
+    slug: "mosaic",
+    number: "03",
+    title: "Mosaic",
+    type: "Open-source connected desk display · Capstone",
+    summary: "An open-source, self-hosted desk display for developer notifications, actions, and focus—without another browser tab.",
+    description:
+      "An ESP32-P4 desk device with a 5\" touchscreen, paired with a self-hosted server, admin app, and desktop companion. I own the firmware and on-device LVGL interface.",
+    stack: "ESP-IDF · C++ · LVGL · ESP32-P4 · .NET · SQLite · React · Tauri · Protobuf",
+    homepageStack: "C++ · LVGL · ESP32-P4 · TypeScript",
+
+    problem:
+      "Developer workflow context is usually spread across browser tabs, desktop apps, and notification streams. That creates repeated context switching and competes for the same monitor space needed for focused work.",
+    solution:
+      "Mosaic is a two-person capstone: a Waveshare ESP32-P4 5\" touch display backed by a self-hosted server designed to run on a Raspberry Pi. I own the firmware and device UI. Display, touch, phone-based Wi-Fi setup, credential storage, and Wi-Fi recovery are verified on hardware; pairing, backend transport, and the dashboard are in progress.",
+    architecture: {
+      caption: "The device receives state from a self-hosted server, so third-party credentials never live on the hardware.",
+      stages: [
+        [
+          { label: "GitHub", detail: "First planned service" },
+          { label: "Additional services", detail: "Planned" },
+        ],
+        [
+          { label: ".NET server", detail: "Native AOT + SQLite" },
+          { label: "Admin app", detail: "React + Vite" },
+        ],
+        [
+          { label: "ESP32-P4 device", detail: "ESP-IDF + C++" },
+          { label: "LVGL interface", detail: "5\" touchscreen" },
+          { label: "Tauri companion", detail: "Desktop actions" },
+        ],
+      ],
+    },
+    decisions: [
+      {
+        title: "An appliance, not a kiosk browser",
+        description:
+          "The Waveshare ESP32-P4 board and native LVGL interface avoid the boot time, power draw, cooling, and browser overhead of a Raspberry Pi-style kiosk. The tradeoff is giving up standard web rendering in favor of a purpose-built interface.",
+      },
+      {
+        title: "One source of truth for design tokens",
+        description:
+          "A single JSON token source generates web CSS, lint restrictions, and a firmware C header, so the admin app, browser prototype, and device UI share one visual system. Firmware tokens use desk-distance type sizing and an 80 px minimum control height.",
+      },
+      {
+        title: "Setup from a phone, no app required",
+        description:
+          "The device shows a Wi-Fi QR code and opens a captive portal where the owner enters network credentials and a server URL. The flow, credential save, reboot, and recovery path were verified on the physical board.",
+      },
+      {
+        title: "Keep credentials and integrations off-device",
+        description:
+          "The server owns third-party connections and webhooks. The device only speaks a Protobuf protocol to the owner's server, and the admin interface is planned to stay private while webhooks are exposed publicly.",
+      },
+    ],
+    progression: [
+      { title: "Concept", detail: "Define a calm, glanceable alternative to another desktop dashboard." },
+      { title: "Vertical slice", detail: "Prototype a GitHub event reaching the device end to end to validate the real-time path." },
+      { title: "Foundation", detail: "Rebuild as Mosaic: design token pipeline, Wi-Fi provisioning on hardware, and CI for firmware, web, .NET, and Rust." },
+      { title: "First release", detail: "Pair a device with a Raspberry Pi server, deliver real service events, and add widgets such as a timer." },
+    ],
+    media: [
+      {
+        kind: "image",
+        src: "/projects/embedded-workflow-dashboard/teaser.png",
+        alt: "Concept visualization of the Mosaic desk display",
+        label: "Concept visualization",
+      },
+    ],
+    links: [{ label: "GitHub", href: "https://github.com/mosaic-device/mosaic" }],
+  },
+  {
+    slug: "wsbri",
+    number: "04",
+    title: "Washington State Barrel Racing Info",
+    type: "Community event platform · Freelance",
+    summary: "Event schedules, arenas, and producer notices for Washington barrel racers, kept current by automated scrapers.",
+    description: "A central hub where riders find and save events, explore arenas, and get registration alerts, with paid memberships and an admin review workflow.",
+    stack: "Next.js · TypeScript · Supabase · Python · GitHub Actions · Memberstack · Google Maps · Google Calendar",
+    homepageStack: "Next.js · Supabase · Python · Automation",
+    metrics: [
+      { value: "200+", label: "users served" },
+      { value: "~80%", label: "less manual event entry" },
+      { value: "3", label: "event sources scraped" },
+    ],
+
+    problem:
+      "Barrel racing events were scattered across producer websites, social posts, and group updates. Keeping a single listing current by hand meant repeated data entry and made it hard for riders to plan.",
+    solution:
+      "I designed and built the platform: event list and calendar views with filters, saved events, paid memberships, and an arena and organization directory. Python scrapers pull from 3 event sources and fuzzy-match duplicates into a staging queue that admins review before publishing. I later migrated the site from Vite to Next.js 16 and added registration alerts and Google Calendar sync.",
+    architecture: {
+      caption: "Scraped and submitted events are reviewed before they become the data riders rely on.",
+      stages: [
+        [
+          { label: "Event sources", detail: "3 producer sites" },
+          { label: "Python scrapers", detail: "GitHub Actions" },
+        ],
+        [
+          { label: "Staging + admin review", detail: "Fuzzy de-duplication" },
+          { label: "Supabase", detail: "Events, arenas, members" },
+        ],
+        [
+          { label: "Next.js site", detail: "List + calendar views" },
+          { label: "Registration alerts", detail: "Automated notices" },
+          { label: "Google Calendar", detail: "Event sync" },
+        ],
+      ],
+    },
+    decisions: [
+      {
+        title: "Design around a real operating workflow",
+        description:
+          "The system prioritizes the information people need around an event—what is happening, where it is, and when it changes—rather than treating the site as a static directory.",
+      },
+      {
+        title: "Automate collection, keep a human in the loop",
+        description:
+          "Scrapers handle repetitive data entry, but every scraped event lands in a staging queue for admin review. Fuzzy de-duplication catches the same event listed by multiple sources, cutting manual entry by about 80%.",
+      },
+    ],
+    media: [
+      { kind: "image", src: "/projects/wsbri/home.webp", alt: "Washington State Barrel Racing Info homepage", label: "Homepage" },
+      { kind: "image", src: "/projects/wsbri/events.webp", alt: "Washington State Barrel Racing Info event calendar", label: "Event calendar" },
+      { kind: "image", src: "/projects/wsbri/arenas.webp", alt: "Washington State Barrel Racing Info arena map and directory", label: "Arena directory" },
+    ],
+    links: [{ label: "Live site", href: "https://www.wsbarrelracing.com" }],
+  },
+  {
+    slug: "annies-house-farm-sitting",
     number: "05",
+    title: "Annie’s House + Farm Sitting",
+    type: "Client website · In progress",
+    summary: "A website and booking-inquiry flow for a farm, house, and pet sitting business in Snohomish County, WA.",
+    description:
+      "Customers check availability, select a date range, and send an inquiry without creating an account. I'm leading the design and build.",
+    stack: "Astro · React · React Aria · Cloudflare Workers · Google Calendar API",
+    homepageStack: "Astro · React Aria · Cloudflare",
+
+    problem:
+      "A new sitting business needs a professional presence and a simple way for customers to request dates, while the owner manages availability from her phone at no ongoing cost.",
+    solution:
+      "I'm leading end-to-end design in code, from brand positioning to layout, typography, and a token-based style system, and building an accessible date-range booking flow with React Aria. Availability will come from the owner's Google Calendar; it is currently mocked while the integration is built.",
+    media: [
+      {
+        kind: "image",
+        src: "/projects/annies-house-farm-sitting/home.webp",
+        alt: "Annie’s House + Farm Sitting homepage",
+        label: "Homepage",
+      },
+    ],
+    links: [],
+  },
+  {
+    slug: "kimbo-learning",
+    number: "06",
     title: "Kimbo Learning",
     type: "AI learning platform · Team project",
     summary: "Interactive, AI-powered stories for K–3 learners.",
@@ -323,7 +348,7 @@ const projectRecords: CaseStudyProject[] = [
   },
   {
     slug: "golf-caddie",
-    number: "06",
+    number: "07",
     title: "Golf Caddie",
     type: "Mobile golf companion",
     summary: "GPS yardages, shot tracking, club recommendations, and course maps for every round.",
@@ -372,31 +397,6 @@ const projectRecords: CaseStudyProject[] = [
       { kind: "image", src: "/projects/golf-caddie/courses.webp", alt: "Golf Caddie course selection screen", label: "Course library", fit: "contain" },
     ],
     links: [{ label: "GitHub", href: "https://github.com/blakealmanza/GolfCaddie" }],
-  },
-  {
-    slug: "annies-house-farm-sitting",
-    number: "07",
-    title: "Annie’s House + Farm Sitting",
-    type: "Client website · In progress",
-    summary: "A website and booking-inquiry flow for a farm, house, and pet sitting business in Snohomish County, WA.",
-    description:
-      "Customers check availability, select a date range, and send an inquiry without creating an account. I'm leading the design and build.",
-    stack: "Astro · React · React Aria · Cloudflare Workers · Google Calendar API",
-    homepageStack: "Astro · React Aria · Cloudflare",
-
-    problem:
-      "A new sitting business needs a professional presence and a simple way for customers to request dates, while the owner manages availability from her phone at no ongoing cost.",
-    solution:
-      "I'm leading end-to-end design in code, from brand positioning to layout, typography, and a token-based style system, and building an accessible date-range booking flow with React Aria. Availability will come from the owner's Google Calendar; it is currently mocked while the integration is built.",
-    media: [
-      {
-        kind: "image",
-        src: "/projects/annies-house-farm-sitting/home.webp",
-        alt: "Annie’s House + Farm Sitting homepage",
-        label: "Homepage",
-      },
-    ],
-    links: [],
   },
 ];
 
