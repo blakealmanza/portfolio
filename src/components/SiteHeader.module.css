@@ -5,7 +5,7 @@
   top: 0;
   z-index: 20;
   color: var(--chrome-ink, var(--ink));
-  background: var(--chrome-bg, var(--ground));
+  background: var(--chrome-bg, var(--bg, var(--ground)));
   transition:
     color 500ms var(--ease-out),
     background-color 500ms var(--ease-out);
