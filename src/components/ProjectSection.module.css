@@ -140,11 +140,6 @@
 .mediaButton img {
   object-fit: cover;
   object-position: left top;
-  transition: scale 600ms var(--ease-out);
-}
-
-.mediaButton:hover img {
-  scale: 1.015;
 }
 
 .caption {
