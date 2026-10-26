@@ -1,0 +1,306 @@
+/*
+ * A project as a full-bleed band in its own product theme.
+ * The theme arrives as --bg, --ink, --muted, --accent on the section; the title wears the product's own typeface.
+ * Every band shares one structure, a compact copy strip with the media below, so only the product's world changes.
+ * Each band runs a touch past the screen under the header; the media takes whatever height the copy leaves and the band's foot crops it.
+ * Text keeps to the rail; only colour and media run to the viewport edges.
+ */
+
+.section {
+  --lift: rgba(0, 0, 0, 0.45);
+
+  position: relative;
+  display: flex;
+  height: clamp(640px, (100svh - var(--header-height)) * 1.05, 1040px);
+  overflow: hidden;
+  padding: 0 var(--gutter);
+  color: var(--ink);
+  background: var(--bg);
+  /* Let anchor navigation tuck the band slightly beneath the sticky header, so its theme owns the header. */
+  scroll-margin-top: calc(var(--header-height) - 8px);
+}
+
+.section[data-scheme="light"] {
+  --lift: rgba(48, 36, 24, 0.16);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--rail);
+  margin-inline: auto;
+  padding-top: clamp(60px, calc(6vh + 20px), 92px);
+}
+
+/*
+ * Copy: title and type line on the left; summary and proof on the right.
+ * Both columns end on the same line so the media follows straight after.
+ */
+
+.copy {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  grid-template-rows: 1fr auto auto;
+  grid-template-areas:
+    "title summary"
+    "title proof"
+    "type proof";
+  column-gap: clamp(32px, 4vw, 64px);
+  align-items: end;
+}
+
+.details {
+  display: contents;
+}
+
+.title {
+  grid-area: title;
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.94;
+  text-wrap: balance;
+}
+
+/* Long names step down a size so they hold to two or three lines. */
+.titleLong {
+  font-size: clamp(2.6rem, 4.8vw, 4.5rem);
+}
+
+.type {
+  grid-area: type;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.summary {
+  grid-area: summary;
+  max-width: 40ch;
+  font-size: 1.15rem;
+  line-height: 1.45;
+  color: color-mix(in oklab, var(--ink) 88%, var(--bg));
+  text-wrap: pretty;
+}
+
+.proof {
+  grid-area: proof;
+  margin-top: 14px;
+  color: var(--accent);
+  font-size: 0.94rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Media: on the homepage one link holds the label and the screens, so the whole picture leads to the case study. */
+
+.mediaArea {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+  margin-top: clamp(28px, 2.6vw, 40px);
+}
+
+.mediaLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  opacity: 0.85;
+  transition: opacity 180ms ease;
+}
+
+.mediaLabel svg {
+  color: var(--accent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mediaLink:hover .mediaLabel {
+    opacity: 1;
+  }
+}
+
+.media {
+  position: relative;
+  display: block;
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.screen img {
+  object-fit: cover;
+  object-position: left top;
+}
+
+.caption {
+  position: absolute;
+  bottom: 18px;
+  left: 20px;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+/* Wide: one screen that runs off the right edge and is cut by the band's bottom edge. */
+
+.layoutStage .media {
+  margin-right: calc(-1 * var(--bleed));
+}
+
+.layoutStage .screen {
+  border-radius: 10px 0 0 0;
+  box-shadow: -18px 24px 60px var(--lift);
+}
+
+/* Phones: up to four screens stepped down to the right and cropped by the band's bottom edge. */
+
+.layoutPhones .media {
+  display: grid;
+  grid-template-columns: repeat(var(--count), minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(16px, 2.4vw, 40px);
+}
+
+.layoutPhones .screen {
+  position: relative;
+  inset: auto;
+  aspect-ratio: 1206 / 2622;
+  border-radius: clamp(18px, 2.2vw, 28px);
+  box-shadow: 0 24px 60px var(--lift);
+}
+
+.layoutPhones .screen img {
+  object-position: center top;
+}
+
+.layoutPhones .screen:nth-child(2) {
+  margin-top: clamp(32px, 4vw, 56px);
+}
+
+.layoutPhones .screen:nth-child(3) {
+  margin-top: clamp(64px, 8vw, 112px);
+}
+
+.layoutPhones .screen:nth-child(4) {
+  margin-top: clamp(96px, 12vw, 168px);
+}
+
+/*
+ * On its case study the band is the page's opening view, not a crop: it grows to fit its screens,
+ * every screen shows whole, and the band ends a little below the lowest one.
+ */
+
+.sectionPage {
+  height: auto;
+  padding-bottom: clamp(56px, 9vh, 104px);
+}
+
+.sectionPage .mediaArea,
+.sectionPage .media {
+  flex: none;
+}
+
+.sectionPage.layoutStage .media {
+  margin-right: 0;
+}
+
+.sectionPage.layoutStage .screen {
+  display: block;
+  position: relative;
+  inset: auto;
+  border-radius: 10px;
+}
+
+.sectionPage.layoutStage .screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  /* The copy stacks here, so a band grows past the screen rather than squeezing its media. */
+  .section {
+    height: auto;
+    min-height: calc(100svh - var(--header-height));
+  }
+
+  .sectionPage {
+    min-height: 0;
+    padding-bottom: 0;
+    /* The hero ends at the screens, but their shadows continue into the Overview spacing. */
+    overflow: visible;
+  }
+
+  .mediaArea {
+    flex: 1 0 auto;
+    margin-top: 36px;
+  }
+
+  .media {
+    flex: 1 0 auto;
+  }
+
+  .inner {
+    padding-top: clamp(64px, 12vw, 88px);
+  }
+
+  .copy {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title {
+    font-size: clamp(2.5rem, 9vw, 4rem);
+  }
+
+  .titleLong {
+    font-size: clamp(2.2rem, 7.4vw, 3.4rem);
+  }
+
+  .type {
+    margin-top: 22px;
+  }
+
+  .summary {
+    margin-top: 14px;
+  }
+
+  .proof {
+    margin-top: 22px;
+  }
+
+  /* Wider than most captures, so the band cuts the screen inside the page rather than on its foot. */
+  .layoutStage .media {
+    height: auto;
+    aspect-ratio: 16 / 8.5;
+  }
+
+  .layoutPhones .media {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    height: clamp(280px, 72vw, 460px);
+  }
+
+  .layoutPhones .screen:nth-child(4) {
+    display: none;
+  }
+
+  .sectionPage.layoutStage .media {
+    aspect-ratio: auto;
+  }
+
+  .sectionPage.layoutPhones .media {
+    height: auto;
+  }
+}

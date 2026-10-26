@@ -1,22 +1,18 @@
 import type { MetadataRoute } from "next";
-import { caseStudies } from "../content/projects";
-import { siteUrl } from "./site";
+import { site } from "@/config/site";
+import { projects } from "@/content/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  if (!siteUrl) return [];
+  if (!site.url) return [];
 
+  const now = new Date();
   return [
-    {
-      url: siteUrl,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-    ...caseStudies.map((project) => ({
-      url: `${siteUrl}/projects/${project.slug}`,
-      lastModified: new Date(),
+    { url: site.url, lastModified: now, changeFrequency: "monthly", priority: 1 },
+    ...projects.map((project) => ({
+      url: `${site.url}/projects/${project.slug}`,
+      lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.8,
-    })), 
+    })),
   ];
 }

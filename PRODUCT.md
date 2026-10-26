@@ -8,46 +8,50 @@ web
 
 ## Users
 
-Primary users are hiring managers, recruiters, collaborators, and potential clients reviewing Blake Almanza’s software work. They arrive with limited time and need to understand capability, taste, technical range, and how to get in contact.
+Primary users are design leads, hiring managers, and recruiters filling frontend and design-focused roles. They arrive with limited time and need to see, within seconds, that Blake designs interfaces and builds them at a high level. Freelance clients are a secondary audience: small businesses and organizations judging whether Blake can design and ship their site or product.
 
 ## Product Purpose
 
-The portfolio presents selected software projects, communicates professional credibility, and makes it easy to contact Blake for opportunities or collaboration.
+The portfolio presents Blake Almanza’s design and frontend work, lets visitors go deeper through case studies, and makes it easy to get in contact for roles or freelance projects.
 
 ## Positioning
 
-A focused, image-led showcase for web applications, browser extensions, and product work. The work leads; concise context explains the problem, build choices, and scope without generic résumé filler.
+A designer and developer who takes products from brand and interface design through to the code that ships them. The work leads, shown as each product really looks; concise context explains the problem, design and build choices, and scope without generic résumé filler.
 
 ## Operating Context
 
-Visitors often scan quickly on desktop during hiring review, then revisit individual projects or outbound links. The site must also read cleanly on mobile, support direct hash URLs to projects, and remain usable with keyboard navigation and reduced-motion preferences.
+Visitors often scan quickly on desktop during hiring review, then open a case study or a project’s live site. The site must also read cleanly on mobile, support direct hash URLs to projects, and remain usable with keyboard navigation and reduced-motion preferences.
 
 ## Capabilities and Constraints
 
-- Single-page portfolio with `Work` and `Contact` navigation.
-- Desktop sticky project index with active scroll state and shareable project hash URLs.
-- Responsive galleries with real WebP screenshots and an MP4 demo; media opens in a lightbox.
-- Contact methods: email, phone, LinkedIn, and GitHub.
-- Minimal dark editorial direction; no About section, generic skills grid, carousel, mobile hamburger menu, or decorative hero imagery.
-- Project media originals are retained in `public/project-originals`; deployed assets live in `public/projects`.
+- Single-page homepage with `Work`, `About`, `Resume`, and `Contact` navigation. On phones the one-row sticky header shows `Work`, `Resume`, and `Contact`; visitors can reach About by scrolling the homepage.
+- Every project gets an equal full-bleed section, presented in its own product’s real ground, colours, and display typeface, and ordered by strength; there is no featured tier or secondary list.
+- Sections are separated by hard cuts; layouts vary per project to suit its media, but text always keeps to one rail.
+- The sticky header takes on the theme of the section beneath it; the portfolio’s own chrome (intro, About, Contact) stays on the neutral dark ground.
+- No scroll-snap or scroll-jacking.
+- Real WebP screenshots, one MP4 demo, and a concept render (labelled as such); media opens in a lightbox.
+- Case studies for Better Halo, PriceRight, and Mosaic; other projects link to their screens, live site, or repository.
+- Short About section with education, freelance, and certification facts.
+- Contact methods: email, phone, LinkedIn, GitHub, and resume PDF.
+- No generic skills grid, carousel, mobile hamburger menu, labels above headings, section numbers, or decorative imagery.
 
 ## Brand Commitments
 
-Clean, professional, modern, dark, minimal, and editorial. Real project proof should stay more prominent than interface chrome or personal-brand decoration.
+Clean, professional, and modern on a dark ground. The portfolio itself stays neutral; colour and display type come from the projects’ own themes. Keep it uncluttered: no extra metadata, token readouts, or decorative chrome. Real project proof stays more prominent than interface chrome or personal branding.
 
 ## Evidence on Hand
 
-The current site uses supplied project media and approved project copy for Better Halo, Washington State Barrel Racing Info, Kimbo Learning, and Golf Caddie. Project destination links currently route to the contact section until their final public URLs or repositories are confirmed.
+Approved copy and real media exist for seven projects: Better Halo, PriceRight, Washington State Barrel Racing Info, Annie’s House + Farm Sitting (in progress), Mosaic, Golf Caddie, and Kimbo Learning. Public links: Better Halo (live site and Chrome Web Store), WSBRI (live site), Mosaic and Golf Caddie (GitHub). PriceRight and Annie’s have no public link yet; Kimbo is intentionally unlinked. Metrics in use: 1,100+ Better Halo students, 200+ WSBRI users, ~80% less manual event entry, 25+ PriceRight screens redesigned.
 
 ## Product Principles
 
 - Put project work before decoration.
-- Make credibility scannable in seconds.
-- Keep the interface calm, precise, and modern.
-- Prioritize visual proof with concise, factual context.
+- Show each product as it really looks, in its own theme.
+- Make credibility scannable in seconds, with depth one click away.
+- Keep the interface calm, precise, and uncluttered.
 - Keep contact direct and easy to find.
 - Never invent project outcomes, customers, or capabilities.
 
 ## Accessibility & Inclusion
 
-Use semantic landmarks and heading hierarchy, visible focus indicators, a keyboard-accessible skip link, logical tab order, descriptive labels for media controls, focus return after closing the lightbox, and accessible names for links that open new tabs. Respect reduced-motion preferences, preserve 44px touch targets for text actions on tablet and phone, maintain strong text contrast on the dark background, and support responsive reading and media layouts across viewport sizes.
+Use semantic landmarks and heading hierarchy, visible focus indicators, a keyboard-accessible skip link, logical tab order, descriptive labels for media controls, focus return after closing the lightbox, and accessible names for links that open new tabs. Respect reduced-motion preferences, preserve 44px touch targets for text actions on tablet and phone, keep text contrast at WCAG AA or better on every project theme, and support responsive reading and media layouts across viewport sizes.
