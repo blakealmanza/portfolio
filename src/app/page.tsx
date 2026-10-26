@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import Image from "next/image";
 import { ArrowIcon } from "@/components/Icons";
 import { MediaViewerProvider } from "@/components/MediaViewerProvider";
 import { ProjectSection, faceStyle } from "@/components/ProjectSection";
@@ -44,16 +45,35 @@ export default function Home() {
           <p>Browser extensions, mobile apps, and the systems behind them.</p>
           <nav className={styles.index} aria-label="Projects">
             <ul>
-              {projects.map((project) => (
-                <li key={project.slug}>
-                  <a
-                    href={`#${project.slug}`}
-                    style={{ ...faceStyle(project.face), "--signal": project.theme.signal } as CSSProperties}
-                  >
-                    {project.shortTitle ?? project.title}
-                  </a>
-                </li>
-              ))}
+              {projects.map((project) => {
+                const previewImages = project.media.filter((media) => media.kind === "image");
+
+                return (
+                  <li key={project.slug}>
+                    <a
+                      href={`#${project.slug}`}
+                      style={{ ...faceStyle(project.face), "--signal": project.theme.signal } as CSSProperties}
+                    >
+                      {project.shortTitle ?? project.title}
+                    </a>
+                    {previewImages[0] && (
+                      <span
+                        className={`${styles.indexPreview} ${project.layout === "phones" ? styles.indexPreviewPhones : ""}`}
+                        style={{ "--preview-bg": project.theme.bg } as CSSProperties}
+                        aria-hidden="true"
+                      >
+                        {project.layout === "phones" ? (
+                          previewImages.slice(0, 3).map((media) => (
+                            <Image key={media.src} src={media.src} alt="" width={78} height={170} quality={70} />
+                          ))
+                        ) : (
+                          <Image src={previewImages[0].src} alt="" fill sizes="260px" quality={70} />
+                        )}
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>
