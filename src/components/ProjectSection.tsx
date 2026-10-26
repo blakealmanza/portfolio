@@ -46,6 +46,8 @@ export function ProjectSection({ project, priority = false }: { project: Project
   const proof = proofLine(project);
   const shownMedia = project.media.filter((media) => media.kind === "image").slice(0, screenCount[project.layout]);
   const phones = project.layout === "phones";
+  // Bands carry the product's own short mark so every title holds to one line; the full name moves to the type line.
+  const name = project.shortTitle ?? project.title;
 
   return (
     <article
@@ -60,13 +62,13 @@ export function ProjectSection({ project, priority = false }: { project: Project
         <div className={styles.copy}>
           <h2
             id={`${project.slug}-title`}
-            className={`${styles.title} ${project.title.length > 24 ? styles.titleLong : ""}`}
+            className={`${styles.title} ${name.length > 24 ? styles.titleLong : ""}`}
             style={faceStyle(project.face)}
           >
-            {project.title}
+            {name}
           </h2>
           <div className={styles.details}>
-            <p className={styles.type}>{project.type}</p>
+            <p className={styles.type}>{project.shortTitle ? `${project.title} · ${project.type}` : project.type}</p>
             <p className={styles.summary}>{project.summary}</p>
             {proof && <p className={styles.proof}>{proof}</p>}
             <div className={styles.actions}>

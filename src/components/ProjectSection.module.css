@@ -29,7 +29,7 @@
   width: 100%;
   max-width: var(--rail);
   margin-inline: auto;
-  padding-top: clamp(64px, 9vh, 104px);
+  padding-top: clamp(40px, 6vh, 72px);
 }
 
 /*
@@ -161,7 +161,7 @@
 /* Wide: one screen that runs off the right edge and is cut by the band's bottom edge. */
 
 .layoutStage .media {
-  margin-top: clamp(36px, 4vw, 60px);
+  margin-top: clamp(28px, 2.6vw, 40px);
   margin-right: calc(-1 * var(--bleed));
 }
 
@@ -177,7 +177,7 @@
   grid-template-columns: repeat(var(--count), minmax(0, 1fr));
   align-items: start;
   gap: clamp(16px, 2.4vw, 40px);
-  margin-top: clamp(40px, 4.5vw, 64px);
+  margin-top: clamp(28px, 3vw, 44px);
 }
 
 .layoutPhones .mediaButton {
