@@ -1,9 +1,9 @@
 export const site = {
   name: "Blake Almanza",
-  title: "Blake Almanza — Designer & Developer",
+  title: "Blake Almanza | Designer & Developer",
   role: "Designer & Developer",
   description:
-    "Blake Almanza designs interfaces and builds them: browser extensions, mobile apps, and the systems behind them.",
+    "Blake Almanza designs and builds browser extensions, mobile apps, and the systems behind them.",
   url: process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, ""),
   resumeHref: "/Blake_Almanza_Resume.pdf",
 };

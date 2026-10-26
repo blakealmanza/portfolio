@@ -3,7 +3,6 @@ import type { Project } from "./types";
 export const projects: Project[] = [
   {
     slug: "better-halo",
-    caseStudy: true,
     title: "Better Halo",
     type: "Browser extension",
     summary: "A Chrome Web Store extension that makes GCU’s Halo LMS easier to use, with themes, assignment tracking, and grade tools.",
@@ -48,25 +47,56 @@ export const projects: Project[] = [
       {
         title: "Make personalization useful",
         description:
-          "Theme controls are not treated as decoration alone; they help students shape a learning environment they spend significant time using.",
+          "Theme controls help students shape a learning environment they spend significant time using.",
+      },
+    ],
+    features: [
+      {
+        title: "Make Halo yours",
+        description:
+          "A CSS-variable theming system lets students restyle Halo’s colours and typography, then save the result as their own theme.",
+        media: ["/projects/better-halo/theme-customizer.webp"],
+      },
+      {
+        title: "Themes worth sharing",
+        description:
+          "A companion website hosts a community theme gallery, so students can share what they make and pick up someone else’s.",
+        media: ["/projects/better-halo/gallery.webp"],
+      },
+      {
+        title: "Controls where you need them",
+        description:
+          "From the extension itself, students switch themes and turn on scheduled dark mode without leaving the page.",
+        media: ["/projects/better-halo/extension.webp"],
+      },
+      {
+        title: "Coursework, in place",
+        description:
+          "Assignment tracking on course cards, a what-if grade calculator, a combined calendar across classes, and schedule export to calendar apps.",
       },
     ],
     media: [
       {
         kind: "image",
         src: "/projects/better-halo/theme-customizer.webp",
+        width: 2920,
+        height: 1668,
         alt: "Better Halo theme customizer applied to the Halo LMS dashboard",
         label: "Theme editor",
       },
       {
         kind: "image",
         src: "/projects/better-halo/gallery.webp",
+        width: 2928,
+        height: 1672,
         alt: "Better Halo community theme gallery",
         label: "Theme gallery",
       },
       {
         kind: "image",
         src: "/projects/better-halo/extension.webp",
+        width: 794,
+        height: 1194,
         alt: "Better Halo theme and dark mode controls",
         label: "Theme controls",
         fit: "contain",
@@ -79,12 +109,11 @@ export const projects: Project[] = [
   },
   {
     slug: "priceright",
-    caseStudy: true,
     title: "PriceRight",
-    type: "Cross-platform mobile app · Team project",
+    type: "Cross-platform mobile app",
     summary: "A cross-platform app that helps businesses work out what products cost to make and what to sell them for.",
     description:
-      "Users build up a product's costs—materials, labor, overhead, packaging, shipping, and channel fees—and PriceRight calculates a price from the chosen pricing policy.",
+      "Users build up a product's costs across materials, labor, overhead, packaging, shipping, and channel fees. PriceRight calculates a price from the chosen pricing policy.",
     stack: "React Native · Expo · TypeScript · C# · .NET · Azure Functions · Microsoft Entra · GitHub Actions",
     face: { family: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", Roboto, var(--font-sans)', weight: 700, tracking: "-0.03em" },
     theme: { scheme: "dark", bg: "#0F172A", surface: "#1E293B", ink: "#F1F5F9", muted: "#A3B0C6", accent: "#A5B4FC", signal: "#A5B4FC" },
@@ -94,12 +123,12 @@ export const projects: Project[] = [
     problem:
       "Pricing a product correctly means accounting for many kinds of cost. Spreadsheets make that error-prone, and the app's original interface made the cost-building flow hard to follow on a phone.",
     solution:
-      "On a university team, I led a full UI redesign, rebuilding 25+ screens with native iOS navigation. I designed the brand identity, including the logo, a Liquid Glass app icon, and the launch animation, and I implemented Microsoft Entra sign-in, API caching, and regression tests.",
+      "I led a full UI redesign, rebuilding 25+ screens with native iOS navigation. I designed the brand identity, including the logo, a Liquid Glass app icon, and the launch animation, and I implemented Microsoft Entra sign-in, API caching, and regression tests.",
     architecture: {
       caption: "The app talks to a serverless .NET API through Azure API Management.",
       stages: [
         [
-          { label: "PriceRight app", detail: "Expo: iOS, Android, web" },
+          { label: "PriceRight app", detail: "Expo on iOS, Android, and web" },
           { label: "Microsoft Entra", detail: "OAuth sign-in" },
         ],
         [{ label: "Azure API Management", detail: "API gateway" }],
@@ -131,11 +160,31 @@ export const projects: Project[] = [
           "Regression suites cover navigation, sessions, caching, and startup, and run in GitHub Actions CI on every push.",
       },
     ],
+    features: [
+      {
+        title: "Every cost, one product",
+        description:
+          "Users build up a product’s costs across materials, labor, overhead, packaging, shipping, and channel fees. They see sale price, cost, and margin together.",
+        media: ["/projects/priceright/overview.webp", "/projects/priceright/materials.webp"],
+      },
+      {
+        title: "A price from a policy",
+        description:
+          "PriceRight calculates the price from the chosen pricing method, then applies rounding and limits.",
+        media: ["/projects/priceright/pricing.webp"],
+      },
+      {
+        title: "The catalog at a glance",
+        description:
+          "The product list shows each product’s price and cost per unit, so the whole catalog scans easily on a phone.",
+        media: ["/projects/priceright/products.webp"],
+      },
+    ],
     media: [
-      { kind: "image", src: "/projects/priceright/overview.webp", alt: "PriceRight product overview with sale price, cost, and margin", label: "Product overview", fit: "contain" },
-      { kind: "image", src: "/projects/priceright/products.webp", alt: "PriceRight product list with prices and costs per unit", label: "Product list", fit: "contain" },
-      { kind: "image", src: "/projects/priceright/pricing.webp", alt: "PriceRight pricing method and rounding settings", label: "Pricing method", fit: "contain" },
-      { kind: "image", src: "/projects/priceright/materials.webp", alt: "PriceRight materials cost breakdown for a product", label: "Materials costs", fit: "contain" },
+      { kind: "image", src: "/projects/priceright/overview.webp", width: 1206, height: 2622, alt: "PriceRight product overview with sale price, cost, and margin", label: "Product overview", fit: "contain" },
+      { kind: "image", src: "/projects/priceright/products.webp", width: 1206, height: 2622, alt: "PriceRight product list with prices and costs per unit", label: "Product list", fit: "contain" },
+      { kind: "image", src: "/projects/priceright/pricing.webp", width: 1206, height: 2622, alt: "PriceRight pricing method and rounding settings", label: "Pricing method", fit: "contain" },
+      { kind: "image", src: "/projects/priceright/materials.webp", width: 1206, height: 2622, alt: "PriceRight materials cost breakdown for a product", label: "Materials costs", fit: "contain" },
     ],
     links: [],
   },
@@ -159,7 +208,7 @@ export const projects: Project[] = [
     problem:
       "Barrel racing events were scattered across producer websites, social posts, and group updates. Keeping a single listing current by hand meant repeated data entry and made it hard for riders to plan.",
     solution:
-      "I designed and built the platform: event list and calendar views with filters, saved events, paid memberships, and an arena and organization directory. Python scrapers pull from 3 event sources and fuzzy-match duplicates into a staging queue that admins review before publishing. I later migrated the site from Vite to Next.js 16 and added registration alerts and Google Calendar sync.",
+      "I designed and built the platform with event list and calendar views, filters, saved events, paid memberships, and an arena and organization directory. Python scrapers pull from 3 event sources and fuzzy-match duplicates into a staging queue that admins review before publishing. I later migrated the site from Vite to Next.js 16 and added registration alerts and Google Calendar sync.",
     architecture: {
       caption: "Scraped and submitted events are reviewed before they become the data riders rely on.",
       stages: [
@@ -182,7 +231,7 @@ export const projects: Project[] = [
       {
         title: "Design around a real operating workflow",
         description:
-          "The system prioritizes the information people need around an event—what is happening, where it is, and when it changes—rather than treating the site as a static directory.",
+          "The system prioritizes the information people need around an event, including what is happening, where it is, and when it changes, rather than treating the site as a static directory.",
       },
       {
         title: "Automate collection, keep a human in the loop",
@@ -190,10 +239,30 @@ export const projects: Project[] = [
           "Scrapers handle repetitive data entry, but every scraped event lands in a staging queue for admin review. Fuzzy de-duplication catches the same event listed by multiple sources, cutting manual entry by about 80%.",
       },
     ],
+    features: [
+      {
+        title: "One hub for barrel racing",
+        description:
+          "Event schedules, arenas, and producer notices for Washington barrel racers in one place, instead of scattered across producer websites and social posts.",
+        media: ["/projects/wsbri/home.webp"],
+      },
+      {
+        title: "Plan the season",
+        description:
+          "Riders browse events in list and calendar views with filters, save the ones they care about, and get registration alerts.",
+        media: ["/projects/wsbri/events.webp"],
+      },
+      {
+        title: "Know where you’re headed",
+        description:
+          "An arena and organization directory, with a map, shows where every event happens.",
+        media: ["/projects/wsbri/arenas.webp"],
+      },
+    ],
     media: [
-      { kind: "image", src: "/projects/wsbri/home.webp", alt: "Washington State Barrel Racing Info homepage", label: "Homepage" },
-      { kind: "image", src: "/projects/wsbri/events.webp", alt: "Washington State Barrel Racing Info event calendar", label: "Event calendar" },
-      { kind: "image", src: "/projects/wsbri/arenas.webp", alt: "Washington State Barrel Racing Info arena map and directory", label: "Arena directory" },
+      { kind: "image", src: "/projects/wsbri/home.webp", width: 2992, height: 1798, alt: "Washington State Barrel Racing Info homepage", label: "Homepage" },
+      { kind: "image", src: "/projects/wsbri/events.webp", width: 2992, height: 1798, alt: "Washington State Barrel Racing Info event calendar", label: "Event calendar" },
+      { kind: "image", src: "/projects/wsbri/arenas.webp", width: 2992, height: 1798, alt: "Washington State Barrel Racing Info arena map and directory", label: "Arena directory" },
     ],
     links: [{ label: "Live site", href: "https://www.wsbarrelracing.com" }],
   },
@@ -213,20 +282,39 @@ export const projects: Project[] = [
     problem:
       "A new sitting business needs a professional presence and a simple way for customers to request dates, while the owner manages availability from her phone at no ongoing cost.",
     solution:
-      "I'm leading end-to-end design in code, from brand positioning to layout, typography, and a token-based style system, and building an accessible date-range booking flow with React Aria. Availability will come from the owner's Google Calendar; it is currently mocked while the integration is built.",
+      "I'm leading end-to-end design in code, from brand positioning to layout, typography, and a token-based style system, and building an accessible date-range booking flow with React Aria. Availability will come from the owner's Google Calendar. It is currently mocked while the integration is built.",
+    features: [
+      {
+        title: "A professional first impression",
+        description:
+          "Brand positioning, layout, typography, and a token-based style system, designed in code for a new sitting business.",
+        media: ["/projects/annies-house-farm-sitting/home.webp"],
+      },
+      {
+        title: "Request dates, no account needed",
+        description:
+          "Customers check availability, pick a date range, and send an inquiry. The date-range picker is built with React Aria. Availability is mocked until the Google Calendar integration lands.",
+        media: ["/projects/annies-house-farm-sitting/inquiry.webp"],
+      },
+      {
+        title: "Meet Annie",
+        description:
+          "An introduction to the owner, so customers know who is looking after their home and animals.",
+        media: ["/projects/annies-house-farm-sitting/about.webp"],
+      },
+    ],
     media: [
-      { kind: "image", src: "/projects/annies-house-farm-sitting/home.webp", alt: "Annie’s House + Farm Sitting homepage hero", label: "Homepage" },
-      { kind: "image", src: "/projects/annies-house-farm-sitting/inquiry.webp", alt: "Annie’s House + Farm Sitting inquiry form with availability calendar", label: "Availability calendar" },
-      { kind: "image", src: "/projects/annies-house-farm-sitting/about.webp", alt: "Annie’s House + Farm Sitting introduction section", label: "Meet Annie" },
+      { kind: "image", src: "/projects/annies-house-farm-sitting/home.webp", width: 2992, height: 1798, alt: "Annie’s House + Farm Sitting homepage hero", label: "Homepage" },
+      { kind: "image", src: "/projects/annies-house-farm-sitting/inquiry.webp", width: 2992, height: 1798, alt: "Annie’s House + Farm Sitting inquiry form with availability calendar", label: "Availability calendar" },
+      { kind: "image", src: "/projects/annies-house-farm-sitting/about.webp", width: 2992, height: 1798, alt: "Annie’s House + Farm Sitting introduction section", label: "Meet Annie" },
     ],
     links: [],
   },
   {
     slug: "mosaic",
-    caseStudy: true,
     title: "Mosaic",
     type: "Open-source connected desk display · Capstone",
-    summary: "An open-source, self-hosted desk display for developer notifications, actions, and focus—without another browser tab.",
+    summary: "An open-source, self-hosted desk display for developer notifications, actions, and focus without another browser tab.",
     description:
       "An ESP32-P4 desk device with a 5\" touchscreen, paired with a self-hosted server, admin app, and desktop companion. I own the firmware and on-device LVGL interface.",
     stack: "ESP-IDF · C++ · LVGL · ESP32-P4 · .NET · SQLite · React · Tauri · Protobuf",
@@ -237,7 +325,7 @@ export const projects: Project[] = [
     problem:
       "Developer workflow context is usually spread across browser tabs, desktop apps, and notification streams. That creates repeated context switching and competes for the same monitor space needed for focused work.",
     solution:
-      "Mosaic is a two-person capstone: a Waveshare ESP32-P4 5\" touch display backed by a self-hosted server designed to run on a Raspberry Pi. I own the firmware and device UI. Display, touch, phone-based Wi-Fi setup, credential storage, and Wi-Fi recovery are verified on hardware; pairing, backend transport, and the dashboard are in progress.",
+      "Mosaic is a capstone project built around a Waveshare ESP32-P4 5\" touch display and a self-hosted server designed to run on a Raspberry Pi. I own the firmware and device UI. Display, touch, phone-based Wi-Fi setup, credential storage, and Wi-Fi recovery are verified on hardware. Pairing, backend transport, and the dashboard are in progress.",
     architecture: {
       caption: "The device receives state from a self-hosted server, so third-party credentials never live on the hardware.",
       stages: [
@@ -278,19 +366,23 @@ export const projects: Project[] = [
           "The server owns third-party connections and webhooks. The device only speaks a Protobuf protocol to the owner's server, and the admin interface is planned to stay private while webhooks are exposed publicly.",
       },
     ],
-    progression: [
-      { title: "Concept", detail: "Define a calm, glanceable alternative to another desktop dashboard." },
-      { title: "Vertical slice", detail: "Prototype a GitHub event reaching the device end to end to validate the real-time path." },
-      { title: "Foundation", detail: "Rebuild as Mosaic: design token pipeline, Wi-Fi provisioning on hardware, and CI for firmware, web, .NET, and Rust." },
-      { title: "First release", detail: "Pair a device with a Raspberry Pi server, deliver real service events, and add widgets such as a timer." },
+    features: [
+      {
+        title: "A calm desk display",
+        description:
+          "A 5\" ESP32-P4 touchscreen for developer notifications, actions, and focus without another browser tab. I own the device firmware and its LVGL interface.",
+        media: ["/projects/embedded-workflow-dashboard/mosaic-interface.webp"],
+      },
     ],
     media: [
+      // From the user-provided PNG screenshot, cropped at 120, 95 to 1960 by 1120 and exported as a 1600 px WebP.
       {
         kind: "image",
-        src: "/projects/embedded-workflow-dashboard/teaser.png",
-        alt: "Concept visualization of the Mosaic desk display",
-        label: "Concept visualization",
-        caption: "Concept visualization",
+        src: "/projects/embedded-workflow-dashboard/mosaic-interface.webp",
+        width: 1600,
+        height: 915,
+        alt: "Mosaic interface with a clock, weather, and activity cards",
+        label: "Mosaic interface",
       },
     ],
     links: [{ label: "GitHub", href: "https://github.com/mosaic-device/mosaic" }],
@@ -333,7 +425,7 @@ export const projects: Project[] = [
       {
         title: "Design before code",
         description:
-          "I worked from planning and mood boards through mid- and high-fidelity Figma designs, including the logo, before building the interface in React.",
+          "I worked from planning and mood boards through mid and high-fidelity Figma designs, including the logo, before building the interface in React.",
       },
       {
         title: "Combine context and tracking",
@@ -341,28 +433,113 @@ export const projects: Project[] = [
           "GPS yardages and map context help with the next shot, while round and shot tracking build a useful record of what happened across the course.",
       },
     ],
+    features: [
+      {
+        title: "Yardages for the next shot",
+        description:
+          "GPS yardages over the hole layout, with a club for each distance and controls to lock a target or mark the ball.",
+        media: ["/projects/golf-caddie/play.webp"],
+      },
+      {
+        title: "The round at a glance",
+        description:
+          "Home shows the round in progress and recent rounds with their scores.",
+        media: ["/projects/golf-caddie/home.webp"],
+      },
+      {
+        title: "Find a course",
+        description:
+          "Search and filter courses, with recently played courses up front.",
+        media: ["/projects/golf-caddie/courses.webp"],
+      },
+    ],
     media: [
-      { kind: "image", src: "/projects/golf-caddie/play.webp", alt: "Golf Caddie yardage map and shot-tracking view", label: "Yardage map", fit: "contain" },
-      { kind: "image", src: "/projects/golf-caddie/home.webp", alt: "Golf Caddie home and current round screen", label: "Round home", fit: "contain" },
-      { kind: "image", src: "/projects/golf-caddie/courses.webp", alt: "Golf Caddie course selection screen", label: "Course library", fit: "contain" },
+      { kind: "image", src: "/projects/golf-caddie/play.webp", width: 786, height: 1706, alt: "Golf Caddie yardage map and shot-tracking view", label: "Yardage map", fit: "contain" },
+      { kind: "image", src: "/projects/golf-caddie/home.webp", width: 786, height: 1706, alt: "Golf Caddie home and current round screen", label: "Round home", fit: "contain" },
+      { kind: "image", src: "/projects/golf-caddie/courses.webp", width: 786, height: 1706, alt: "Golf Caddie course selection screen", label: "Course library", fit: "contain" },
     ],
     links: [{ label: "GitHub", href: "https://github.com/blakealmanza/GolfCaddie" }],
   },
   {
     slug: "kimbo-learning",
     title: "Kimbo Learning",
-    type: "AI learning platform · Team project",
-    summary: "Interactive, AI-powered stories for K–\u20603 learners.",
+    type: "AI learning platform",
+    summary: "Interactive, AI-powered stories for K–\u20603 learners that turn reading and math practice into personalized adventures, with choices that shape what happens next.",
     description: "Young readers choose what happens next, complete reading quests, and follow their progress across every adventure.",
     stack: "Next.js · TypeScript · OpenAI · RAG · Supabase · Accessibility",
     shortTitle: "Kimbo",
     face: { family: "var(--font-poppins)", weight: 700, tracking: "-0.03em" },
     theme: { scheme: "dark", bg: "#00636B", surface: "#174F62", ink: "#FFFFFF", muted: "#C4E3E5", accent: "#F6D465", signal: "#F6D465" },
     layout: "stage",
+
+    problem:
+      "Skill practice can feel disconnected from the stories children want to read. The experience also needs to work for different reading levels and accessibility preferences while giving parents a clear view of progress.",
+    solution:
+      "Kimbo builds learning into multi-chapter adventures. Students choose a skill, an interest, and a genre before they begin. Chapters mix story decisions with reading or math prompts, while saved progress lets students return to their adventures and parents follow their learning.",
+    architecture: {
+      caption: "Story sessions connect personalized setup, generated chapters, and saved learning progress.",
+      stages: [
+        [
+          { label: "Story setup", detail: "Skill, interest, genre" },
+          { label: "Student profile", detail: "Grade and progress" },
+        ],
+        [
+          { label: "Story service", detail: "Outline and chapter flow" },
+          { label: "OpenAI", detail: "Generated story content" },
+        ],
+        [
+          { label: "Student reader", detail: "Choices and learning prompts" },
+          { label: "Supabase", detail: "Stories, answers, progress" },
+          { label: "Parent dashboard", detail: "Activity and skill insights" },
+        ],
+      ],
+    },
+    decisions: [
+      {
+        title: "Start with a child's interests",
+        description:
+          "Story creation asks students to choose a skill, an interest, and a genre. Those choices shape the adventure before the first chapter begins.",
+      },
+      {
+        title: "Put practice inside the adventure",
+        description:
+          "The chapter flow combines story decisions with reading or math prompts, so learning is part of the journey through the story.",
+      },
+      {
+        title: "Let readers adjust the experience",
+        description:
+          "Accessibility controls offer text size, contrast, and motion preferences to support different reading and attention needs.",
+      },
+      {
+        title: "Make progress visible",
+        description:
+          "Student progress and skill data feed a parent dashboard with activity, insights, and areas that need more practice.",
+      },
+    ],
+    features: [
+      {
+        title: "Pick up the adventure",
+        description:
+          "The adventure dashboard shows reading progress, the next quest, and the story collection.",
+        media: ["/projects/kimbo-learning/dashboard.webp"],
+      },
+      {
+        title: "Choose what happens next",
+        description:
+          "Young readers read a passage, then choose where the story goes.",
+        media: ["/projects/kimbo-learning/story.webp"],
+      },
+      {
+        title: "A wait worth watching",
+        description:
+          "A loading animation keeps waiting playful for young readers.",
+        media: ["/projects/kimbo-learning/demo.mp4"],
+      },
+    ],
     media: [
-      { kind: "image", src: "/projects/kimbo-learning/dashboard.webp", alt: "Kimbo Learning adventure dashboard with reading progress and story collection", label: "Adventure dashboard" },
-      { kind: "image", src: "/projects/kimbo-learning/story.webp", alt: "Kimbo Learning interactive story screen with a reading passage and choice prompts", label: "Story choices" },
-      { kind: "video", src: "/projects/kimbo-learning/demo.mp4", poster: "/projects/kimbo-learning/poster.webp", alt: "Kimbo Learning loading animation", label: "Loading animation" },
+      { kind: "image", src: "/projects/kimbo-learning/dashboard.webp", width: 2966, height: 1798, alt: "Kimbo Learning adventure dashboard with reading progress and story collection", label: "Adventure dashboard" },
+      { kind: "image", src: "/projects/kimbo-learning/story.webp", width: 2992, height: 1798, alt: "Kimbo Learning interactive story screen with a reading passage and choice prompts", label: "Story choices" },
+      { kind: "video", src: "/projects/kimbo-learning/demo.mp4", width: 2926, height: 1672, poster: "/projects/kimbo-learning/poster.webp", alt: "Kimbo Learning loading animation", label: "Loading animation" },
     ],
     links: [],
   },
