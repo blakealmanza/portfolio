@@ -58,23 +58,16 @@ export default function Home() {
         <h2 id="about-title" className={styles.sectionTitle}>About</h2>
         <div className={styles.aboutBody}>
           <p className={styles.aboutLead}>
-            I’m a designer and developer who takes products from brand and interface design through to the code that ships them.
-          </p>
-          <p>
-            I’m finishing a B.S. in Software Development with an emphasis in mobile app development at Grand Canyon University’s Honors College, and I take on freelance design and development work for small businesses and community organizations.
+            Most of my work starts with a real annoyance: a clunky school portal, a spreadsheet nobody trusts, event schedules scattered across three websites. I design the fix and build it until people actually use it.
           </p>
           <dl className={styles.facts}>
             <div>
+              <dt>Looking for</dt>
+              <dd>Full-time product design and design engineering roles. Taking select freelance projects.</dd>
+            </div>
+            <div>
               <dt>Education</dt>
-              <dd>Grand Canyon University, Honors College · B.S. Software Development, Apr. 2027</dd>
-            </div>
-            <div>
-              <dt>Freelance</dt>
-              <dd>Designer &amp; developer since Apr. 2025</dd>
-            </div>
-            <div>
-              <dt>Certification</dt>
-              <dd>AWS Certified Cloud Practitioner</dd>
+              <dd>Grand Canyon University, Honors College · B.S. Software Development, expected Apr. 2027</dd>
             </div>
           </dl>
         </div>

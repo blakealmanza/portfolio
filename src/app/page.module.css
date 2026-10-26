@@ -160,11 +160,7 @@
   max-width: 64ch;
 }
 
-.aboutBody > p {
-  color: var(--muted);
-}
-
-.aboutBody > .aboutLead {
+.aboutLead {
   color: var(--ink);
   font-size: clamp(1.35rem, 2vw, 1.75rem);
   font-weight: 500;
