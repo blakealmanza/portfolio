@@ -254,6 +254,10 @@
 }
 
 @media (max-width: 900px) {
+  .body {
+    padding-top: clamp(64px, 9vh, 96px);
+  }
+
   .section {
     grid-template-columns: 1fr;
     gap: 20px;

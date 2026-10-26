@@ -230,6 +230,13 @@
     min-height: calc(100svh - var(--header-height));
   }
 
+  .sectionPage {
+    min-height: 0;
+    padding-bottom: 0;
+    /* The hero ends at the screens, but their shadows continue into the Overview spacing. */
+    overflow: visible;
+  }
+
   .mediaArea {
     flex: 1 0 auto;
     margin-top: 36px;
