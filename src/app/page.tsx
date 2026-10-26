@@ -1,4 +1,3 @@
-import { CopyEmail } from "@/components/CopyEmail";
 import { ArrowIcon } from "@/components/Icons";
 import { ProjectSection } from "@/components/ProjectSection";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -61,15 +60,15 @@ export default function Home() {
       <section id="contact" className={styles.contact} aria-labelledby="contact-title">
         <h2 id="contact-title" className={styles.sectionTitle}>Contact</h2>
         <div className={styles.contactBody}>
-          <div className={styles.contactEmailRow}>
-            <a className={styles.contactEmail} href={`mailto:${contact.email}`}>
-              {contact.email}
-              <ArrowIcon />
-            </a>
-            <CopyEmail email={contact.email} className={styles.copyEmail} />
-          </div>
+          <a className={styles.contactEmail} href={`mailto:${contact.email}`}>
+            <span>{contact.email}</span>
+            <ArrowIcon />
+          </a>
           <div className={styles.contactLinks}>
-            <a href={contact.phone.href}>{contact.phone.display}</a>
+            <a href={contact.phone.href}>
+              {contact.phone.display}
+              <ArrowIcon size={13} />
+            </a>
             <ExternalLink href={contact.linkedin} label="LinkedIn">LinkedIn</ExternalLink>
             <ExternalLink href={contact.github} label="GitHub">GitHub</ExternalLink>
             <ExternalLink href={site.resumeHref} label="Resume (PDF)">Resume</ExternalLink>

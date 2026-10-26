@@ -152,44 +152,31 @@
   gap: 8px;
 }
 
-.contactEmailRow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 24px;
-}
-
 .contactEmail {
   display: inline-flex;
   align-items: center;
+  justify-self: start;
   gap: 12px;
+  max-width: 100%;
+  min-height: 44px;
   font-size: clamp(1.5rem, 2.4vw, 2rem);
   font-weight: 500;
   letter-spacing: -0.015em;
   text-decoration: underline;
-  text-decoration-color: var(--line);
+  text-decoration-color: transparent;
   text-decoration-thickness: 1px;
   text-underline-offset: 8px;
   transition: text-decoration-color 200ms ease;
 }
 
-.contactEmail:hover {
+.contactEmail span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.contactEmail:hover,
+.contactEmail:focus-visible {
   text-decoration-color: var(--ink);
-}
-
-.contactEmail:hover svg {
-  translate: 4px 0;
-}
-
-.copyEmail {
-  min-height: 44px;
-  color: var(--muted);
-  cursor: pointer;
-  transition: color 200ms ease;
-}
-
-.copyEmail:hover {
-  color: var(--ink);
 }
 
 .contactLinks {
