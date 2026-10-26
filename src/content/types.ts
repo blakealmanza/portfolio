@@ -1,6 +1,9 @@
 export type ProjectMediaItem = {
   kind: "image" | "video";
   src: string;
+  /** Intrinsic pixel size, so screens reserve their space before they load. */
+  width: number;
+  height: number;
   alt: string;
   label: string;
   poster?: string;
@@ -42,6 +45,13 @@ export type ProjectFace = {
 /** How a section shows its media below the copy: one wide screen, or up to four phone screens. */
 export type ProjectLayout = "stage" | "phones";
 
+/** One thing the product does, told beside the screens that show it. `media` lists srcs from the project's media. */
+export type ProjectFeature = {
+  title: string;
+  description: string;
+  media?: string[];
+};
+
 export type ArchitectureNode = {
   label: string;
   detail?: string;
@@ -62,15 +72,14 @@ export type Project = {
   media: ProjectMediaItem[];
   links: ProjectLink[];
   metrics?: ProjectMetric[];
-  /** Has a case-study page at /projects/[slug]; its band on the homepage links there instead of opening the screens. */
-  caseStudy?: boolean;
-  /* Case-study material, rendered on the case-study page when caseStudy is set. */
+  /* Case-study material for /projects/[slug]; each section renders only when it has content. */
   problem?: string;
   solution?: string;
   architecture?: {
     caption: string;
     stages: ArchitectureNode[][];
   };
+  features?: ProjectFeature[];
   decisions?: { title: string; description: string }[];
   progression?: { title: string; detail: string }[];
 };

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowIcon } from "@/components/Icons";
-import { MediaViewerProvider } from "@/components/MediaViewerProvider";
 import { ProjectSection, faceStyle, themeStyle } from "@/components/ProjectSection";
 import { SiteHeader } from "@/components/SiteHeader";
 import { ThemeChrome } from "@/components/ThemeChrome";
@@ -10,23 +9,21 @@ import { site } from "@/config/site";
 import { projects } from "@/content/projects";
 import styles from "./page.module.css";
 
-const caseStudies = projects.filter((project) => project.caseStudy);
-
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return caseStudies.map((project) => ({ slug: project.slug }));
+  return projects.map((project) => ({ slug: project.slug }));
 }
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const project = caseStudies.find((item) => item.slug === slug);
+  const project = projects.find((item) => item.slug === slug);
   if (!project) return {};
 
   return {
-    title: `${project.title} — ${site.name}`,
+    title: `${project.title} | ${site.name}`,
     description: project.summary,
     alternates: site.url ? { canonical: `/projects/${project.slug}` } : undefined,
   };
@@ -34,22 +31,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CaseStudyPage({ params }: Props) {
   const { slug } = await params;
-  const index = caseStudies.findIndex((item) => item.slug === slug);
+  const index = projects.findIndex((item) => item.slug === slug);
   if (index === -1) notFound();
 
-  const project = caseStudies[index];
-  const next = caseStudies[(index + 1) % caseStudies.length];
-  const gallery = { [project.slug]: { title: project.title, media: project.media } };
+  const project = projects[index];
+  const next = projects[(index + 1) % projects.length];
 
   return (
     // The whole page stays in the product's world: the band opens it, and the write-up continues on the same ground.
     <main className={styles.page} style={themeStyle(project.theme)}>
       <SiteHeader />
-      <ThemeChrome selector="[data-chrome]" />
+      <ThemeChrome selector="[data-chrome]" pinFirstAtTop />
 
-      <MediaViewerProvider galleries={gallery}>
-        <ProjectSection project={project} variant="page" priority />
-      </MediaViewerProvider>
+      <ProjectSection project={project} variant="page" priority />
 
       <div className={styles.body} data-chrome data-scheme={project.theme.scheme}>
         <section className={styles.section} aria-labelledby="overview-title">

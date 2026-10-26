@@ -1,16 +1,11 @@
 import { CopyEmail } from "@/components/CopyEmail";
 import { ArrowIcon } from "@/components/Icons";
-import { MediaViewerProvider } from "@/components/MediaViewerProvider";
 import { ProjectSection } from "@/components/ProjectSection";
 import { SiteHeader } from "@/components/SiteHeader";
 import { ThemeChrome } from "@/components/ThemeChrome";
 import { contact, site } from "@/config/site";
 import { projects } from "@/content/projects";
 import styles from "./page.module.css";
-
-const galleries = Object.fromEntries(
-  projects.map((project) => [project.slug, { title: project.title, media: project.media }]),
-);
 
 function ExternalLink({ href, label, children }: { href: string; label: string; children: string }) {
   return (
@@ -38,19 +33,17 @@ export default function Home() {
         </div>
       </section>
 
-      <MediaViewerProvider galleries={galleries}>
-        <section id="work" className={styles.work} aria-label="Selected work">
-          {projects.map((project, index) => (
-            <ProjectSection key={project.slug} project={project} priority={index === 0} />
-          ))}
-        </section>
-      </MediaViewerProvider>
+      <section id="work" className={styles.work} aria-label="Selected work">
+        {projects.map((project, index) => (
+          <ProjectSection key={project.slug} project={project} priority={index === 0} />
+        ))}
+      </section>
 
       <section id="about" className={styles.about} aria-labelledby="about-title">
         <h2 id="about-title" className={styles.sectionTitle}>About</h2>
         <div className={styles.aboutBody}>
           <p className={styles.aboutLead}>
-            Most of my work starts with a real annoyance: a clunky school portal, a spreadsheet nobody trusts, event schedules scattered across three websites. I design the fix and build it until people actually use it.
+            Most of my work starts with a real annoyance, like a clunky school portal, a spreadsheet nobody trusts, or event schedules scattered across three websites. I design the fix and build it until people actually use it.
           </p>
           <dl className={styles.facts}>
             <div>

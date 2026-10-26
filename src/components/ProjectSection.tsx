@@ -4,7 +4,6 @@ import { ViewTransition, type CSSProperties } from "react";
 import type { Project, ProjectFace, ProjectLayout, ProjectTheme } from "@/content/types";
 import { ArrowIcon } from "./Icons";
 import { MediaReveal } from "./MediaReveal";
-import { OpenMediaButton } from "./MediaViewerProvider";
 import styles from "./ProjectSection.module.css";
 
 const layoutClass: Record<ProjectLayout, string> = {
@@ -45,9 +44,9 @@ function proofLine(project: Project) {
 }
 
 /**
- * A project as a full-bleed band. On the homepage it is the project's front door: the screens link to the case study
- * when there is one, otherwise they open the viewer. On the case-study page the same band is the page's opening screen,
- * and shares a view-transition name with its homepage twin so one morphs into the other.
+ * A project as a full-bleed band. On the homepage it is the project's front door: the screens link to its case study.
+ * On the case-study page the same band is the page's opening screen, and shares a view-transition name with its
+ * homepage twin so one morphs into the other.
  */
 export function ProjectSection({
   project,
@@ -64,30 +63,25 @@ export function ProjectSection({
   // Bands carry the product's own short mark so every title holds to one line; the full name moves to the type line.
   const name = project.shortTitle ?? project.title;
   const Title = variant === "page" ? "h1" : "h2";
-  const toCaseStudy = variant === "home" && project.caseStudy;
+  // On its case study the band shows its screens whole, so a wide screen keeps its own proportions instead of filling a crop.
+  const natural = variant === "page" && !phones;
 
   const screens = (
-    <>
-      <span className={styles.mediaLabel} aria-hidden="true">
-        {toCaseStudy ? "Read the case study" : "View screens"}
-        <ArrowIcon />
-      </span>
-      <MediaReveal count={shownMedia.length} phones={phones}>
-        {shownMedia.map((media, index) => (
-          <span key={media.src} className={styles.screen}>
-            <Image
-              src={media.src}
-              alt=""
-              fill
-              quality={90}
-              sizes={phones ? "(max-width: 900px) 30vw, 300px" : "(max-width: 900px) 100vw, 80vw"}
-              priority={priority && index === 0}
-            />
-            {media.caption && <span className={styles.caption}>{media.caption}</span>}
-          </span>
-        ))}
-      </MediaReveal>
-    </>
+    <MediaReveal count={shownMedia.length} phones={phones}>
+      {shownMedia.map((media, index) => (
+        <span key={media.src} className={styles.screen}>
+          <Image
+            src={media.src}
+            alt=""
+            {...(natural ? { width: media.width, height: media.height } : { fill: true })}
+            quality={90}
+            sizes={phones ? "(max-width: 900px) 30vw, 300px" : "(max-width: 900px) 100vw, 80vw"}
+            priority={priority && index === 0}
+          />
+          {media.caption && <span className={styles.caption}>{media.caption}</span>}
+        </span>
+      ))}
+    </MediaReveal>
   );
 
   return (
@@ -96,7 +90,7 @@ export function ProjectSection({
         id={project.slug}
         data-chrome
         data-scheme={project.theme.scheme}
-        className={`${styles.section} ${layoutClass[project.layout]}`}
+        className={`${styles.section} ${layoutClass[project.layout]} ${variant === "page" ? styles.sectionPage : ""}`}
         style={themeStyle(project.theme)}
         aria-labelledby={`${project.slug}-title`}
       >
@@ -116,20 +110,22 @@ export function ProjectSection({
             </div>
           </div>
 
-          {/* The screens are the band's one action: the whole picture is the door, and its label sits on its top edge. */}
-          {toCaseStudy ? (
+          {/* On the homepage the whole picture is the door to the case study, labelled on its top edge; on the case study it is just the opening view. */}
+          {variant === "home" ? (
             <Link
               href={`/projects/${project.slug}`}
               transitionTypes={["case-open"]}
-              className={styles.mediaLink}
+              className={`${styles.mediaArea} ${styles.mediaLink}`}
               aria-label={`Read the ${project.title} case study`}
             >
+              <span className={styles.mediaLabel} aria-hidden="true">
+                Read the case study
+                <ArrowIcon />
+              </span>
               {screens}
             </Link>
           ) : (
-            <OpenMediaButton slug={project.slug} className={styles.mediaLink} label={`View screens for ${project.title}`}>
-              {screens}
-            </OpenMediaButton>
+            <div className={styles.mediaArea}>{screens}</div>
           )}
         </div>
       </article>

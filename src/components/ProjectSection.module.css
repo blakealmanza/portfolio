@@ -29,7 +29,7 @@
   width: 100%;
   max-width: var(--rail);
   margin-inline: auto;
-  padding-top: clamp(40px, 6vh, 72px);
+  padding-top: clamp(60px, calc(6vh + 20px), 92px);
 }
 
 /*
@@ -90,18 +90,15 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Media: one button holding the label and the screens, so the whole picture opens them. */
+/* Media: on the homepage one link holds the label and the screens, so the whole picture leads to the case study. */
 
-.mediaLink {
+.mediaArea {
   display: flex;
   flex: 1 1 0;
   flex-direction: column;
   gap: 14px;
   min-height: 0;
   margin-top: clamp(28px, 2.6vw, 40px);
-  padding: 0;
-  text-align: left;
-  cursor: pointer;
 }
 
 .mediaLabel {
@@ -201,6 +198,38 @@
   margin-top: clamp(96px, 12vw, 168px);
 }
 
+/*
+ * On its case study the band is the page's opening view, not a crop: it grows to fit its screens,
+ * every screen shows whole, and the band ends a little below the lowest one.
+ */
+
+.sectionPage {
+  height: auto;
+  padding-bottom: clamp(56px, 9vh, 104px);
+}
+
+.sectionPage .mediaArea,
+.sectionPage .media {
+  flex: none;
+}
+
+.sectionPage.layoutStage .media {
+  margin-right: 0;
+}
+
+.sectionPage.layoutStage .screen {
+  display: block;
+  position: relative;
+  inset: auto;
+  border-radius: 10px;
+}
+
+.sectionPage.layoutStage .screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 @media (max-width: 900px) {
   /* The copy stacks here, so a band grows past the screen rather than squeezing its media. */
   .section {
@@ -208,7 +237,7 @@
     min-height: calc(100svh - var(--header-height));
   }
 
-  .mediaLink {
+  .mediaArea {
     flex: 1 0 auto;
     margin-top: 36px;
   }
@@ -265,5 +294,13 @@
 
   .layoutPhones .screen:nth-child(4) {
     display: none;
+  }
+
+  .sectionPage.layoutStage .media {
+    aspect-ratio: auto;
+  }
+
+  .sectionPage.layoutPhones .media {
+    height: auto;
   }
 }
