@@ -1,8 +1,6 @@
-import type { CSSProperties } from "react";
-import Image from "next/image";
 import { ArrowIcon } from "@/components/Icons";
 import { MediaViewerProvider } from "@/components/MediaViewerProvider";
-import { ProjectSection, faceStyle } from "@/components/ProjectSection";
+import { ProjectSection } from "@/components/ProjectSection";
 import { ThemeChrome } from "@/components/ThemeChrome";
 import { contact, site } from "@/config/site";
 import { projects } from "@/content/projects";
@@ -40,42 +38,11 @@ export default function Home() {
       </header>
 
       <section className={styles.intro} aria-labelledby="intro-title">
-        <h1 id="intro-title">I design interfaces and build them.</h1>
-        <div className={styles.introFoot}>
-          <p>Browser extensions, mobile apps, and the systems behind them.</p>
-          <nav className={styles.index} aria-label="Projects">
-            <ul>
-              {projects.map((project) => {
-                const previewImages = project.media.filter((media) => media.kind === "image");
-
-                return (
-                  <li key={project.slug}>
-                    <a
-                      href={`#${project.slug}`}
-                      style={{ ...faceStyle(project.face), "--signal": project.theme.signal } as CSSProperties}
-                    >
-                      {project.shortTitle ?? project.title}
-                    </a>
-                    {previewImages[0] && (
-                      <span
-                        className={`${styles.indexPreview} ${project.layout === "phones" ? styles.indexPreviewPhones : ""}`}
-                        style={{ "--preview-bg": project.theme.bg } as CSSProperties}
-                        aria-hidden="true"
-                      >
-                        {project.layout === "phones" ? (
-                          previewImages.slice(0, 3).map((media) => (
-                            <Image key={media.src} src={media.src} alt="" width={78} height={170} quality={70} />
-                          ))
-                        ) : (
-                          <Image src={previewImages[0].src} alt="" fill sizes="260px" quality={70} />
-                        )}
-                      </span>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
+        <div className={styles.introInner}>
+          <h1 id="intro-title">
+            <span className={styles.statementLine}>I design interfaces</span>{" "}
+            <span className={styles.statementLine}>and build them.</span>
+          </h1>
         </div>
       </section>
 

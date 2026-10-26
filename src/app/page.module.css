@@ -77,144 +77,64 @@
   outline-color: var(--chrome-accent, var(--ink));
 }
 
-/* Intro: the statement, then every product named in its own typeface. */
+/* Intro: one statement, set large and staggered across the rail. */
 
 .intro {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: clamp(40px, 7vh, 72px);
   min-height: calc(100svh - var(--header-height));
-  padding: clamp(32px, 5vh, 72px) 0 clamp(40px, 6vh, 64px);
+  padding: clamp(40px, 8vh, 96px) 0 clamp(32px, 5vh, 56px);
+  view-timeline: --intro block;
+}
+
+.introInner {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .intro h1 {
-  max-width: 14ch;
-  font-size: clamp(3.25rem, 8.2vw, 6rem);
+  font-size: clamp(3.25rem, 8.6vw, 6rem);
   font-weight: 600;
   line-height: 0.94;
   letter-spacing: -0.04em;
-  text-wrap: balance;
 }
 
-.introFoot {
-  display: grid;
-  grid-template-columns: minmax(200px, 4fr) minmax(0, 8fr);
-  gap: 24px clamp(32px, 4vw, 64px);
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
+.statementLine {
+  display: block;
 }
 
-.introFoot > p {
-  max-width: 34ch;
-  color: var(--muted);
-  font-size: 1.15rem;
-  line-height: 1.45;
+.statementLine + .statementLine {
+  text-align: right;
 }
 
-/* A quiet line of the product names, each in its own face; it only speaks up on hover. */
-.index ul {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: flex-end;
-  gap: 0 1.1em;
-  list-style: none;
-  font-size: 1.15rem;
-  line-height: 1.45;
-}
-
-.index li {
-  position: relative;
-}
-
-.index a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  color: var(--muted);
-  transition: color 240ms var(--ease-out);
-}
-
-.index a:hover,
-.index a:focus-visible {
-  color: var(--signal);
-}
-
-.indexPreview {
-  position: absolute;
-  right: 0;
-  bottom: calc(100% + 10px);
-  z-index: 2;
-  width: 260px;
-  height: 164px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--preview-bg);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.4);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(8px) scale(0.97);
-  transform-origin: bottom right;
-  pointer-events: none;
-  transition:
-    opacity 180ms var(--ease-out),
-    transform 180ms var(--ease-out),
-    visibility 0s linear 180ms;
-}
-
-.indexPreview > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: left top;
-}
-
-.indexPreviewPhones {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  width: 280px;
-  height: 192px;
-  padding: 10px;
-}
-
-.indexPreviewPhones > img {
-  width: auto;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 6px;
-}
-
-@media (min-width: 901px) {
-  .index a:focus-visible + .indexPreview {
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    transition-delay: 0s;
+/* Handoff: as the intro scrolls away, its content lags and dims, so the first band slides over it. */
+@supports (animation-timeline: view()) {
+  .introInner {
+    animation: intro-exit linear both;
+    animation-timeline: --intro;
+    animation-range: exit 0% exit 100%;
   }
 }
 
-@media (min-width: 901px) and (hover: hover) and (pointer: fine) {
-  .index a:hover + .indexPreview {
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    transition-delay: 0s;
+@keyframes intro-exit {
+  to {
+    opacity: 0.15;
+    transform: translateY(45svh);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .indexPreview {
-    transform: none;
+  .introInner {
+    animation: none;
   }
 }
 
 /* Work */
 
 .work {
+  position: relative;
+  z-index: 1;
   display: grid;
 }
 
@@ -338,18 +258,6 @@
 /* Tablet and phone */
 
 @media (max-width: 900px) {
-  .indexPreview {
-    display: none;
-  }
-
-  .introFoot {
-    grid-template-columns: 1fr;
-  }
-
-  .index ul {
-    justify-content: flex-start;
-  }
-
   .about {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -366,14 +274,18 @@
     font-size: 0.94rem;
   }
 
-  /* The work starts directly below, and the project index links into it, so phones drop the Work link to fit one row. */
+  /* The work starts directly below the intro, so phones drop the Work link to fit one row. */
   .nav .navWork {
     display: none;
   }
 
   .intro {
-    min-height: calc(88svh - var(--header-height));
-    padding: 32px 0 48px;
+    padding: 32px 0 40px;
+  }
+
+  /* The lines wrap to near full width here, so a right-aligned second line reads as a stray indent. */
+  .statementLine + .statementLine {
+    text-align: left;
   }
 
   .nav {
