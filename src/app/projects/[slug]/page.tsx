@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ViewTransition } from "react";
 import { ArrowIcon } from "@/components/Icons";
 import { ProjectSection, faceStyle, themeStyle } from "@/components/ProjectSection";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -148,22 +149,38 @@ export default async function CaseStudyPage({ params }: Props) {
           </section>
         )}
 
-        <nav className={styles.footer} aria-label="Case studies">
+        <nav className={styles.footer} aria-label="Case study navigation">
           <Link className={styles.back} href={`/#${project.slug}`}>
             <ArrowIcon direction="left" size={13} />
             All work
           </Link>
-          {next.slug !== project.slug && (
-            <Link className={styles.next} href={`/projects/${next.slug}`} transitionTypes={["case-open"]}>
-              <span className={styles.nextLabel}>Next case study</span>
-              <span className={styles.nextName} style={faceStyle(next.face)}>
-                {next.shortTitle ?? next.title}
-                <ArrowIcon size={24} />
-              </span>
-            </Link>
-          )}
         </nav>
       </div>
+      {next.slug !== project.slug && (
+        <nav aria-label="Next case study">
+          <ViewTransition name={`band-${next.slug}`} share="band" default="none">
+            <Link
+              className={styles.next}
+              href={`/projects/${next.slug}`}
+              transitionTypes={["case-open"]}
+              style={themeStyle(next.theme)}
+              data-chrome
+              data-scheme={next.theme.scheme}
+            >
+              <span className={styles.nextInner}>
+                <span className={styles.nextLabel}>Next case study</span>
+                <span className={styles.nextContent}>
+                  <span className={styles.nextName} style={faceStyle(next.face)}>
+                    {next.shortTitle ?? next.title}
+                    <ArrowIcon size={32} />
+                  </span>
+                  <span className={styles.nextSummary}>{next.summary}</span>
+                </span>
+              </span>
+            </Link>
+          </ViewTransition>
+        </nav>
+      )}
     </main>
   );
 }

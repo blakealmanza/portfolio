@@ -173,14 +173,10 @@
   line-height: 1.55;
 }
 
-/* Footer: back to the work, or on to the next case study set in its own product's face. */
+/* The back link closes the write-up; the next project's own color takes over below it. */
 
 .footer {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 40px;
   margin-top: clamp(112px, 16vh, 180px);
   padding: 28px 0 clamp(40px, 7vh, 72px);
   border-top: 1px solid var(--rule);
@@ -200,10 +196,20 @@
 }
 
 .next {
+  display: flex;
+  min-height: clamp(280px, 42svh, 460px);
+  padding: clamp(48px, 7vh, 88px) var(--gutter);
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.nextInner {
   display: grid;
-  justify-items: end;
-  gap: 6px;
-  text-align: right;
+  align-content: center;
+  gap: clamp(28px, 5vh, 56px);
+  width: 100%;
+  max-width: var(--rail);
+  margin-inline: auto;
 }
 
 .nextLabel {
@@ -211,21 +217,45 @@
   font-size: 0.94rem;
 }
 
+.nextContent {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(32px, 4vw, 64px);
+  align-items: end;
+}
+
 .nextName {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  font-size: clamp(2rem, 4vw, 3.25rem);
-  line-height: 1;
+  gap: clamp(16px, 2vw, 28px);
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.94;
 }
 
 .nextName svg {
+  flex: none;
   color: var(--accent);
   transition: translate 240ms var(--ease-out);
 }
 
-.next:hover .nextName svg {
-  translate: 6px 0;
+.nextSummary {
+  max-width: 40ch;
+  color: color-mix(in oklab, var(--ink) 88%, var(--bg));
+  font-size: 1.15rem;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .next:hover .nextName svg {
+    translate: 6px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nextName svg {
+    transition: none;
+  }
 }
 
 @media (max-width: 900px) {
@@ -249,16 +279,20 @@
     /* The icon sets its own rotate, so turn it down with transform instead. */
     transform: rotate(90deg);
   }
+
+  .nextContent {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .nextName {
+    font-size: clamp(2.5rem, 9vw, 4rem);
+  }
 }
 
 @media (max-width: 560px) {
   .facts div {
     grid-template-columns: 1fr;
     gap: 2px;
-  }
-
-  .next {
-    justify-items: start;
-    text-align: left;
   }
 }

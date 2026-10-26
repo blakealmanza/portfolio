@@ -101,12 +101,16 @@ video {
   animation: none;
 }
 
-::view-transition-old(site-header) {
-  display: none;
+::view-transition-old(site-header),
+::view-transition-new(site-header) {
+  animation-duration: 350ms;
+  animation-timing-function: var(--ease-out);
 }
 
-::view-transition-new(site-header) {
-  animation: none;
+/* The snapshots blend the two themes; the live header should not start a second color transition. */
+html:active-view-transition [data-site-header],
+html:active-view-transition [data-site-header] nav {
+  transition: none;
 }
 
 ::view-transition-old(root),
