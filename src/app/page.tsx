@@ -2,6 +2,7 @@ import { CopyEmail } from "@/components/CopyEmail";
 import { ArrowIcon } from "@/components/Icons";
 import { MediaViewerProvider } from "@/components/MediaViewerProvider";
 import { ProjectSection } from "@/components/ProjectSection";
+import { SiteHeader } from "@/components/SiteHeader";
 import { ThemeChrome } from "@/components/ThemeChrome";
 import { contact, site } from "@/config/site";
 import { projects } from "@/content/projects";
@@ -26,17 +27,7 @@ export default function Home() {
       <a className={styles.skipLink} href="#work">Skip to work</a>
       <ThemeChrome selector="[data-chrome]" />
 
-      <header className={styles.header}>
-        <div className={styles.headerInner}>
-          <a className={styles.brand} href="#top">{site.name}</a>
-          <nav className={styles.nav} aria-label="Main">
-            <a className={styles.navWork} href="#work">Work</a>
-            <a href="#about">About</a>
-            <ExternalLink href={site.resumeHref} label="Resume (PDF)">Resume</ExternalLink>
-            <a href="#contact">Contact</a>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader home />
 
       <section className={styles.intro} aria-labelledby="intro-title">
         <div className={styles.introInner}>

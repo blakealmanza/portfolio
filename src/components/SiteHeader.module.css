@@ -1,0 +1,66 @@
+/* Header: sticky, wears the theme of the band beneath it, and stays anchored while pages change. */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  color: var(--chrome-ink, var(--ink));
+  background: var(--chrome-bg, var(--ground));
+  transition:
+    color 500ms var(--ease-out),
+    background-color 500ms var(--ease-out);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(var(--rail), 100% - 2 * var(--gutter));
+  min-height: var(--header-height);
+  margin-inline: auto;
+}
+
+.brand {
+  font-size: 1.06rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.nav {
+  display: flex;
+  gap: clamp(20px, 3vw, 36px);
+  color: var(--chrome-muted, var(--muted));
+  transition: color 500ms var(--ease-out);
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  transition: color 200ms ease;
+}
+
+.nav a:hover {
+  color: var(--chrome-ink, var(--ink));
+}
+
+.header :focus-visible {
+  outline-color: var(--chrome-accent, var(--ink));
+}
+
+@media (max-width: 560px) {
+  .brand {
+    font-size: 1rem;
+  }
+
+  .nav {
+    gap: 20px;
+    font-size: 0.94rem;
+  }
+
+  /* The work starts directly below the intro, so phones drop the Work link to fit one row. */
+  .nav .navWork {
+    display: none;
+  }
+}

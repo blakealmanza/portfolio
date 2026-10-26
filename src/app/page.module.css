@@ -4,7 +4,6 @@
 }
 
 /* Portfolio chrome keeps to the rail; the project bands run edge to edge. */
-.headerInner,
 .intro,
 .about,
 .contact {
@@ -26,55 +25,6 @@
 
 .skipLink:focus-visible {
   transform: none;
-}
-
-/* Header: sticky, and wears the theme of the band beneath it. */
-
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  color: var(--chrome-ink, var(--ink));
-  background: var(--chrome-bg, var(--ground));
-  transition:
-    color 500ms var(--ease-out),
-    background-color 500ms var(--ease-out);
-}
-
-.headerInner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: var(--header-height);
-}
-
-.brand {
-  font-size: 1.06rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.nav {
-  display: flex;
-  gap: clamp(20px, 3vw, 36px);
-  color: var(--chrome-muted, var(--muted));
-  transition: color 500ms var(--ease-out);
-}
-
-.nav a {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  min-height: 44px;
-  transition: color 200ms ease;
-}
-
-.nav a:hover {
-  color: var(--chrome-ink, var(--ink));
-}
-
-.header :focus-visible {
-  outline-color: var(--chrome-accent, var(--ink));
 }
 
 /* Intro: one statement, set large and staggered across the rail. */
@@ -281,20 +231,6 @@
 }
 
 @media (max-width: 560px) {
-  .brand {
-    font-size: 1rem;
-  }
-
-  .nav {
-    gap: 16px;
-    font-size: 0.94rem;
-  }
-
-  /* The work starts directly below the intro, so phones drop the Work link to fit one row. */
-  .nav .navWork {
-    display: none;
-  }
-
   .intro {
     padding: 32px 0 40px;
   }
@@ -302,10 +238,6 @@
   /* The lines wrap to near full width here, so a right-aligned second line reads as a stray indent. */
   .statementLine + .statementLine {
     text-align: left;
-  }
-
-  .nav {
-    gap: 20px;
   }
 
   .facts div {
