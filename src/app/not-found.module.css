@@ -68,10 +68,6 @@
   font-weight: 600;
 }
 
-.primaryLink:hover svg {
-  translate: 4px 0;
-}
-
 .textLink {
   color: var(--muted);
   transition: color 200ms ease;

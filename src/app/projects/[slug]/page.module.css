@@ -210,6 +210,14 @@
   width: 100%;
   max-width: var(--rail);
   margin-inline: auto;
+  opacity: 0.85;
+  transition: opacity 180ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .next:hover .nextInner {
+    opacity: 1;
+  }
 }
 
 .nextLabel {
@@ -235,7 +243,6 @@
 .nextName svg {
   flex: none;
   color: var(--accent);
-  transition: translate 240ms var(--ease-out);
 }
 
 .nextSummary {
@@ -244,18 +251,6 @@
   font-size: 1.15rem;
   line-height: 1.45;
   text-wrap: pretty;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .next:hover .nextName svg {
-    translate: 6px 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .nextName svg {
-    transition: none;
-  }
 }
 
 @media (max-width: 900px) {

@@ -107,15 +107,18 @@
   align-items: center;
   gap: 8px;
   font-weight: 600;
+  opacity: 0.85;
+  transition: opacity 180ms ease;
 }
 
 .mediaLabel svg {
   color: var(--accent);
-  transition: translate 240ms var(--ease-out);
 }
 
-.mediaLink:hover .mediaLabel svg {
-  translate: 4px 0;
+@media (hover: hover) and (pointer: fine) {
+  .mediaLink:hover .mediaLabel {
+    opacity: 1;
+  }
 }
 
 .media {
@@ -123,17 +126,6 @@
   display: block;
   flex: 1 1 0;
   min-height: 0;
-  transition: translate 500ms var(--ease-out);
-}
-
-.mediaLink:hover .media {
-  translate: 0 -6px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mediaLink:hover .media {
-    translate: none;
-  }
 }
 
 .screen {
