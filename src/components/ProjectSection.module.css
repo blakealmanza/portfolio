@@ -16,7 +16,8 @@
   padding: 0 var(--gutter);
   color: var(--ink);
   background: var(--bg);
-  scroll-margin-top: var(--header-height);
+  /* Let anchor navigation tuck the band slightly beneath the sticky header, so its theme owns the header. */
+  scroll-margin-top: calc(var(--header-height) - 8px);
 }
 
 .section[data-scheme="light"] {
