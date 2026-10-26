@@ -1,3 +1,4 @@
+import { CopyEmail } from "@/components/CopyEmail";
 import { ArrowIcon } from "@/components/Icons";
 import { MediaViewerProvider } from "@/components/MediaViewerProvider";
 import { ProjectSection } from "@/components/ProjectSection";
@@ -74,21 +75,26 @@ export default function Home() {
       </section>
 
       <section id="contact" className={styles.contact} aria-labelledby="contact-title">
-        <h2 id="contact-title">Let’s build something useful.</h2>
-        <a className={styles.contactEmail} href={`mailto:${contact.email}`}>
-          {contact.email}
-          <ArrowIcon />
-        </a>
-        <div className={styles.contactLinks}>
-          <a href={contact.phone.href}>{contact.phone.display}</a>
-          <ExternalLink href={contact.linkedin} label="LinkedIn">LinkedIn</ExternalLink>
-          <ExternalLink href={contact.github} label="GitHub">GitHub</ExternalLink>
-          <ExternalLink href={site.resumeHref} label="Resume (PDF)">Resume</ExternalLink>
-          <a className={styles.backToTop} href="#top">
-            Back to top
-            <ArrowIcon direction="up" size={13} />
-          </a>
+        <h2 id="contact-title" className={styles.sectionTitle}>Contact</h2>
+        <div className={styles.contactBody}>
+          <div className={styles.contactEmailRow}>
+            <a className={styles.contactEmail} href={`mailto:${contact.email}`}>
+              {contact.email}
+              <ArrowIcon />
+            </a>
+            <CopyEmail email={contact.email} className={styles.copyEmail} />
+          </div>
+          <div className={styles.contactLinks}>
+            <a href={contact.phone.href}>{contact.phone.display}</a>
+            <ExternalLink href={contact.linkedin} label="LinkedIn">LinkedIn</ExternalLink>
+            <ExternalLink href={contact.github} label="GitHub">GitHub</ExternalLink>
+            <ExternalLink href={site.resumeHref} label="Resume (PDF)">Resume</ExternalLink>
+          </div>
         </div>
+        <a className={styles.backToTop} href="#top">
+          Back to top
+          <ArrowIcon direction="up" size={13} />
+        </a>
       </section>
     </main>
   );
