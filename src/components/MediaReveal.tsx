@@ -30,14 +30,14 @@ export function MediaReveal({ children, count, phones }: { children: ReactNode; 
 
       const viewportHeight = window.innerHeight;
       const top = element.getBoundingClientRect().top;
-      const progress = clamp((viewportHeight * 0.75 - top) / (viewportHeight * 0.3));
+      const progress = clamp((viewportHeight * 0.85 - top) / (viewportHeight * 0.5));
       if (progress === lastProgress) return;
       lastProgress = progress;
 
       screens.forEach((screen, index) => {
-        const screenProgress = phones ? clamp((progress - index * 0.1) / 0.7) : progress;
-        screen.style.opacity = String(clamp(progress * 3));
-        screen.style.transform = `translateY(${20 * (1 - screenProgress)}px)`;
+        const screenProgress = phones ? clamp((progress - index * 0.14) / 0.58) : progress;
+        screen.style.opacity = String(phones ? screenProgress : clamp(progress / 0.7));
+        screen.style.transform = `translateY(${(phones ? 64 : 56) * (1 - screenProgress)}px)`;
       });
     };
 
