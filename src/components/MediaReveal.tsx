@@ -6,7 +6,7 @@ import styles from "./ProjectSection.module.css";
 const clamp = (value: number) => Math.max(0, Math.min(1, value));
 
 export function MediaReveal({ children, count, phones }: { children: ReactNode; count: number; phones: boolean }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLSpanElement>(null);
 
   useLayoutEffect(() => {
     const element = ref.current;
@@ -63,8 +63,8 @@ export function MediaReveal({ children, count, phones }: { children: ReactNode; 
   }, [phones]);
 
   return (
-    <div ref={ref} className={styles.media} style={{ "--count": count } as CSSProperties}>
+    <span ref={ref} className={styles.media} style={{ "--count": count } as CSSProperties}>
       {children}
-    </div>
+    </span>
   );
 }

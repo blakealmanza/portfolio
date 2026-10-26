@@ -71,12 +71,9 @@ export function ProjectSection({ project, priority = false }: { project: Project
             <p className={styles.type}>{project.shortTitle ? `${project.title} · ${project.type}` : project.type}</p>
             <p className={styles.summary}>{project.summary}</p>
             {proof && <p className={styles.proof}>{proof}</p>}
-            <div className={styles.actions}>
-              <OpenMediaButton slug={project.slug} className={styles.primaryLink}>
-                View screens
-                <ArrowIcon />
-              </OpenMediaButton>
-              {project.links.map((link) => (
+            {project.links.length > 0 && (
+              <div className={styles.links}>
+                {project.links.map((link) => (
                 <a
                   key={link.href}
                   className={styles.textLink}
@@ -88,21 +85,22 @@ export function ProjectSection({ project, priority = false }: { project: Project
                   {link.label}
                   <ArrowIcon direction="up-right" size={13} />
                 </a>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
-        <MediaReveal count={shownMedia.length} phones={phones}>
-          {shownMedia.map((media, index) => (
-            <OpenMediaButton
-              key={media.src}
-              slug={project.slug}
-              index={project.media.indexOf(media)}
-              className={styles.mediaButton}
-              label={`Open ${media.label} for ${project.title}`}
-            >
-              <Image
+        {/* The screens are the band's one action: the whole picture is the door, and its label sits on its top edge. */}
+        <OpenMediaButton slug={project.slug} className={styles.mediaLink} label={`View screens for ${project.title}`}>
+          <span className={styles.mediaLabel} aria-hidden="true">
+            View screens
+            <ArrowIcon />
+          </span>
+          <MediaReveal count={shownMedia.length} phones={phones}>
+            {shownMedia.map((media, index) => (
+              <span key={media.src} className={styles.screen}>
+                <Image
                 src={media.src}
                 alt=""
                 fill
@@ -110,10 +108,11 @@ export function ProjectSection({ project, priority = false }: { project: Project
                 sizes={phones ? "(max-width: 900px) 30vw, 300px" : "(max-width: 900px) 100vw, 80vw"}
                 priority={priority && index === 0}
               />
-              {media.caption && <span className={styles.caption}>{media.caption}</span>}
-            </OpenMediaButton>
-          ))}
-        </MediaReveal>
+                {media.caption && <span className={styles.caption}>{media.caption}</span>}
+              </span>
+            ))}
+          </MediaReveal>
+        </OpenMediaButton>
       </div>
     </article>
   );

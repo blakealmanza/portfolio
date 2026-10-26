@@ -33,7 +33,7 @@
 }
 
 /*
- * Copy: title and type line on the left; summary, proof, and actions on the right.
+ * Copy: title and type line on the left; summary, proof, and outside links on the right.
  * Both columns end on the same line so the media follows straight after.
  */
 
@@ -44,8 +44,8 @@
   grid-template-areas:
     "title summary"
     "title proof"
-    "title actions"
-    "type actions";
+    "title links"
+    "type links";
   column-gap: clamp(32px, 4vw, 64px);
   align-items: end;
 }
@@ -91,38 +91,23 @@
   font-variant-numeric: tabular-nums;
 }
 
-.actions {
-  grid-area: actions;
+/* Outside links are secondary to the screens, so they stay small and muted. */
+.links {
+  grid-area: links;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0 22px;
-  margin-top: 6px;
+  gap: 0 20px;
+  margin-top: 4px;
 }
 
-.primaryLink,
 .textLink {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   min-height: 44px;
-  cursor: pointer;
-}
-
-.primaryLink {
-  font-weight: 600;
-}
-
-.primaryLink svg {
-  color: var(--accent);
-}
-
-.primaryLink:hover svg {
-  translate: 4px 0;
-}
-
-.textLink {
   color: var(--muted);
+  font-size: 0.94rem;
   transition: color 200ms ease;
 }
 
@@ -130,22 +115,61 @@
   color: var(--ink);
 }
 
-/* Media */
+/* Media: one button holding the label and the screens, so the whole picture opens them. */
+
+.mediaLink {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+  margin-top: clamp(28px, 2.6vw, 40px);
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mediaLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.mediaLabel svg {
+  color: var(--accent);
+  transition: translate 240ms var(--ease-out);
+}
+
+.mediaLink:hover .mediaLabel svg {
+  translate: 4px 0;
+}
 
 .media {
   position: relative;
+  display: block;
   flex: 1 1 0;
   min-height: 0;
+  transition: translate 500ms var(--ease-out);
 }
 
-.mediaButton {
+.mediaLink:hover .media {
+  translate: 0 -6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mediaLink:hover .media {
+    translate: none;
+  }
+}
+
+.screen {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  cursor: zoom-in;
 }
 
-.mediaButton img {
+.screen img {
   object-fit: cover;
   object-position: left top;
 }
@@ -161,11 +185,10 @@
 /* Wide: one screen that runs off the right edge and is cut by the band's bottom edge. */
 
 .layoutStage .media {
-  margin-top: clamp(28px, 2.6vw, 40px);
   margin-right: calc(-1 * var(--bleed));
 }
 
-.layoutStage .mediaButton {
+.layoutStage .screen {
   border-radius: 10px 0 0 0;
   box-shadow: -18px 24px 60px var(--lift);
 }
@@ -177,10 +200,9 @@
   grid-template-columns: repeat(var(--count), minmax(0, 1fr));
   align-items: start;
   gap: clamp(16px, 2.4vw, 40px);
-  margin-top: clamp(28px, 3vw, 44px);
 }
 
-.layoutPhones .mediaButton {
+.layoutPhones .screen {
   position: relative;
   inset: auto;
   aspect-ratio: 1206 / 2622;
@@ -188,19 +210,19 @@
   box-shadow: 0 24px 60px var(--lift);
 }
 
-.layoutPhones .mediaButton img {
+.layoutPhones .screen img {
   object-position: center top;
 }
 
-.layoutPhones .mediaButton:nth-child(2) {
+.layoutPhones .screen:nth-child(2) {
   margin-top: clamp(32px, 4vw, 56px);
 }
 
-.layoutPhones .mediaButton:nth-child(3) {
+.layoutPhones .screen:nth-child(3) {
   margin-top: clamp(64px, 8vw, 112px);
 }
 
-.layoutPhones .mediaButton:nth-child(4) {
+.layoutPhones .screen:nth-child(4) {
   margin-top: clamp(96px, 12vw, 168px);
 }
 
@@ -209,6 +231,11 @@
   .section {
     height: auto;
     min-height: calc(100svh - var(--header-height));
+  }
+
+  .mediaLink {
+    flex: 1 0 auto;
+    margin-top: 36px;
   }
 
   .media {
@@ -249,24 +276,22 @@
     margin-top: 22px;
   }
 
-  .actions {
-    margin-top: 12px;
+  .links {
+    margin-top: 8px;
   }
 
   /* Wider than most captures, so the band cuts the screen inside the page rather than on its foot. */
   .layoutStage .media {
     height: auto;
     aspect-ratio: 16 / 8.5;
-    margin-top: 40px;
   }
 
   .layoutPhones .media {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     height: clamp(280px, 72vw, 460px);
-    margin-top: 40px;
   }
 
-  .layoutPhones .mediaButton:nth-child(4) {
+  .layoutPhones .screen:nth-child(4) {
     display: none;
   }
 }
