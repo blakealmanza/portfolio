@@ -90,3 +90,40 @@ video {
     animation-duration: 0.01ms !important;
   }
 }
+
+/*
+ * Page transitions. The header holds still, a project's band morphs between its homepage slot and the top of its
+ * case study, and everything else crossfades quickly underneath.
+ */
+
+::view-transition-group(site-header) {
+  z-index: 100;
+  animation: none;
+}
+
+::view-transition-old(site-header) {
+  display: none;
+}
+
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 260ms;
+}
+
+::view-transition-group(.band) {
+  animation-duration: 600ms;
+  animation-timing-function: var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}

@@ -12,7 +12,8 @@ export function SiteHeader({ home = false }: { home?: boolean }) {
   const base = home ? "" : "/";
 
   return (
-    <header className={styles.header}>
+    // Named inline: CSS Modules would hash the name, and the global transition rules need to find it.
+    <header className={styles.header} style={{ viewTransitionName: "site-header" }}>
       <div className={styles.inner}>
         <NavLink className={styles.brand} href={home ? "#top" : "/"}>
           {site.name}

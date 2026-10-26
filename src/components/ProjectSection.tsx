@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { CSSProperties } from "react";
+import { ViewTransition, type CSSProperties } from "react";
 import type { Project, ProjectFace, ProjectLayout, ProjectTheme } from "@/content/types";
 import { ArrowIcon } from "./Icons";
 import { MediaReveal } from "./MediaReveal";
@@ -46,7 +46,8 @@ function proofLine(project: Project) {
 
 /**
  * A project as a full-bleed band. On the homepage it is the project's front door: the screens link to the case study
- * when there is one, otherwise they open the viewer. On the case-study page the same band is the page's opening screen.
+ * when there is one, otherwise they open the viewer. On the case-study page the same band is the page's opening screen,
+ * and shares a view-transition name with its homepage twin so one morphs into the other.
  */
 export function ProjectSection({
   project,
@@ -90,46 +91,48 @@ export function ProjectSection({
   );
 
   return (
-    <article
-      id={project.slug}
-      data-chrome
-      data-scheme={project.theme.scheme}
-      className={`${styles.section} ${layoutClass[project.layout]}`}
-      style={themeStyle(project.theme)}
-      aria-labelledby={`${project.slug}-title`}
-    >
-      <div className={styles.inner}>
-        <div className={styles.copy}>
-          <Title
-            id={`${project.slug}-title`}
-            className={`${styles.title} ${name.length > 24 ? styles.titleLong : ""}`}
-            style={faceStyle(project.face)}
-          >
-            {name}
-          </Title>
-          <div className={styles.details}>
-            <p className={styles.type}>{project.shortTitle ? `${project.title} · ${project.type}` : project.type}</p>
-            <p className={styles.summary}>{project.summary}</p>
-            {proof && <p className={styles.proof}>{proof}</p>}
+    <ViewTransition name={`band-${project.slug}`} share="band" default="none">
+      <article
+        id={project.slug}
+        data-chrome
+        data-scheme={project.theme.scheme}
+        className={`${styles.section} ${layoutClass[project.layout]}`}
+        style={themeStyle(project.theme)}
+        aria-labelledby={`${project.slug}-title`}
+      >
+        <div className={styles.inner}>
+          <div className={styles.copy}>
+            <Title
+              id={`${project.slug}-title`}
+              className={`${styles.title} ${name.length > 24 ? styles.titleLong : ""}`}
+              style={faceStyle(project.face)}
+            >
+              {name}
+            </Title>
+            <div className={styles.details}>
+              <p className={styles.type}>{project.shortTitle ? `${project.title} · ${project.type}` : project.type}</p>
+              <p className={styles.summary}>{project.summary}</p>
+              {proof && <p className={styles.proof}>{proof}</p>}
+            </div>
           </div>
-        </div>
 
-        {/* The screens are the band's one action: the whole picture is the door, and its label sits on its top edge. */}
-        {toCaseStudy ? (
-          <Link
-            href={`/projects/${project.slug}`}
-            transitionTypes={["case-open"]}
-            className={styles.mediaLink}
-            aria-label={`Read the ${project.title} case study`}
-          >
-            {screens}
-          </Link>
-        ) : (
-          <OpenMediaButton slug={project.slug} className={styles.mediaLink} label={`View screens for ${project.title}`}>
-            {screens}
-          </OpenMediaButton>
-        )}
-      </div>
-    </article>
+          {/* The screens are the band's one action: the whole picture is the door, and its label sits on its top edge. */}
+          {toCaseStudy ? (
+            <Link
+              href={`/projects/${project.slug}`}
+              transitionTypes={["case-open"]}
+              className={styles.mediaLink}
+              aria-label={`Read the ${project.title} case study`}
+            >
+              {screens}
+            </Link>
+          ) : (
+            <OpenMediaButton slug={project.slug} className={styles.mediaLink} label={`View screens for ${project.title}`}>
+              {screens}
+            </OpenMediaButton>
+          )}
+        </div>
+      </article>
+    </ViewTransition>
   );
 }
