@@ -237,7 +237,7 @@ The product presented in its own colours, inside the portfolio's frame. Used for
 - **Contact email:** clamp(1.5rem, 2.4vw, 2rem) at 500, underlined with the hairline color at 8px offset; hover turns the underline to ink and slides the arrow.
 
 ### Navigation
-Plain text in muted with clamp(20px, 3vw, 36px) gaps and 44px targets: Work, About, Resume (up-right arrow, opens PDF), Contact. Hover to ink. The wordmark is 1.06rem at 600.
+Plain text in muted with clamp(20px, 3vw, 36px) gaps and 44px targets: Work, About, Resume (up-right arrow, opens PDF), Contact. On phones, the header shows Work, Resume, and Contact. Hover to ink. The wordmark is 1.06rem at 600.
 
 ### Facts List
 A definition list ruled by hairlines above and between rows: muted 140px label column, ink value. Stacks below 560px.

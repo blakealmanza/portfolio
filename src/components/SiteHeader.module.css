@@ -59,8 +59,8 @@
     font-size: 0.94rem;
   }
 
-  /* The work starts directly below the intro, so phones drop the Work link to fit one row. */
-  .nav .navWork {
+  /* Keep the project index and hiring actions visible on phones. */
+  .nav .navAbout {
     display: none;
   }
 }

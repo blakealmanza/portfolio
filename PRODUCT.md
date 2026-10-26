@@ -24,7 +24,7 @@ Visitors often scan quickly on desktop during hiring review, then open a case st
 
 ## Capabilities and Constraints
 
-- Single-page homepage with `Work`, `About`, `Resume`, and `Contact` navigation. On phones the one-row sticky header drops `Work`, since the work starts directly below and the project index links into it.
+- Single-page homepage with `Work`, `About`, `Resume`, and `Contact` navigation. On phones the one-row sticky header shows `Work`, `Resume`, and `Contact`; visitors can reach About by scrolling the homepage.
 - Every project gets an equal full-bleed section, presented in its own product’s real ground, colours, and display typeface, and ordered by strength; there is no featured tier or secondary list.
 - Sections are separated by hard cuts; layouts vary per project to suit its media, but text always keeps to one rail.
 - The sticky header takes on the theme of the section beneath it; the portfolio’s own chrome (intro, About, Contact) stays on the neutral dark ground.

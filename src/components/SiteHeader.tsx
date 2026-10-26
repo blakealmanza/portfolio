@@ -19,8 +19,8 @@ export function SiteHeader({ home = false }: { home?: boolean }) {
           {site.name}
         </NavLink>
         <nav className={styles.nav} aria-label="Main">
-          <NavLink className={styles.navWork} href={`${base}#work`}>Work</NavLink>
-          <NavLink href={`${base}#about`}>About</NavLink>
+          <NavLink href={`${base}#work`}>Work</NavLink>
+          <NavLink className={styles.navAbout} href={`${base}#about`}>About</NavLink>
           <a href={site.resumeHref} target="_blank" rel="noreferrer" aria-label="Resume (PDF, opens in a new tab)">
             Resume
             <ArrowIcon direction="up-right" size={13} />
