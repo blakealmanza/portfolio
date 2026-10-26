@@ -15,7 +15,8 @@ export function ThemeChrome({ selector, pinFirstAtTop = false }: { selector: str
     if (sections.length === 0) return;
     const header = document.querySelector<HTMLElement>("[data-site-header]");
 
-    let current: HTMLElement | undefined;
+    // Null marks the first pass, so arriving at the unthemed home intro clears any theme left by the previous page.
+    let current: HTMLElement | undefined | null = null;
     let frame = 0;
 
     const apply = () => {
