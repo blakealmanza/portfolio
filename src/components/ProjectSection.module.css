@@ -33,19 +33,18 @@
 }
 
 /*
- * Copy: title and type line on the left; summary, proof, and outside links on the right.
+ * Copy: title and type line on the left; summary and proof on the right.
  * Both columns end on the same line so the media follows straight after.
  */
 
 .copy {
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  grid-template-rows: 1fr auto auto auto;
+  grid-template-rows: 1fr auto auto;
   grid-template-areas:
     "title summary"
     "title proof"
-    "title links"
-    "type links";
+    "type proof";
   column-gap: clamp(32px, 4vw, 64px);
   align-items: end;
 }
@@ -89,30 +88,6 @@
   font-size: 0.94rem;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
-}
-
-/* Outside links are secondary to the screens, so they stay small and muted. */
-.links {
-  grid-area: links;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0 20px;
-  margin-top: 4px;
-}
-
-.textLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 44px;
-  color: var(--muted);
-  font-size: 0.94rem;
-  transition: color 200ms ease;
-}
-
-.textLink:hover {
-  color: var(--ink);
 }
 
 /* Media: one button holding the label and the screens, so the whole picture opens them. */
@@ -275,10 +250,6 @@
 
   .proof {
     margin-top: 22px;
-  }
-
-  .links {
-    margin-top: 8px;
   }
 
   /* Wider than most captures, so the band cuts the screen inside the page rather than on its foot. */

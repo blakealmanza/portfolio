@@ -62,7 +62,9 @@ export type Project = {
   media: ProjectMediaItem[];
   links: ProjectLink[];
   metrics?: ProjectMetric[];
-  /* Draft case-study material; not rendered yet. */
+  /** Has a case-study page at /projects/[slug]; its band on the homepage links there instead of opening the screens. */
+  caseStudy?: boolean;
+  /* Case-study material, rendered on the case-study page when caseStudy is set. */
   problem?: string;
   solution?: string;
   architecture?: {

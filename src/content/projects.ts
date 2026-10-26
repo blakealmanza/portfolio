@@ -3,6 +3,7 @@ import type { Project } from "./types";
 export const projects: Project[] = [
   {
     slug: "better-halo",
+    caseStudy: true,
     title: "Better Halo",
     type: "Browser extension",
     summary: "A Chrome Web Store extension that makes GCU’s Halo LMS easier to use, with themes, assignment tracking, and grade tools.",
@@ -78,6 +79,7 @@ export const projects: Project[] = [
   },
   {
     slug: "priceright",
+    caseStudy: true,
     title: "PriceRight",
     type: "Cross-platform mobile app · Team project",
     summary: "A cross-platform app that helps businesses work out what products cost to make and what to sell them for.",
@@ -221,6 +223,7 @@ export const projects: Project[] = [
   },
   {
     slug: "mosaic",
+    caseStudy: true,
     title: "Mosaic",
     type: "Open-source connected desk display · Capstone",
     summary: "An open-source, self-hosted desk display for developer notifications, actions, and focus—without another browser tab.",
