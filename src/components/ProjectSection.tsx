@@ -67,7 +67,7 @@ export function ProjectSection({
   const natural = variant === "page" && !phones;
 
   const screens = (
-    <MediaReveal count={shownMedia.length} phones={phones}>
+    <MediaReveal count={shownMedia.length} phones={phones} animate={variant === "home"}>
       {shownMedia.map((media, index) => (
         <span key={media.src} className={styles.screen}>
           <Image
