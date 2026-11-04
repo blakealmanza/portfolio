@@ -7,43 +7,35 @@ colors:
   muted: "#a3a19b"
   line: "rgba(242, 241, 238, 0.1)"
   photo-black: "#000000"
-  better-halo-bg: "#141414"
-  better-halo-accent: "#F59E0B"
-  priceright-bg: "#0F172A"
+  better-halo-bg: "#1D1C1A"
+  better-halo-accent: "#F8A114"
+  priceright-bg: "#1A2540"
   priceright-accent: "#A5B4FC"
-  wsbri-bg: "#19140F"
-  wsbri-accent: "#CD7F32"
-  annies-bg: "#2C3727"
-  annies-accent: "#E6E1D3"
-  mosaic-bg: "#050505"
-  mosaic-accent: "#60A5FA"
-  golf-caddie-bg: "#0E1912"
-  golf-caddie-accent: "#5DBB82"
-  kimbo-bg: "#111827"
-  kimbo-accent: "#2DD4BF"
+  wsbri-bg: "#E9DFD1"
+  wsbri-accent: "#7A4E24"
+  annies-bg: "#212A1D"
+  annies-accent: "#E7BD67"
+  mosaic-bg: "#141518"
+  mosaic-accent: "#70B6FF"
+  golf-caddie-bg: "#DBDDD9"
+  golf-caddie-accent: "#246640"
+  kimbo-bg: "#00535B"
+  kimbo-accent: "#F6D465"
 typography:
+  hero:
+    fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(3.25rem, 8.6vw, 6rem)"
+    fontWeight: 600
+    lineHeight: 0.94
+    letterSpacing: "-0.04em"
   display:
-    fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2.6rem, 6vw, 5.5rem)"
-    fontWeight: 600
-    lineHeight: 0.98
-    letterSpacing: "-0.035em"
-  headline:
-    fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2.4rem, 4vw, 3.75rem)"
-    fontWeight: 600
-    lineHeight: 0.95
-    letterSpacing: "-0.035em"
-  intro:
-    fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.75rem, 2.9vw, 2.75rem)"
-    fontWeight: 500
-    lineHeight: 1.14
-    letterSpacing: "-0.025em"
-  title:
+    fontSize: "clamp(3rem, 7vw, 6rem); clamp(2.5rem, 9vw, 4rem) at 900px and below"
+    lineHeight: 0.94
+  heading:
     fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(1.5rem, 2.2vw, 2rem)"
     fontWeight: 500
+    lineHeight: 1.2
     letterSpacing: "-0.02em"
   lead:
     fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
@@ -51,21 +43,38 @@ typography:
     fontWeight: 500
     lineHeight: 1.3
     letterSpacing: "-0.02em"
-  summary:
+  large:
     fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1.15rem"
     fontWeight: 400
-    lineHeight: 1.45
+    lineHeight: 1.5
+  largeStrong:
+    fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.15rem"
+    fontWeight: 500
+    lineHeight: 1.4
+    letterSpacing: "-0.01em"
   body:
     fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "17px"
+    fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.5
-  label:
+  bodyStrong:
+    fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.0625rem"
+    fontWeight: 600
+    lineHeight: 1.5
+    letterSpacing: "-0.01em"
+  small:
     fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.94rem"
     fontWeight: 400
-    lineHeight: 1.5
+    lineHeight: 1.45
+  smallStrong:
+    fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.94rem"
+    fontWeight: 500
+    lineHeight: 1.45
 rounded:
   focus: "4px"
   skip-link: "8px"
@@ -130,7 +139,7 @@ Density is low and the type does the structuring: large tight-tracked headings, 
 - One panel component for every project; no featured tier, no secondary list. Variation comes from the theme and the media layout (browser, phones, photo).
 - One portfolio-wide panel radius (16px); corners are the frame's, colours are the product's.
 - One typeface (Host Grotesk) across every role, with negative tracking that tightens as size grows.
-- Real product screenshots that bleed off panel edges, lifted by soft ambient shadows.
+- Real product screenshots, cropped by the band's foot, lifted by soft ambient shadows.
 - Text links with a stroked SVG arrow instead of buttons; no pills, no filled CTAs.
 - Ground tint that follows the project panel in view, transitioned over 900ms.
 
@@ -176,19 +185,23 @@ Each project in `src/content/projects.ts` carries a `theme` object (bg, surface,
 **Character:** One grotesk carries everything. Hierarchy comes from size, weight (400, 500, 600 only), and tracking that tightens with scale, not from a second family or uppercase labels.
 
 ### Hierarchy
-- **Display** (600, clamp(2.6rem, 6vw, 5.5rem), 0.98): the contact sign-off headline only, max 14ch, balanced.
-- **Headline** (600, clamp(2.4rem, 4vw, 3.75rem), 0.95): project titles inside panels.
-- **Intro** (500, clamp(1.75rem, 2.9vw, 2.75rem), 1.14): the single identity sentence under the header, max 42ch; its second clause drops to muted.
-- **Title** (500, clamp(1.5rem, 2.2vw, 2rem)): section titles ("About").
-- **Lead** (500, clamp(1.35rem, 2vw, 1.75rem), 1.3): the About opening statement, in ink.
-- **Summary** (400, 1.15rem, 1.45): panel summaries, max 32ch, ink mixed 86% toward the panel bg.
-- **Body** (400, 17px, 1.5): About copy (max 64ch) and links.
-- **Label** (400, 0.94rem): the smallest size on the page. Project type lines in muted; the proof metric at 500 in accent with tabular numerals; photo captions in muted.
+Every piece of text uses one of ten styles, defined once in `src/styles/type.module.css` and composed into each component's own class. Sizes live in the `--text-*` tokens in `globals.css`. Colour is never part of a style; the same style reads as ink, muted, or accent by role.
+
+- **Hero** (600, clamp(3.25rem, 8.6vw, 6rem), 0.94, -0.04em): the homepage statement and the 404 heading.
+- **Display** (clamp(3rem, 7vw, 6rem), 0.94; clamp(2.5rem, 9vw, 4rem) at 900px and below): project names in bands and the next-project strip. The product's own face supplies family, weight, and tracking.
+- **Heading** (500, clamp(1.5rem, 2.2vw, 2rem), 1.2, -0.02em): section titles and the contact email.
+- **Lead** (500, clamp(1.35rem, 2vw, 1.75rem), 1.3, -0.02em): a section's opening paragraph.
+- **Large** (400, 1.15rem, 1.5): summaries, case-study prose, the 404 description.
+- **Large Strong** (500, 1.15rem, 1.4, -0.01em): row titles in Decisions and Progression.
+- **Body** (400, 17px, 1.5): row details, fact lists, navigation, and links; also the page default.
+- **Body Strong** (600, 17px, 1.5, -0.01em): the wordmark, primary actions, architecture node names.
+- **Small** (400, 0.94rem, 1.45): type lines, captions, node details, the next-project label, the nav on phones.
+- **Small Strong** (500, 0.94rem, 1.45): the proof metric (accent, tabular numerals) and "Read the case study".
 
 ### Named Rules
-**The Tightening Rule.** Tracking scales with size: -0.01em on the 1.06rem wordmark, -0.015em on the contact email, -0.02em at lead and title, -0.025em at intro, -0.035em at headline and display.
+**The Tightening Rule.** Tracking scales with size: normal at small, body, and large; -0.01em on their strong forms; -0.02em at lead and heading; -0.04em at hero.
 
-**The No-Uppercase Rule.** Labels are sentence case in muted at 0.94rem. The homepage uses no tracked uppercase labels or eyebrows.
+**The No-Uppercase Rule.** Labels are sentence case at Small. The homepage uses no tracked uppercase labels or eyebrows.
 
 ## Layout
 
@@ -196,7 +209,7 @@ A single centered rail (1280px max) inside a fluid gutter (clamp(20px, 5vw, 80px
 
 - **Header:** wordmark left, nav right, 88px tall. Below 560px it stacks, wordmark over nav.
 - **Work:** all project panels at full rail width, stacked with clamp(20px, 2.4vw, 32px) gaps, in the data order of `projects.ts`. Each panel is two columns, copy at minmax(360px, 5fr) and media at 7fr, min-height clamp(440px, 58vh, 580px). The copy column is a flex column whose proof line (or, without a metric, the actions) is pushed to the bottom with `margin-top: auto`.
-- **Media layouts** (set by `layout`; image media only): *browser* places one wide screenshot that starts at the panel padding and runs off the right and bottom edges; *phones* stands three screens on the panel floor, each stepped lower (0, clamp(32px, 5vh, 64px), clamp(64px, 10vh, 128px)) and cropped at the bottom; *photo* fills the media half edge to edge with a caption bottom-right.
+- **Media layouts** (set by `layout`; image media only): *browser* places one wide screenshot held to the rail on both sides and cropped only at the bottom; *phones* stands three screens on the panel floor, each stepped lower (0, clamp(32px, 5vh, 64px), clamp(64px, 10vh, 128px)) and cropped at the bottom; *photo* fills the media half edge to edge with a caption bottom-right.
 - **About:** two columns, section title at minmax(200px, 0.42fr) and body at 1fr, clamp(112px, 16vh, 180px) below the last panel.
 - **Contact:** clamp(128px, 18vh, 200px) below About; a hairline-ruled link row ends with back-to-top pushed right.
 - **At 900px and below:** panels collapse to one column (copy over media), browser screenshots inset from the left by clamp(20px, 5vw, 40px), phones shrink to 30% each, the photo takes a 16:11 frame and its caption moves left, About stacks.
@@ -207,7 +220,7 @@ A single centered rail (1280px max) inside a fluid gutter (clamp(20px, 5vw, 80px
 The page and panels are flat. Depth belongs only to the product screenshots, which float above their panel on soft, wide, ambient black shadows, as if a device or window were lying on the product's own ground. Panels get a 1px inset hairline in their accent at 22% opacity rather than a shadow.
 
 ### Shadow Vocabulary
-- **Window Lift** (`box-shadow: -18px 24px 60px rgba(0, 0, 0, 0.45)`): the browser-layout screenshot, cast down and to the left as it runs off the right edge.
+- **Window Lift** (`box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45)`): the browser-layout screenshot, cast straight down like the phones.
 - **Phone Lift** (`box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45)`): each phone screen in the phones layout.
 - **Accent Hairline** (`box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--accent) 22%, transparent)`): the edge of every panel.
 
@@ -216,7 +229,7 @@ The page and panels are flat. Depth belongs only to the product screenshots, whi
 
 ## Shapes
 
-Corners belong to the portfolio, not the product: every panel uses the single `--radius-panel` token (16px), whatever the project. Screenshots that bleed off an edge round only the corner that remains visible (10px top-left for the browser screen). Phone screens round at 28px to read as devices. Outside the panels everything is square, divided by 1px hairlines. The focus ring rounds at 4px. The only icon is a 16px stroked arrow (1.5px, round caps) rotated to point right, up-right (external), or up (back to top); in nav, text links, and contact links it renders at 13px.
+Corners belong to the portfolio, not the product: every panel uses the single `--radius-panel` token (16px), whatever the project. Screenshots cropped by the band's foot round only the corners that remain visible (10px on both top corners for the browser screen). Phone screens round at 28px to read as devices. Outside the panels everything is square, divided by 1px hairlines. The focus ring rounds at 4px. The only icon is a 16px stroked arrow (1.5px, round caps) rotated to point right, up-right (external), or up (back to top); in nav, text links, and contact links it renders at 13px.
 
 ### Named Rules
 **The One Corner Rule.** Products lend the panel their colours, never their geometry. A new project gets a theme, not a radius.
@@ -251,7 +264,7 @@ Ink tab (8px radius) with ground-colored text, hidden above the viewport until f
 - **Do** give every project a full `theme` object (bg, surface, ink, muted, accent) and a `layout`, and render it as the same project panel as every other project.
 - **Do** verify each theme's ink, muted, and accent at 4.5:1 or better against its bg, and lift a brand color that fails (The Contrast Lift Rule).
 - **Do** keep the portfolio chrome (header, intro, section titles, About, contact) on ground, ink, muted, and line only.
-- **Do** use real product screenshots, bleeding off panel edges, with the Window or Phone Lift shadows.
+- **Do** use real product screenshots, held to the rail and cropped at the foot, with the Window or Phone Lift shadows.
 - **Do** use text links with the stroked arrow for every action, with 44px minimum targets.
 - **Do** keep transitions on the ease-out curve (cubic-bezier(0.16, 1, 0.3, 1)) and honor `prefers-reduced-motion`.
 

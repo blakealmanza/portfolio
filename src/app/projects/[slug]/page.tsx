@@ -129,8 +129,8 @@ export default async function CaseStudyPage({ params }: Props) {
             <dl className={`${styles.content} ${styles.rows}`}>
               {project.decisions.map((decision) => (
                 <div key={decision.title}>
-                  <dt>{decision.title}</dt>
-                  <dd>{decision.description}</dd>
+                  <dt className={styles.rowTitle}>{decision.title}</dt>
+                  <dd className={styles.rowDetail}>{decision.description}</dd>
                 </div>
               ))}
             </dl>

@@ -1,0 +1,85 @@
+/*
+ * The site's text styles. Every piece of text uses one of these, composed into its own class:
+ *   composes: small from "../styles/type.module.css";   (a relative path; the @/ alias doesn't resolve in composes)
+ * Sizes come from the --text-* tokens in globals.css, so a responsive change to a size happens there, once.
+ * Colour is not part of a style: the same style reads as ink, muted, or accent depending on its role.
+ * Each style sets its own tracking, so nothing inherits a tighter setting from the text around it.
+ */
+
+/* The homepage statement and the 404 heading: the portfolio's own voice, set as large as anything on the site. */
+.hero {
+  font-size: var(--text-hero);
+  font-weight: 600;
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+}
+
+/* Project names. The product's own face supplies the family, weight, and tracking, so only the size is shared. */
+.display {
+  font-size: var(--text-display);
+  line-height: 0.94;
+}
+
+/* Section titles, and the contact email, which stands in for one. */
+.heading {
+  font-size: var(--text-heading);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* The opening paragraph of a section. */
+.lead {
+  font-size: var(--text-lead);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+/* Summaries and long-form prose. */
+.large {
+  font-size: var(--text-large);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
+/* Titles of rows within a section. */
+.largeStrong {
+  font-size: var(--text-large);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+/* Everything else: row details, fact lists, navigation, and links. Also the body default. */
+.body {
+  font-size: var(--text-body);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
+/* The wordmark, primary actions, and labels that name a thing. */
+.bodyStrong {
+  font-size: var(--text-body);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+/* Supporting detail: type lines, captions, and the small print beneath a label. */
+.small {
+  font-size: var(--text-small);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: normal;
+}
+
+/* Small text that should be read first among its neighbours: proof lines and the call to read a case study. */
+.smallStrong {
+  font-size: var(--text-small);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: normal;
+}

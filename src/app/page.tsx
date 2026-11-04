@@ -25,7 +25,7 @@ export default function Home() {
 
       <section className={styles.intro} aria-labelledby="intro-title">
         <div className={styles.introInner}>
-          <h1 id="intro-title">
+          <h1 id="intro-title" className={styles.statement}>
             <span className={styles.statementLine}>I design interfaces</span>{" "}
             <span className={styles.statementLine}>and build them.</span>
           </h1>

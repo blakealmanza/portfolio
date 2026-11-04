@@ -30,9 +30,7 @@
 }
 
 .brand {
-  font-size: 1.06rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  composes: bodyStrong from "../styles/type.module.css";
 }
 
 .nav {
@@ -59,13 +57,9 @@
 }
 
 @media (max-width: 560px) {
-  .brand {
-    font-size: 1rem;
-  }
-
   .nav {
     gap: 20px;
-    font-size: 0.94rem;
+    font-size: var(--text-small);
   }
 
   /* Keep the project index and hiring actions visible on phones. */

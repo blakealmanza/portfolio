@@ -75,7 +75,7 @@ export function ProjectSection({
       {shownMedia.map((media, index) => (
         // Each screen travels on its own, so one caught mid-reveal on the homepage glides straight to its resting place.
         <ViewTransition key={media.src} name={`band-screen-${project.slug}-${index}`} share={share("band-part")} default="none">
-          <span className={styles.screen}>
+          <span className={styles.screen} style={{ "--ratio": `${media.width} / ${media.height}` } as CSSProperties}>
             <Image
               src={media.src}
               alt=""
