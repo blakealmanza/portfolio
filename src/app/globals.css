@@ -92,31 +92,87 @@ video {
 }
 
 /*
- * Page transitions. The header holds still, a project's band morphs between its homepage slot and the top of its
- * case study, and everything else crossfades quickly underneath.
+ * Page transitions. A project's band morphs as a plain colour plate between its homepage slot (or the next-case strip)
+ * and the top of its case study, clipping its title, summary, and screens, which travel as their own nested pieces.
+ * The header crossfades in place. The rest of the new page is simply there underneath, except on the way back home.
  */
+
+:root {
+  --vt-duration: 560ms;
+  --vt-ease: cubic-bezier(0.3, 0, 0, 1);
+}
+
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: var(--vt-duration);
+  animation-timing-function: var(--vt-ease);
+}
 
 ::view-transition-group(site-header) {
   z-index: 100;
-  animation: none;
 }
 
-::view-transition-old(site-header) {
-  animation: none;
+/*
+ * The trip back home. There is usually no band on screen to morph, and React shows the new page as-is, which makes
+ * the way back a hard cut. So the case study is named as one piece for this transition only, and it dissolves away
+ * over the live homepage, already in place underneath, with the header changing colour on the same clock. The name
+ * exists from the moment the transition starts, so the leaving snapshot captures it; the band and header inside keep
+ * their own names and travel separately. Nothing on the live page animates, so nothing is caught mid-motion.
+ */
+::view-transition-old(case-study-page) {
+  animation: 300ms ease both vt-fade-out;
 }
 
-::view-transition-new(site-header) {
-  animation: none;
+html:active-view-transition-type(case-back) {
+  & [data-case-study] {
+    view-transition-name: case-study-page;
+  }
+
+  /*
+   * The header dissolves with the case study rather than travelling on its own, over the live header underneath,
+   * which already wears the homepage's colour. As its own piece Safari draws it see-through for the whole transition.
+   * Important outranks the name React gives it.
+   */
+  & [data-site-header] {
+    view-transition-name: none !important;
+  }
 }
 
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 260ms;
-}
-
+/* The plate's edge is the crop. Its snapshots stay their natural size, anchored at the top, so nothing stretches. */
 ::view-transition-group(.band) {
-  animation-duration: 600ms;
-  animation-timing-function: var(--ease-out);
+  overflow: clip;
+}
+
+::view-transition-old(.band),
+::view-transition-new(.band) {
+  height: auto;
+  object-fit: none;
+  object-position: top;
+}
+
+/*
+ * From the next-case strip, the strip's own label and arrow leave at once, and the new band's type line, proof, and
+ * screens wait until its title and summary have nearly arrived, so the travelling copy never lands on top of them.
+ */
+html:active-view-transition-type(case-next)::view-transition-old(.band) {
+  animation: 140ms ease both vt-fade-out;
+}
+
+html:active-view-transition-type(case-next)::view-transition-new(.band) {
+  animation: 300ms ease 240ms both vt-fade-in;
+}
+
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

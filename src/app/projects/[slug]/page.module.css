@@ -245,7 +245,13 @@
   color: var(--accent);
 }
 
+.nextTitle {
+  display: inline-block;
+  view-transition-group: nearest;
+}
+
 .nextSummary {
+  view-transition-group: nearest;
   max-width: 40ch;
   color: color-mix(in oklab, var(--ink) 88%, var(--bg));
   font-size: 1.15rem;

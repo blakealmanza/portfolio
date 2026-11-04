@@ -6,6 +6,7 @@ import { ArrowIcon } from "@/components/Icons";
 import { ProjectSection, faceStyle, themeStyle } from "@/components/ProjectSection";
 import { SiteHeader } from "@/components/SiteHeader";
 import { ThemeChrome } from "@/components/ThemeChrome";
+import { backTypes, nextShare, openTypes } from "@/components/transitions";
 import { site } from "@/config/site";
 import { projects } from "@/content/projects";
 import styles from "./page.module.css";
@@ -17,6 +18,7 @@ export function generateStaticParams() {
 }
 
 type Props = { params: Promise<{ slug: string }> };
+
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -40,7 +42,7 @@ export default async function CaseStudyPage({ params }: Props) {
 
   return (
     // The whole page stays in the product's world: the band opens it, and the write-up continues on the same ground.
-    <main className={styles.page} style={themeStyle(project.theme)}>
+    <main className={styles.page} style={themeStyle(project.theme)} data-case-study>
       <SiteHeader />
       <ThemeChrome selector="[data-chrome]" pinFirstAtTop />
 
@@ -150,7 +152,7 @@ export default async function CaseStudyPage({ params }: Props) {
         )}
 
         <nav className={styles.footer} aria-label="Case study navigation">
-          <Link className={styles.back} href={`/#${project.slug}`}>
+          <Link className={styles.back} href={`/#${project.slug}`} transitionTypes={backTypes}>
             <ArrowIcon direction="left" size={13} />
             All work
           </Link>
@@ -158,11 +160,11 @@ export default async function CaseStudyPage({ params }: Props) {
       </div>
       {next.slug !== project.slug && (
         <nav aria-label="Next case study">
-          <ViewTransition name={`band-${next.slug}`} share="band" default="none">
+          <ViewTransition name={`band-${next.slug}`} share={nextShare("band")} default="none">
             <Link
               className={styles.next}
               href={`/projects/${next.slug}`}
-              transitionTypes={["case-open"]}
+              transitionTypes={openTypes(next.slug, "case-next")}
               style={themeStyle(next.theme)}
               data-chrome
               data-scheme={next.theme.scheme}
@@ -171,10 +173,15 @@ export default async function CaseStudyPage({ params }: Props) {
                 <span className={styles.nextLabel}>Next case study</span>
                 <span className={styles.nextContent}>
                   <span className={styles.nextName} style={faceStyle(next.face)}>
-                    {next.shortTitle ?? next.title}
+                    {/* Only the name travels into the next band's title; the arrow stays behind with the strip. */}
+                    <ViewTransition name={`band-title-${next.slug}`} share={nextShare("band-part")} default="none">
+                      <span className={styles.nextTitle}>{next.shortTitle ?? next.title}</span>
+                    </ViewTransition>
                     <ArrowIcon size={32} />
                   </span>
-                  <span className={styles.nextSummary}>{next.summary}</span>
+                  <ViewTransition name={`band-summary-${next.slug}`} share={nextShare("band-part")} default="none">
+                    <span className={styles.nextSummary}>{next.summary}</span>
+                  </ViewTransition>
                 </span>
               </span>
             </Link>
