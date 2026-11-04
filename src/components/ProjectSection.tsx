@@ -5,7 +5,7 @@ import type { Project, ProjectFace, ProjectLayout, ProjectTheme } from "@/conten
 import { ArrowIcon } from "./Icons";
 import { MediaReveal } from "./MediaReveal";
 import styles from "./ProjectSection.module.css";
-import { homeShare, openTypes } from "./transitions";
+import { homeShare, openTypes, pageShare } from "./transitions";
 
 const layoutClass: Record<ProjectLayout, string> = {
   stage: styles.layoutStage,
@@ -68,7 +68,7 @@ export function ProjectSection({
   // On its case study the band shows its screens whole, so a wide screen keeps its own proportions instead of filling a crop.
   const natural = variant === "page" && !phones;
   // On the homepage a band pairs only with its own case study; on that case study it pairs with whatever leads back.
-  const share = (className: string) => (variant === "home" ? homeShare(project.slug, className) : className);
+  const share = (className: string) => (variant === "home" ? homeShare(project.slug, className) : pageShare(className));
 
   const screens = (
     <MediaReveal count={shownMedia.length} phones={phones} animate={variant === "home"}>

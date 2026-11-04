@@ -94,7 +94,7 @@ video {
 /*
  * Page transitions. A project's band morphs as a plain colour plate between its homepage slot (or the next-case strip)
  * and the top of its case study, clipping its title, summary, and screens, which travel as their own nested pieces.
- * The header crossfades in place, and the rest of each page crossfades underneath on the same clock.
+ * The header crossfades in place, and each page comes and goes as one piece underneath (see PageTransition).
  */
 
 :root {
@@ -109,15 +109,66 @@ video {
   animation-timing-function: var(--vt-ease);
 }
 
-/* The page underneath fades on a shorter, even crossfade so the two sides always sum to full opacity. */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 320ms;
-  animation-timing-function: ease;
-}
-
 ::view-transition-group(site-header) {
   z-index: 100;
+}
+
+/*
+ * Whole pages (see PageTransition). Into a case study the leaving page holds still underneath while the arriving one
+ * fades in over it, beneath the morphing band, so nothing dips to the ground colour.
+ *
+ * Back to the homepage there is usually no band on screen to morph, and two unrelated pages crossfading read as a
+ * muddy double exposure. So the case study clears quickly to the colour of the band the homepage lands on (already
+ * on the root as --chrome-bg, see ThemeChrome), and the homepage rises into place over it. It starts a little low,
+ * so its top edge stays hidden under the header, which changes colour on the same clock.
+ */
+
+/* Arriving pages are stacked last by default, so restate the order: leaving page, arriving page, band, header. */
+::view-transition-group(.page-out) {
+  z-index: 1;
+}
+
+::view-transition-group(.page-in),
+::view-transition-group(.page-rise) {
+  z-index: 2;
+}
+
+::view-transition-group(.band) {
+  z-index: 3;
+}
+
+::view-transition-old(.page-out) {
+  animation: none;
+}
+
+::view-transition-new(.page-in) {
+  animation: 320ms ease both vt-fade-in;
+}
+
+::view-transition-new(.page-rise) {
+  animation: 420ms var(--vt-ease) 60ms both vt-rise-in;
+}
+
+html:active-view-transition-type(case-back) {
+  & body {
+    background: var(--chrome-bg, var(--ground));
+  }
+
+  &::view-transition-old(.page-out) {
+    animation: 180ms ease both vt-fade-out;
+  }
+
+  &::view-transition-old(site-header),
+  &::view-transition-new(site-header) {
+    animation-duration: 420ms;
+  }
+}
+
+@keyframes vt-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
 }
 
 /* The plate's edge is the crop. Its snapshots stay their natural size, anchored at the top, so nothing stretches. */
