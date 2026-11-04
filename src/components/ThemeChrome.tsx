@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 const chromeVars = ["--bg", "--ink", "--muted", "--accent"] as const;
 
 /**
  * Hands the sticky header, scrollbar, and text selection to whichever themed section sits under the header.
  * Copies that section's theme onto the root as --chrome-* properties, so scrolling never re-renders the page.
+ * Runs as a layout effect so a page arriving through a view transition is snapshotted with its header already themed.
  */
 export function ThemeChrome({ selector, pinFirstAtTop = false }: { selector: string; pinFirstAtTop?: boolean }) {
-  useEffect(() => {
+  useLayoutEffect(() => {
     const root = document.documentElement;
     const sections = Array.from(document.querySelectorAll<HTMLElement>(selector));
     if (sections.length === 0) return;
@@ -48,10 +49,17 @@ export function ThemeChrome({ selector, pinFirstAtTop = false }: { selector: str
     };
 
     apply();
+    // Next scrolls to a hash target in its own layout effect, after this one; a microtask still lands before the view
+    // transition snapshots the new page, so returning to a band themes the header for it rather than for the intro.
+    let live = true;
+    queueMicrotask(() => {
+      if (live) apply();
+    });
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);
 
     return () => {
+      live = false;
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);

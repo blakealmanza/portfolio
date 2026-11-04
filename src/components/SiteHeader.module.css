@@ -11,6 +11,15 @@
     background-color 500ms var(--ease-out);
 }
 
+/*
+ * A new page's header must already wear its theme when the browser snapshots it, so the colour change is carried by
+ * the view transition's crossfade rather than a CSS transition that would start from the old page's colour.
+ */
+:global(html:active-view-transition) .header,
+:global(html:active-view-transition) .nav {
+  transition: none;
+}
+
 .inner {
   display: flex;
   align-items: center;

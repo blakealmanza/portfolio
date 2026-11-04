@@ -61,6 +61,12 @@
   text-wrap: balance;
 }
 
+/* The name's own box, sized to its text, is what travels between pages; the h1/h2 around it fills a grid column. */
+.titleText {
+  display: inline-block;
+  view-transition-group: nearest;
+}
+
 /* Long names step down a size so they hold to two or three lines. */
 .titleLong {
   font-size: clamp(2.6rem, 4.8vw, 4.5rem);
@@ -75,6 +81,7 @@
 
 .summary {
   grid-area: summary;
+  view-transition-group: nearest;
   max-width: 40ch;
   font-size: 1.15rem;
   line-height: 1.45;
@@ -132,6 +139,8 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
+  /* Travels nested inside its band, so the band's edge keeps cropping it mid-transition just as it does at rest. */
+  view-transition-group: nearest;
 }
 
 .screen img {

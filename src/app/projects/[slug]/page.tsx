@@ -162,7 +162,7 @@ export default async function CaseStudyPage({ params }: Props) {
             <Link
               className={styles.next}
               href={`/projects/${next.slug}`}
-              transitionTypes={["case-open"]}
+              transitionTypes={["case-next"]}
               style={themeStyle(next.theme)}
               data-chrome
               data-scheme={next.theme.scheme}
@@ -171,10 +171,15 @@ export default async function CaseStudyPage({ params }: Props) {
                 <span className={styles.nextLabel}>Next case study</span>
                 <span className={styles.nextContent}>
                   <span className={styles.nextName} style={faceStyle(next.face)}>
-                    {next.shortTitle ?? next.title}
+                    {/* Only the name travels into the next band's title; the arrow stays behind with the strip. */}
+                    <ViewTransition name={`band-title-${next.slug}`} share="band-part" default="none">
+                      <span className={styles.nextTitle}>{next.shortTitle ?? next.title}</span>
+                    </ViewTransition>
                     <ArrowIcon size={32} />
                   </span>
-                  <span className={styles.nextSummary}>{next.summary}</span>
+                  <ViewTransition name={`band-summary-${next.slug}`} share="band-part" default="none">
+                    <span className={styles.nextSummary}>{next.summary}</span>
+                  </ViewTransition>
                 </span>
               </span>
             </Link>
