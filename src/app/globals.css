@@ -114,48 +114,28 @@ video {
 }
 
 /*
- * The trip back home (see PageTransition). There is usually no band on screen to morph, and two unrelated pages
- * crossfading read as a muddy double exposure. So the case study clears quickly to the colour of the band the homepage lands on (already
- * on the root as --chrome-bg, see ThemeChrome), and the homepage rises into place over it. It starts a little low,
- * so its top edge stays hidden under the header, which changes colour on the same clock.
+ * The trip back home. There is usually no band on screen to morph, and React shows the new page as-is, which makes
+ * the way back a hard cut. So the case study is named as one piece for this transition only, and it dissolves away
+ * over the live homepage, already in place underneath, with the header changing colour on the same clock. The name
+ * exists from the moment the transition starts, so the leaving snapshot captures it; the band and header inside keep
+ * their own names and travel separately. Nothing on the live page animates, so nothing is caught mid-motion.
  */
-
-/* The arriving page is stacked last by default, so restate the order: leaving page, arriving page, band, header. */
-::view-transition-group(.page-out) {
-  z-index: 1;
-}
-
-::view-transition-group(.page-rise) {
-  z-index: 2;
-}
-
-::view-transition-group(.band) {
-  z-index: 3;
-}
-
-::view-transition-old(.page-out) {
-  animation: 180ms ease both vt-fade-out;
-}
-
-::view-transition-new(.page-rise) {
-  animation: 420ms var(--vt-ease) 60ms both vt-rise-in;
+::view-transition-old(case-study-page) {
+  animation: 300ms ease both vt-fade-out;
 }
 
 html:active-view-transition-type(case-back) {
-  & body {
-    background: var(--chrome-bg, var(--ground));
+  & [data-case-study] {
+    view-transition-name: case-study-page;
   }
 
-  &::view-transition-old(site-header),
-  &::view-transition-new(site-header) {
-    animation-duration: 420ms;
-  }
-}
-
-@keyframes vt-rise-in {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
+  /*
+   * The header dissolves with the case study rather than travelling on its own, over the live header underneath,
+   * which already wears the homepage's colour. As its own piece Safari draws it see-through for the whole transition.
+   * Important outranks the name React gives it.
+   */
+  & [data-site-header] {
+    view-transition-name: none !important;
   }
 }
 

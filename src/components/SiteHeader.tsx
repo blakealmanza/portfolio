@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { ViewTransition, type ReactNode } from "react";
 import { site } from "@/config/site";
 import { ArrowIcon } from "./Icons";
 import styles from "./SiteHeader.module.css";
@@ -28,22 +28,24 @@ export function SiteHeader({ home = false }: { home?: boolean }) {
   const base = home ? "" : "/";
 
   return (
-    // Named inline: CSS Modules would hash the name, and the global transition rules need to find it.
-    <header data-site-header className={styles.header} style={{ viewTransitionName: "site-header" }}>
-      <div className={styles.inner}>
-        <NavLink home={home} className={styles.brand} href={home ? "#top" : "/"}>
-          {site.name}
-        </NavLink>
-        <nav className={styles.nav} aria-label="Main">
-          <NavLink home={home} href={`${base}#work`}>Work</NavLink>
-          <NavLink home={home} className={styles.navAbout} href={`${base}#about`}>About</NavLink>
-          <a href={site.resumeHref} target="_blank" rel="noreferrer" aria-label="Resume (PDF, opens in a new tab)">
-            Resume
-            <ArrowIcon direction="up-right" size={13} />
-          </a>
-          <NavLink home={home} href={`${base}#contact`}>Contact</NavLink>
-        </nav>
-      </div>
-    </header>
+    // A pair on every page, so React always starts a transition when the page changes, even with no band to morph.
+    <ViewTransition name="site-header" share="auto" default="none">
+      <header data-site-header className={styles.header}>
+        <div className={styles.inner}>
+          <NavLink home={home} className={styles.brand} href={home ? "#top" : "/"}>
+            {site.name}
+          </NavLink>
+          <nav className={styles.nav} aria-label="Main">
+            <NavLink home={home} href={`${base}#work`}>Work</NavLink>
+            <NavLink home={home} className={styles.navAbout} href={`${base}#about`}>About</NavLink>
+            <a href={site.resumeHref} target="_blank" rel="noreferrer" aria-label="Resume (PDF, opens in a new tab)">
+              Resume
+              <ArrowIcon direction="up-right" size={13} />
+            </a>
+            <NavLink home={home} href={`${base}#contact`}>Contact</NavLink>
+          </nav>
+        </div>
+      </header>
+    </ViewTransition>
   );
 }
