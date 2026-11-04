@@ -1,14 +1,18 @@
 import { ViewTransition, type ReactNode } from "react";
 
 /**
- * A whole page as one piece of every navigation. React won't crossfade the document itself when nothing changes outside
- * its <ViewTransition> boundaries, so each page names its own way in and out: the leaving page holds still underneath,
- * and the arriving page fades in over it (rising into place on the way back home), so the two never dip to the ground
- * colour between them. Bands, the header, and their pieces travel separately on top.
+ * A whole page as one piece of the trip back to the homepage. React won't crossfade the document itself when nothing
+ * changes outside its <ViewTransition> boundaries, which suits opening a case study (the new page is simply there and
+ * only the band's layout moves) but leaves the way back as a hard cut. So on "case-back" the leaving case study clears
+ * and the homepage rises into place; every other navigation leaves pages alone.
  */
 export function PageTransition({ children }: { children: ReactNode }) {
   return (
-    <ViewTransition enter={{ "case-back": "page-rise", default: "page-in" }} exit="page-out" default="none">
+    <ViewTransition
+      enter={{ "case-back": "page-rise", default: "none" }}
+      exit={{ "case-back": "page-out", default: "none" }}
+      default="none"
+    >
       {children}
     </ViewTransition>
   );

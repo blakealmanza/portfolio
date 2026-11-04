@@ -94,7 +94,7 @@ video {
 /*
  * Page transitions. A project's band morphs as a plain colour plate between its homepage slot (or the next-case strip)
  * and the top of its case study, clipping its title, summary, and screens, which travel as their own nested pieces.
- * The header crossfades in place, and each page comes and goes as one piece underneath (see PageTransition).
+ * The header crossfades in place. The rest of the new page is simply there underneath, except on the way back home.
  */
 
 :root {
@@ -114,21 +114,17 @@ video {
 }
 
 /*
- * Whole pages (see PageTransition). Into a case study the leaving page holds still underneath while the arriving one
- * fades in over it, beneath the morphing band, so nothing dips to the ground colour.
- *
- * Back to the homepage there is usually no band on screen to morph, and two unrelated pages crossfading read as a
- * muddy double exposure. So the case study clears quickly to the colour of the band the homepage lands on (already
+ * The trip back home (see PageTransition). There is usually no band on screen to morph, and two unrelated pages
+ * crossfading read as a muddy double exposure. So the case study clears quickly to the colour of the band the homepage lands on (already
  * on the root as --chrome-bg, see ThemeChrome), and the homepage rises into place over it. It starts a little low,
  * so its top edge stays hidden under the header, which changes colour on the same clock.
  */
 
-/* Arriving pages are stacked last by default, so restate the order: leaving page, arriving page, band, header. */
+/* The arriving page is stacked last by default, so restate the order: leaving page, arriving page, band, header. */
 ::view-transition-group(.page-out) {
   z-index: 1;
 }
 
-::view-transition-group(.page-in),
 ::view-transition-group(.page-rise) {
   z-index: 2;
 }
@@ -138,11 +134,7 @@ video {
 }
 
 ::view-transition-old(.page-out) {
-  animation: none;
-}
-
-::view-transition-new(.page-in) {
-  animation: 320ms ease both vt-fade-in;
+  animation: 180ms ease both vt-fade-out;
 }
 
 ::view-transition-new(.page-rise) {
@@ -152,10 +144,6 @@ video {
 html:active-view-transition-type(case-back) {
   & body {
     background: var(--chrome-bg, var(--ground));
-  }
-
-  &::view-transition-old(.page-out) {
-    animation: 180ms ease both vt-fade-out;
   }
 
   &::view-transition-old(site-header),
