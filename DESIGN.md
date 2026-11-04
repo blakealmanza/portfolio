@@ -130,7 +130,7 @@ Density is low and the type does the structuring: large tight-tracked headings, 
 - One panel component for every project; no featured tier, no secondary list. Variation comes from the theme and the media layout (browser, phones, photo).
 - One portfolio-wide panel radius (16px); corners are the frame's, colours are the product's.
 - One typeface (Host Grotesk) across every role, with negative tracking that tightens as size grows.
-- Real product screenshots that bleed off panel edges, lifted by soft ambient shadows.
+- Real product screenshots, cropped by the band's foot, lifted by soft ambient shadows.
 - Text links with a stroked SVG arrow instead of buttons; no pills, no filled CTAs.
 - Ground tint that follows the project panel in view, transitioned over 900ms.
 
@@ -196,7 +196,7 @@ A single centered rail (1280px max) inside a fluid gutter (clamp(20px, 5vw, 80px
 
 - **Header:** wordmark left, nav right, 88px tall. Below 560px it stacks, wordmark over nav.
 - **Work:** all project panels at full rail width, stacked with clamp(20px, 2.4vw, 32px) gaps, in the data order of `projects.ts`. Each panel is two columns, copy at minmax(360px, 5fr) and media at 7fr, min-height clamp(440px, 58vh, 580px). The copy column is a flex column whose proof line (or, without a metric, the actions) is pushed to the bottom with `margin-top: auto`.
-- **Media layouts** (set by `layout`; image media only): *browser* places one wide screenshot that starts at the panel padding and runs off the right and bottom edges; *phones* stands three screens on the panel floor, each stepped lower (0, clamp(32px, 5vh, 64px), clamp(64px, 10vh, 128px)) and cropped at the bottom; *photo* fills the media half edge to edge with a caption bottom-right.
+- **Media layouts** (set by `layout`; image media only): *browser* places one wide screenshot held to the rail on both sides and cropped only at the bottom; *phones* stands three screens on the panel floor, each stepped lower (0, clamp(32px, 5vh, 64px), clamp(64px, 10vh, 128px)) and cropped at the bottom; *photo* fills the media half edge to edge with a caption bottom-right.
 - **About:** two columns, section title at minmax(200px, 0.42fr) and body at 1fr, clamp(112px, 16vh, 180px) below the last panel.
 - **Contact:** clamp(128px, 18vh, 200px) below About; a hairline-ruled link row ends with back-to-top pushed right.
 - **At 900px and below:** panels collapse to one column (copy over media), browser screenshots inset from the left by clamp(20px, 5vw, 40px), phones shrink to 30% each, the photo takes a 16:11 frame and its caption moves left, About stacks.
@@ -207,7 +207,7 @@ A single centered rail (1280px max) inside a fluid gutter (clamp(20px, 5vw, 80px
 The page and panels are flat. Depth belongs only to the product screenshots, which float above their panel on soft, wide, ambient black shadows, as if a device or window were lying on the product's own ground. Panels get a 1px inset hairline in their accent at 22% opacity rather than a shadow.
 
 ### Shadow Vocabulary
-- **Window Lift** (`box-shadow: -18px 24px 60px rgba(0, 0, 0, 0.45)`): the browser-layout screenshot, cast down and to the left as it runs off the right edge.
+- **Window Lift** (`box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45)`): the browser-layout screenshot, cast straight down like the phones.
 - **Phone Lift** (`box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45)`): each phone screen in the phones layout.
 - **Accent Hairline** (`box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--accent) 22%, transparent)`): the edge of every panel.
 
@@ -216,7 +216,7 @@ The page and panels are flat. Depth belongs only to the product screenshots, whi
 
 ## Shapes
 
-Corners belong to the portfolio, not the product: every panel uses the single `--radius-panel` token (16px), whatever the project. Screenshots that bleed off an edge round only the corner that remains visible (10px top-left for the browser screen). Phone screens round at 28px to read as devices. Outside the panels everything is square, divided by 1px hairlines. The focus ring rounds at 4px. The only icon is a 16px stroked arrow (1.5px, round caps) rotated to point right, up-right (external), or up (back to top); in nav, text links, and contact links it renders at 13px.
+Corners belong to the portfolio, not the product: every panel uses the single `--radius-panel` token (16px), whatever the project. Screenshots cropped by the band's foot round only the corners that remain visible (10px on both top corners for the browser screen). Phone screens round at 28px to read as devices. Outside the panels everything is square, divided by 1px hairlines. The focus ring rounds at 4px. The only icon is a 16px stroked arrow (1.5px, round caps) rotated to point right, up-right (external), or up (back to top); in nav, text links, and contact links it renders at 13px.
 
 ### Named Rules
 **The One Corner Rule.** Products lend the panel their colours, never their geometry. A new project gets a theme, not a radius.
@@ -251,7 +251,7 @@ Ink tab (8px radius) with ground-colored text, hidden above the viewport until f
 - **Do** give every project a full `theme` object (bg, surface, ink, muted, accent) and a `layout`, and render it as the same project panel as every other project.
 - **Do** verify each theme's ink, muted, and accent at 4.5:1 or better against its bg, and lift a brand color that fails (The Contrast Lift Rule).
 - **Do** keep the portfolio chrome (header, intro, section titles, About, contact) on ground, ink, muted, and line only.
-- **Do** use real product screenshots, bleeding off panel edges, with the Window or Phone Lift shadows.
+- **Do** use real product screenshots, held to the rail and cropped at the foot, with the Window or Phone Lift shadows.
 - **Do** use text links with the stroked arrow for every action, with 44px minimum targets.
 - **Do** keep transitions on the ease-out curve (cubic-bezier(0.16, 1, 0.3, 1)) and honor `prefers-reduced-motion`.
 

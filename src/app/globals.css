@@ -6,7 +6,6 @@
   --gutter: clamp(20px, 5vw, 80px);
   --rail: 1280px;
   /* How far a band's media must travel past the rail to reach the viewport edge. */
-  --bleed: calc((100vw - min(var(--rail), 100vw - 2 * var(--gutter))) / 2);
   --header-height: 72px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }

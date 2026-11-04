@@ -3,7 +3,7 @@
  * The theme arrives as --bg, --ink, --muted, --accent on the section; the title wears the product's own typeface.
  * Every band shares one structure, a compact copy strip with the media below, so only the product's world changes.
  * Each band runs a touch past the screen under the header; the media takes whatever height the copy leaves and the band's foot crops it.
- * Text keeps to the rail; only colour and media run to the viewport edges.
+ * Text and media keep to the rail; only colour runs to the viewport edges.
  */
 
 .section {
@@ -156,15 +156,11 @@
   font-size: 0.94rem;
 }
 
-/* Wide: one screen that runs off the right edge and is cut by the band's bottom edge. */
-
-.layoutStage .media {
-  margin-right: calc(-1 * var(--bleed));
-}
+/* Wide: one screen held to the rail, like the phones, and cut only by the band's bottom edge. */
 
 .layoutStage .screen {
-  border-radius: 10px 0 0 0;
-  box-shadow: -18px 24px 60px var(--lift);
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 24px 60px var(--lift);
 }
 
 /* Phones: up to four screens stepped down to the right and cropped by the band's bottom edge. */
@@ -213,10 +209,6 @@
 .sectionPage .mediaArea,
 .sectionPage .media {
   flex: none;
-}
-
-.sectionPage.layoutStage .media {
-  margin-right: 0;
 }
 
 .sectionPage.layoutStage .screen {
