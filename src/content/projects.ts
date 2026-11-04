@@ -10,7 +10,7 @@ export const projects: Project[] = [
       "Students can personalize their LMS, stay on top of assignments, project their grades, and share themes through a community gallery.",
     stack: "React · TypeScript · GraphQL · Manifest V3 · React Router · Supabase · Clerk",
     face: { family: "var(--font-inter)", weight: 600, tracking: "-0.04em" },
-    theme: { scheme: "dark", bg: "#141414", surface: "#1F1F1F", ink: "#F4F1EA", muted: "#ABA69C", accent: "#F59E0B", signal: "#F59E0B" },
+    theme: { scheme: "dark", bg: "#1D1C1A", surface: "#282725", ink: "#F4F1EA", muted: "#B9B4AA", accent: "#F8A114", signal: "#F59E0B" },
     layout: "stage",
     metrics: [{ value: "1,100+", label: "students using Better Halo" }],
 
@@ -116,7 +116,7 @@ export const projects: Project[] = [
       "Users build up a product's costs across materials, labor, overhead, packaging, shipping, and channel fees. PriceRight calculates a price from the chosen pricing policy.",
     stack: "React Native · Expo · TypeScript · C# · .NET · Azure Functions · Microsoft Entra · GitHub Actions",
     face: { family: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", Roboto, var(--font-sans)', weight: 700, tracking: "-0.03em" },
-    theme: { scheme: "dark", bg: "#0F172A", surface: "#1E293B", ink: "#F1F5F9", muted: "#A3B0C6", accent: "#A5B4FC", signal: "#A5B4FC" },
+    theme: { scheme: "dark", bg: "#1A2540", surface: "#253150", ink: "#F1F5F9", muted: "#AAB8CE", accent: "#A5B4FC", signal: "#A5B4FC" },
     layout: "phones",
     metrics: [{ value: "25+", label: "screens redesigned" }],
 
@@ -197,7 +197,7 @@ export const projects: Project[] = [
     stack: "Next.js · TypeScript · Supabase · Python · GitHub Actions · Memberstack · Google Maps · Google Calendar",
     shortTitle: "WSBRI",
     face: { family: "var(--font-martel)", weight: 400, tracking: "0.01em", uppercase: true },
-    theme: { scheme: "light", bg: "#F4EEE6", surface: "#FDFBF9", ink: "#2A1F17", muted: "#6E5D50", accent: "#8B5A2B", signal: "#CD7F32" },
+    theme: { scheme: "light", bg: "#E9DFD1", surface: "#FDFBF9", ink: "#2A1F17", muted: "#544437", accent: "#7A4E24", signal: "#CD7F32" },
     layout: "stage",
     metrics: [
       { value: "200+", label: "users served" },
@@ -276,7 +276,7 @@ export const projects: Project[] = [
     stack: "Astro · React · React Aria · Cloudflare Workers · Google Calendar API",
     shortTitle: "Annie’s",
     face: { family: "Georgia, \"Times New Roman\", serif", weight: 400, tracking: "-0.025em" },
-    theme: { scheme: "dark", bg: "#2C3727", surface: "#39432D", ink: "#F8F4EC", muted: "#C3C9B6", accent: "#E7BD67", signal: "#E7BD67" },
+    theme: { scheme: "dark", bg: "#212A1D", surface: "#39432D", ink: "#F8F4EC", muted: "#C3C9B6", accent: "#E7BD67", signal: "#E7BD67" },
     layout: "stage",
 
     problem:
@@ -319,7 +319,7 @@ export const projects: Project[] = [
       "An ESP32-P4 desk device with a 5\" touchscreen, paired with a self-hosted server, admin app, and desktop companion. I own the firmware and on-device LVGL interface.",
     stack: "ESP-IDF · C++ · LVGL · ESP32-P4 · .NET · SQLite · React · Tauri · Protobuf",
     face: { family: "var(--font-manrope)", weight: 700, tracking: "-0.04em" },
-    theme: { scheme: "dark", bg: "#000000", surface: "#121214", ink: "#FAFAFA", muted: "#A1A1AA", accent: "#60A5FA", signal: "#60A5FA" },
+    theme: { scheme: "dark", bg: "#141518", surface: "#1F2024", ink: "#FAFAFA", muted: "#B2B2BC", accent: "#70B6FF", signal: "#60A5FA" },
     layout: "stage",
 
     problem:
@@ -395,7 +395,7 @@ export const projects: Project[] = [
     description: "A mobile-first golf companion that helps players plan shots, track rounds, and navigate courses with confidence.",
     stack: "React · TypeScript · PWA · Google Maps · AWS Lambda · DynamoDB · Cognito · CDK · Figma",
     face: { family: "var(--font-barlow)", weight: 600, tracking: "-0.01em" },
-    theme: { scheme: "light", bg: "#EBEBEB", surface: "#FFFFFF", ink: "#232323", muted: "#5E5E5E", accent: "#2B7347", signal: "#5DBB82" },
+    theme: { scheme: "light", bg: "#DBDDD9", surface: "#FFFFFF", ink: "#232323", muted: "#454545", accent: "#246640", signal: "#5DBB82" },
     layout: "phones",
 
     problem:
@@ -469,7 +469,7 @@ export const projects: Project[] = [
     stack: "Next.js · TypeScript · OpenAI · RAG · Supabase · Accessibility",
     shortTitle: "Kimbo",
     face: { family: "var(--font-poppins)", weight: 700, tracking: "-0.03em" },
-    theme: { scheme: "dark", bg: "#00636B", surface: "#174F62", ink: "#FFFFFF", muted: "#C4E3E5", accent: "#F6D465", signal: "#F6D465" },
+    theme: { scheme: "dark", bg: "#00535B", surface: "#174F62", ink: "#FFFFFF", muted: "#CDECEE", accent: "#F6D465", signal: "#F6D465" },
     layout: "stage",
 
     problem:
