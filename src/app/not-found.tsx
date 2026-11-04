@@ -11,7 +11,7 @@ export default function NotFound() {
       </header>
 
       <section className={styles.content} aria-labelledby="not-found-title">
-        <h1 id="not-found-title">This page isn’t here.</h1>
+        <h1 id="not-found-title" className={styles.title}>This page isn’t here.</h1>
         <p className={styles.description}>
           It may have moved, or the link may be out of date. You can head back to my work or get in touch.
         </p>

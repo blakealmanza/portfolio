@@ -22,28 +22,20 @@ colors:
   kimbo-bg: "#00535B"
   kimbo-accent: "#F6D465"
 typography:
+  hero:
+    fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(3.25rem, 8.6vw, 6rem)"
+    fontWeight: 600
+    lineHeight: 0.94
+    letterSpacing: "-0.04em"
   display:
-    fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2.6rem, 6vw, 5.5rem)"
-    fontWeight: 600
-    lineHeight: 0.98
-    letterSpacing: "-0.035em"
-  headline:
-    fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2.4rem, 4vw, 3.75rem)"
-    fontWeight: 600
-    lineHeight: 0.95
-    letterSpacing: "-0.035em"
-  intro:
-    fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.75rem, 2.9vw, 2.75rem)"
-    fontWeight: 500
-    lineHeight: 1.14
-    letterSpacing: "-0.025em"
-  title:
+    fontSize: "clamp(3rem, 7vw, 6rem); clamp(2.5rem, 9vw, 4rem) at 900px and below"
+    lineHeight: 0.94
+  heading:
     fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(1.5rem, 2.2vw, 2rem)"
     fontWeight: 500
+    lineHeight: 1.2
     letterSpacing: "-0.02em"
   lead:
     fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
@@ -51,21 +43,38 @@ typography:
     fontWeight: 500
     lineHeight: 1.3
     letterSpacing: "-0.02em"
-  summary:
+  large:
     fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1.15rem"
     fontWeight: 400
-    lineHeight: 1.45
+    lineHeight: 1.5
+  largeStrong:
+    fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.15rem"
+    fontWeight: 500
+    lineHeight: 1.4
+    letterSpacing: "-0.01em"
   body:
     fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "17px"
+    fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.5
-  label:
+  bodyStrong:
+    fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.0625rem"
+    fontWeight: 600
+    lineHeight: 1.5
+    letterSpacing: "-0.01em"
+  small:
     fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.94rem"
     fontWeight: 400
-    lineHeight: 1.5
+    lineHeight: 1.45
+  smallStrong:
+    fontFamily: "Host Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.94rem"
+    fontWeight: 500
+    lineHeight: 1.45
 rounded:
   focus: "4px"
   skip-link: "8px"
@@ -176,19 +185,23 @@ Each project in `src/content/projects.ts` carries a `theme` object (bg, surface,
 **Character:** One grotesk carries everything. Hierarchy comes from size, weight (400, 500, 600 only), and tracking that tightens with scale, not from a second family or uppercase labels.
 
 ### Hierarchy
-- **Display** (600, clamp(2.6rem, 6vw, 5.5rem), 0.98): the contact sign-off headline only, max 14ch, balanced.
-- **Headline** (600, clamp(2.4rem, 4vw, 3.75rem), 0.95): project titles inside panels.
-- **Intro** (500, clamp(1.75rem, 2.9vw, 2.75rem), 1.14): the single identity sentence under the header, max 42ch; its second clause drops to muted.
-- **Title** (500, clamp(1.5rem, 2.2vw, 2rem)): section titles ("About").
-- **Lead** (500, clamp(1.35rem, 2vw, 1.75rem), 1.3): the About opening statement, in ink.
-- **Summary** (400, 1.15rem, 1.45): panel summaries, max 32ch, ink mixed 86% toward the panel bg.
-- **Body** (400, 17px, 1.5): About copy (max 64ch) and links.
-- **Label** (400, 0.94rem): the smallest size on the page. Project type lines in muted; the proof metric at 500 in accent with tabular numerals; photo captions in muted.
+Every piece of text uses one of ten styles, defined once in `src/styles/type.module.css` and composed into each component's own class. Sizes live in the `--text-*` tokens in `globals.css`. Colour is never part of a style; the same style reads as ink, muted, or accent by role.
+
+- **Hero** (600, clamp(3.25rem, 8.6vw, 6rem), 0.94, -0.04em): the homepage statement and the 404 heading.
+- **Display** (clamp(3rem, 7vw, 6rem), 0.94; clamp(2.5rem, 9vw, 4rem) at 900px and below): project names in bands and the next-project strip. The product's own face supplies family, weight, and tracking.
+- **Heading** (500, clamp(1.5rem, 2.2vw, 2rem), 1.2, -0.02em): section titles and the contact email.
+- **Lead** (500, clamp(1.35rem, 2vw, 1.75rem), 1.3, -0.02em): a section's opening paragraph.
+- **Large** (400, 1.15rem, 1.5): summaries, case-study prose, the 404 description.
+- **Large Strong** (500, 1.15rem, 1.4, -0.01em): row titles in Decisions and Progression.
+- **Body** (400, 17px, 1.5): row details, fact lists, navigation, and links; also the page default.
+- **Body Strong** (600, 17px, 1.5, -0.01em): the wordmark, primary actions, architecture node names.
+- **Small** (400, 0.94rem, 1.45): type lines, captions, node details, the next-project label, the nav on phones.
+- **Small Strong** (500, 0.94rem, 1.45): the proof metric (accent, tabular numerals) and "Read the case study".
 
 ### Named Rules
-**The Tightening Rule.** Tracking scales with size: -0.01em on the 1.06rem wordmark, -0.015em on the contact email, -0.02em at lead and title, -0.025em at intro, -0.035em at headline and display.
+**The Tightening Rule.** Tracking scales with size: normal at small, body, and large; -0.01em on their strong forms; -0.02em at lead and heading; -0.04em at hero.
 
-**The No-Uppercase Rule.** Labels are sentence case in muted at 0.94rem. The homepage uses no tracked uppercase labels or eyebrows.
+**The No-Uppercase Rule.** Labels are sentence case at Small. The homepage uses no tracked uppercase labels or eyebrows.
 
 ## Layout
 

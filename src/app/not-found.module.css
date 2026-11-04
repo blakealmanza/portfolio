@@ -18,9 +18,7 @@
 }
 
 .brand {
-  font-size: 1.06rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  composes: bodyStrong from "../styles/type.module.css";
 }
 
 .content {
@@ -31,21 +29,17 @@
   padding: clamp(64px, 12vh, 140px) 0;
 }
 
-.content h1 {
+.title {
+  composes: hero from "../styles/type.module.css";
   max-width: 14ch;
-  font-size: clamp(2.6rem, 6vw, 5.5rem);
-  font-weight: 600;
-  line-height: 0.98;
-  letter-spacing: -0.035em;
   text-wrap: balance;
 }
 
 .description {
+  composes: large from "../styles/type.module.css";
   max-width: 52ch;
   margin-top: 28px;
   color: var(--muted);
-  font-size: 1.15rem;
-  line-height: 1.45;
 }
 
 .actions {
@@ -65,7 +59,7 @@
 }
 
 .primaryLink {
-  font-weight: 600;
+  composes: bodyStrong from "../styles/type.module.css";
 }
 
 .textLink {

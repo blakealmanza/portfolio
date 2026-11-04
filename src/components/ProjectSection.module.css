@@ -55,9 +55,8 @@
 }
 
 .title {
+  composes: display from "../styles/type.module.css";
   grid-area: title;
-  font-size: clamp(3rem, 7vw, 6rem);
-  line-height: 0.94;
   text-wrap: balance;
 }
 
@@ -73,28 +72,26 @@
 }
 
 .type {
+  composes: small from "../styles/type.module.css";
   grid-area: type;
   margin-top: 10px;
   color: var(--muted);
-  font-size: 0.94rem;
 }
 
 .summary {
+  composes: large from "../styles/type.module.css";
   grid-area: summary;
   view-transition-group: nearest;
   max-width: 40ch;
-  font-size: 1.15rem;
-  line-height: 1.45;
   color: color-mix(in oklab, var(--ink) 88%, var(--bg));
   text-wrap: pretty;
 }
 
 .proof {
+  composes: smallStrong from "../styles/type.module.css";
   grid-area: proof;
   margin-top: 14px;
   color: var(--accent);
-  font-size: 0.94rem;
-  font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
 
@@ -110,10 +107,10 @@
 }
 
 .mediaLabel {
+  composes: smallStrong from "../styles/type.module.css";
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-weight: 600;
   opacity: 0.85;
   transition: opacity 180ms ease;
 }
@@ -149,11 +146,11 @@
 }
 
 .caption {
+  composes: small from "../styles/type.module.css";
   position: absolute;
   bottom: 18px;
   left: 20px;
   color: var(--muted);
-  font-size: 0.94rem;
 }
 
 /* Wide: one screen held to the rail, like the phones, and cut only by the band's bottom edge. */
@@ -254,10 +251,6 @@
   .details {
     display: flex;
     flex-direction: column;
-  }
-
-  .title {
-    font-size: clamp(2.5rem, 9vw, 4rem);
   }
 
   .titleLong {
