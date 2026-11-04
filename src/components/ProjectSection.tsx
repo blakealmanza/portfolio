@@ -5,6 +5,7 @@ import type { Project, ProjectFace, ProjectLayout, ProjectTheme } from "@/conten
 import { ArrowIcon } from "./Icons";
 import { MediaReveal } from "./MediaReveal";
 import styles from "./ProjectSection.module.css";
+import { homeShare, openTypes } from "./transitions";
 
 const layoutClass: Record<ProjectLayout, string> = {
   stage: styles.layoutStage,
@@ -66,12 +67,14 @@ export function ProjectSection({
   const Title = variant === "page" ? "h1" : "h2";
   // On its case study the band shows its screens whole, so a wide screen keeps its own proportions instead of filling a crop.
   const natural = variant === "page" && !phones;
+  // On the homepage a band pairs only with its own case study; on that case study it pairs with whatever leads back.
+  const share = (className: string) => (variant === "home" ? homeShare(project.slug, className) : className);
 
   const screens = (
     <MediaReveal count={shownMedia.length} phones={phones} animate={variant === "home"}>
       {shownMedia.map((media, index) => (
         // Each screen travels on its own, so one caught mid-reveal on the homepage glides straight to its resting place.
-        <ViewTransition key={media.src} name={`band-screen-${project.slug}-${index}`} share="band-part" default="none">
+        <ViewTransition key={media.src} name={`band-screen-${project.slug}-${index}`} share={share("band-part")} default="none">
           <span className={styles.screen}>
             <Image
               src={media.src}
@@ -91,13 +94,14 @@ export function ProjectSection({
   return (
     <>
       {/*
-       * The morphing plate's group is painted in the band's own colour, so its snapshots can fade freely without the page
-       * showing through. Hoisted and deduped by href, since every view of the same band emits the same rule.
+       * From the next-case strip, the plate's group is painted in the band's own colour, so the strip's extras can fade
+       * out before the new band's arrive without the page showing through. Hoisted and deduped by href, since every
+       * view of the same band emits the same rule.
        */}
       <style href={`band-plate-${project.slug}`} precedence="default">
-        {`::view-transition-group(band-${project.slug}){background-color:${project.theme.bg}}`}
+        {`html:active-view-transition-type(case-next)::view-transition-group(band-${project.slug}){background-color:${project.theme.bg}}`}
       </style>
-      <ViewTransition name={`band-${project.slug}`} share="band" default="none">
+      <ViewTransition name={`band-${project.slug}`} share={share("band")} default="none">
         <article
           id={project.slug}
           data-chrome
@@ -113,13 +117,13 @@ export function ProjectSection({
                 className={`${styles.title} ${name.length > 24 ? styles.titleLong : ""}`}
                 style={faceStyle(project.face)}
               >
-                <ViewTransition name={`band-title-${project.slug}`} share="band-part" default="none">
+                <ViewTransition name={`band-title-${project.slug}`} share={share("band-part")} default="none">
                   <span className={styles.titleText}>{name}</span>
                 </ViewTransition>
               </Title>
               <div className={styles.details}>
                 <p className={styles.type}>{project.shortTitle ? `${project.title} · ${project.type}` : project.type}</p>
-                <ViewTransition name={`band-summary-${project.slug}`} share="band-part" default="none">
+                <ViewTransition name={`band-summary-${project.slug}`} share={share("band-part")} default="none">
                   <p className={styles.summary}>{project.summary}</p>
                 </ViewTransition>
                 {proof && <p className={styles.proof}>{proof}</p>}
@@ -130,7 +134,7 @@ export function ProjectSection({
             {variant === "home" ? (
               <Link
                 href={`/projects/${project.slug}`}
-                transitionTypes={["case-open"]}
+                transitionTypes={openTypes(project.slug, "case-open")}
                 className={`${styles.mediaArea} ${styles.mediaLink}`}
                 aria-label={`Read the ${project.title} case study`}
               >
