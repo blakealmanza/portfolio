@@ -11,6 +11,8 @@ colors:
   better-halo-accent: "#F8A114"
   priceright-bg: "#1A2540"
   priceright-accent: "#A5B4FC"
+  sideline-bg: "#1C1C1E"
+  sideline-accent: "#409CFF"
   wsbri-bg: "#E9DFD1"
   wsbri-accent: "#7A4E24"
   annies-bg: "#212A1D"
@@ -129,7 +131,7 @@ components:
 
 The portfolio itself is a quiet, neutral room: a near-black ground, warm off-white ink, one confident grotesk, and almost nothing else. Color does not belong to the portfolio. It belongs to the work. Every project is presented inside its own product's real colour theme (background, ink, muted tone, accent), so Better Halo arrives in amber on charcoal, PriceRight in periwinkle on slate, WSBRI in bronze on saddle brown, Mosaic in blue on true black. The frame stays constant: every panel shares one 16px corner, one padding, one grid. The visitor sees range because the products look like themselves, not like cards wearing the portfolio's colors.
 
-The page is a single scroll: a one-line identity statement, then all seven projects as the same full-width themed panel (Better Halo, PriceRight, WSBRI, Annie's, Mosaic, Golf Caddie, Kimbo), then an About block with a facts list, then an oversized contact sign-off. As any panel crosses the middle of the viewport, the page ground quietly tints toward that project's background, so the room takes on the product's light while you are looking at it.
+The page is a single scroll: a one-line identity statement, then all eight projects as the same full-width themed panel (Better Halo, PriceRight, Sideline, WSBRI, Annie's, Mosaic, Golf Caddie, Kimbo), then an About block with a facts list, then an oversized contact sign-off. As any panel crosses the middle of the viewport, the page ground quietly tints toward that project's background, so the room takes on the product's light while you are looking at it.
 
 Density is low and the type does the structuring: large tight-tracked headings, generous vertical gaps between sections, hairlines rather than boxes for everything outside the project panels. Real screenshots are the only imagery.
 
@@ -164,11 +166,12 @@ Each project in `src/content/projects.ts` carries a `theme` object (bg, surface,
 |---|---|---|---|---|---|
 | 1 | Better Halo | `better-halo-bg` | `better-halo-accent` | browser | #F4F1EA / #ABA69C |
 | 2 | PriceRight | `priceright-bg` | `priceright-accent` | phones | #F1F5F9 / #A3B0C6 |
-| 3 | WSBRI | `wsbri-bg` | `wsbri-accent` | browser | #F4EEE8 / #B5A99F |
-| 4 | Annie's House + Farm Sitting | `annies-bg` | `annies-accent` | browser | #F7F4EB / #C3C9B6 |
-| 5 | Mosaic | `mosaic-bg` (panel renders on `photo-black`) | `mosaic-accent` | photo | #FAFAFA / #A1A1AA |
-| 6 | Golf Caddie | `golf-caddie-bg` | `golf-caddie-accent` | phones | #F0F5F1 / #A4B5A9 |
-| 7 | Kimbo Learning | `kimbo-bg` | `kimbo-accent` | browser | #F9FAFB / #A7B0BE |
+| 3 | Sideline | `sideline-bg` | `sideline-accent` | browser | #F5F5F7 / #B4B4BA |
+| 4 | WSBRI | `wsbri-bg` | `wsbri-accent` | browser | #F4EEE8 / #B5A99F |
+| 5 | Annie's House + Farm Sitting | `annies-bg` | `annies-accent` | browser | #F7F4EB / #C3C9B6 |
+| 6 | Mosaic | `mosaic-bg` (panel renders on `photo-black`) | `mosaic-accent` | photo | #FAFAFA / #A1A1AA |
+| 7 | Golf Caddie | `golf-caddie-bg` | `golf-caddie-accent` | phones | #F0F5F1 / #A4B5A9 |
+| 8 | Kimbo Learning | `kimbo-bg` | `kimbo-accent` | browser | #F9FAFB / #A7B0BE |
 
 ### Named Rules
 **The Borrowed Palette Rule.** The portfolio owns no accent. Any color other than ground, ink, muted, and line must come from a project's `theme` object and live inside that project's panel.
