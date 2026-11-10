@@ -191,7 +191,7 @@ export const projects: Project[] = [
   {
     slug: "sideline",
     title: "Sideline",
-    type: "macOS desktop app · In progress",
+    type: "macOS desktop app",
     summary: "A sports multiviewer for macOS that plays up to four live games at once and moves the sound to whichever one matters most.",
     description:
       "Each stream is tied to its ESPN game and read at its own broadcast delay. Smart mode scores every game each second and moves audio to the biggest moment, and Skip Ads leaves a stream when its score bar disappears.",

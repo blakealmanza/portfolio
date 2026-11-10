@@ -41,7 +41,7 @@ Clean, professional, and modern on a dark ground. The portfolio itself stays neu
 
 ## Evidence on Hand
 
-Approved copy and real media exist for eight projects: Better Halo, PriceRight, Sideline (in progress), Washington State Barrel Racing Info, Annie’s House + Farm Sitting (in progress), Mosaic, Golf Caddie, and Kimbo Learning. Public links: Better Halo (live site and Chrome Web Store), WSBRI (live site), Mosaic and Golf Caddie (GitHub). PriceRight and Annie’s have no public link yet; Sideline’s repository is private; Kimbo is intentionally unlinked. Metrics in use: 1,100+ Better Halo students, 200+ WSBRI users, ~80% less manual event entry, 25+ PriceRight screens redesigned.
+Approved copy and real media exist for eight projects: Better Halo, PriceRight, Sideline, Washington State Barrel Racing Info, Annie’s House + Farm Sitting (in progress), Mosaic, Golf Caddie, and Kimbo Learning. Public links: Better Halo (live site and Chrome Web Store), WSBRI (live site), Mosaic and Golf Caddie (GitHub). PriceRight and Annie’s have no public link yet; Sideline’s repository is private; Kimbo is intentionally unlinked. Metrics in use: 1,100+ Better Halo students, 200+ WSBRI users, ~80% less manual event entry, 25+ PriceRight screens redesigned.
 
 ## Product Principles
 
