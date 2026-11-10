@@ -189,6 +189,97 @@ export const projects: Project[] = [
     links: [],
   },
   {
+    slug: "sideline",
+    title: "Sideline",
+    type: "macOS desktop app · In progress",
+    summary: "A sports multiviewer for macOS that plays up to four live games at once and moves the sound to whichever one matters most.",
+    description:
+      "Each stream is tied to its ESPN game and read at its own broadcast delay. Smart mode scores every game each second and moves audio to the biggest moment, and Skip Ads leaves a stream when its score bar disappears.",
+    stack: "Electron · castLabs ECS · TypeScript · React · electron-vite · Vite+ · Playwright · ESPN API",
+    face: { family: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", Roboto, var(--font-sans)', weight: 600, tracking: "-0.03em" },
+    // The app's window is #0B0B0B, so the band sits on the lifted macOS dark gray; the accent lifts system blue to 6:1.
+    theme: { scheme: "dark", bg: "#1C1C1E", surface: "#2C2C2E", ink: "#F5F5F7", muted: "#B4B4BA", accent: "#409CFF", signal: "#0A84FF" },
+    layout: "stage",
+
+    problem:
+      "Watching several games at once means constantly switching which one you can hear: chasing a red zone in one, sitting through an ad break in another. Most multiviewers show the streams side by side but leave every audio decision to the viewer.",
+    solution:
+      "I designed and built a native-feeling Mac app with grid, focus, and single layouts, where exactly one stream is audible and an accent ring marks which. A picker lists live games from stream sources and matches them to ESPN games. Each stream reads game data at its own delay, so nothing spoils what's on screen. An audio director scores every game on NFL, college football, NBA, and men's college basketball rules, and commercial breaks are detected from each broadcast's score bar.",
+    architecture: {
+      caption: "Every decision reads game data at the stream's own delay, so audio never moves on a play the viewer hasn't seen yet.",
+      stages: [
+        [
+          { label: "Streaming sites", detail: "Sandboxed views, Widevine DRM" },
+          { label: "ESPN scoreboards", detail: "Polled per league" },
+        ],
+        [
+          { label: "Delayed game history", detail: "Read at now − delay" },
+          { label: "Picture analyzer", detail: "Learns each score bar" },
+        ],
+        [
+          { label: "Audio director", detail: "Smart and Skip Ads" },
+          { label: "Stream manager", detail: "One audible stream" },
+          { label: "React shell", detail: "Layouts, picker, menus" },
+        ],
+      ],
+    },
+    decisions: [
+      {
+        title: "Chrome that recedes",
+        description:
+          "Video is the content, so the window stays dark and quiet and the controls live in the gaps between streams. One signal colour means “you're hearing this”: the accent marks the stream with audio and the primary action, and nothing else. Sideline draws its own menus and popovers on one material, with native keyboard control and type-ahead.",
+      },
+      {
+        title: "Never spoil the game",
+        description:
+          "Streams run seconds to minutes behind live, and ESPN doesn't. Game data is kept as timestamped history and every stream reads it at its own delay; until the history reaches back that far, nothing is shown. The picker shows a watched game's delayed score, never the live one.",
+      },
+      {
+        title: "Switch less, and say why",
+        description:
+          "The director moves audio only when another game outranks the current one by a clear margin, stays at least 30 seconds after a switch, and steps back for 3 minutes after you pick a stream yourself. When it does move, the tile that gained audio says why, such as “Audio moved here · red zone.”",
+      },
+      {
+        title: "Find ads in the picture",
+        description:
+          "Game data can't reliably tell when a broadcast cuts to commercials, and an audio crowd score didn't separate live play from ads on real broadcasts. The score bar did: a hidden analyzer learns each stream's bar from edges that hold still while the video moves, so see-through bars count, and calls a break once the bar has been gone for 15 seconds with no new plays.",
+      },
+      {
+        title: "Tune against recordings, not guesses",
+        description:
+          "Each session is logged, and a replay tool runs it through a fresh director to compare recorded and replayed switches. Ads labelled by hand with ⌘B score how much break time detection caught and how late.",
+      },
+    ],
+    features: [
+      {
+        title: "Four games, one sound",
+        description:
+          "Grid, focus, and single layouts, with the stream that has audio ringed in the accent. Each tile carries a quiet nameplate that explains state in words, such as Ad break or Data delayed.",
+        media: ["/projects/sideline/grid.webp", "/projects/sideline/focus.webp"],
+      },
+      {
+        title: "Pick a game, not a URL",
+        description:
+          "Add stream lists live games from stream sources with their score and clock, matched to ESPN games, and is fully keyboard-driven. With no streams open, the window shows the same list under What's on.",
+        media: ["/projects/sideline/picker.webp", "/projects/sideline/whats-on.webp"],
+      },
+      {
+        title: "Ads, found by the score bar",
+        description:
+          "A diagnostic highlights the learned score-bar pixels over the video, so detection can be checked against the real broadcast.",
+        media: ["/projects/sideline/score-bar.webp"],
+      },
+    ],
+    media: [
+      { kind: "image", src: "/projects/sideline/grid.webp", width: 2620, height: 1722, alt: "Sideline playing four college football games in a grid, with Smart audio mode on and the audible stream ringed in blue", label: "Grid layout" },
+      { kind: "image", src: "/projects/sideline/focus.webp", width: 2620, height: 1722, alt: "Sideline focus layout with one large stream and three smaller streams in a strip on the right", label: "Focus layout" },
+      { kind: "image", src: "/projects/sideline/picker.webp", width: 2738, height: 1792, alt: "Sideline add-stream picker listing live games with scores and game clocks", label: "Add stream" },
+      { kind: "image", src: "/projects/sideline/whats-on.webp", width: 2800, height: 1800, alt: "Sideline empty window listing live college football games under What's on", label: "What's on" },
+      { kind: "image", src: "/projects/sideline/score-bar.webp", width: 1130, height: 248, alt: "Sideline score-bar diagnostic highlighting the learned pixels of a broadcast score bar", label: "Score bar diagnostic", fit: "contain" },
+    ],
+    links: [],
+  },
+  {
     slug: "wsbri",
     title: "Washington State Barrel Racing Info",
     type: "Community event platform · Freelance",
